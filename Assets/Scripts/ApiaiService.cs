@@ -11,7 +11,8 @@ public class ApiaiService : MonoBehaviour {
 
     private string accessToken;
 
-    void Start () {
+    void Start ()
+    {
         ConfigService service = GetComponent<ConfigService>();
         accessToken = service.SelectedConfig().apiaiClientAccessToken;
     }
@@ -23,9 +24,11 @@ public class ApiaiService : MonoBehaviour {
 
     public async Task<Response> Query(string sessionId, string text)
     {
-        Dictionary<string, string> headers = new Dictionary<string, string>();
-        headers.Add("Authorization", $"Bearer {accessToken}");
-        headers.Add("Content-Type", "application/json");
+        Dictionary<string, string> headers = new Dictionary<string, string>
+        {
+            { "Authorization", $"Bearer {accessToken}" },
+            { "Content-Type", "application/json" }
+        };
 
         Query query = new Query
         {
