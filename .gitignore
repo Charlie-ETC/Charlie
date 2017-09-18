@@ -33,6 +33,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# Local configuration
+/Assets/Resources/Config/local.asset*
+
 # Universal Windows Platform
 /UWP/*
 !/UWP/Charlie.sln

@@ -571,7 +571,11 @@ GameObject:
   - component: {fileID: 1218877853}
   - component: {fileID: 1218877852}
   - component: {fileID: 1218877851}
+  - component: {fileID: 1218877858}
+  - component: {fileID: 1218877856}
   - component: {fileID: 1218877854}
+  - component: {fileID: 1218877855}
+  - component: {fileID: 1218877857}
   m_Layer: 0
   m_Name: DictationMonitor
   m_TagString: Untagged
@@ -590,8 +594,8 @@ TextMesh:
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
+  m_Anchor: 4
+  m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 48
   m_FontStyle: 0
@@ -639,7 +643,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1218877850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
