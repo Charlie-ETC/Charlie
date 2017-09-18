@@ -1,8 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 using Newtonsoft.Json;
 using Asyncoroutine;
 
@@ -24,12 +24,6 @@ public class ApiaiService : MonoBehaviour {
 
     public async Task<Response> Query(string sessionId, string text)
     {
-        Dictionary<string, string> headers = new Dictionary<string, string>
-        {
-            { "Authorization", $"Bearer {accessToken}" },
-            { "Content-Type", "application/json" }
-        };
-
         Query query = new Query
         {
             v = "20150910",
@@ -43,10 +37,18 @@ public class ApiaiService : MonoBehaviour {
             NullValueHandling = NullValueHandling.Ignore
         };
 
-        string request = JsonConvert.SerializeObject(query, settings);
-        WWW www = await new WWW("https://api.api.ai/v1/query",
-            Encoding.UTF8.GetBytes(request), headers);
-        Debug.Log(www.text);
-        return JsonConvert.DeserializeObject<Response>(www.text, settings);
+        string requestBody = JsonConvert.SerializeObject(query, settings);
+        UnityWebRequest request = new UnityWebRequest("https://api.api.ai/v1/query")
+        {
+            method = UnityWebRequest.kHttpVerbPOST,
+            uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(requestBody)),
+            downloadHandler = new DownloadHandlerBuffer()
+        };
+        request.SetRequestHeader("Authorization", $"Bearer {accessToken}");
+        request.SetRequestHeader("Content-Type", "application/json");
+        await request.Send();
+
+        return JsonConvert.DeserializeObject<Response>(
+            request.downloadHandler.text, settings);
     }
 }

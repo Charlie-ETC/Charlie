@@ -32,25 +32,16 @@ public class WatsonTTSService : MonoBehaviour
             Encoding.UTF8.GetBytes($"{ibmWatsonUsername}:{ibmWatsonPassword}"));
         string encodedUrl = WWW.EscapeURL(ibmWatsonTtsUrl, Encoding.UTF8);
 
-        Dictionary<string, string> headers = new Dictionary<string, string>
-        {
-            { "Authorization", $"Basic {encodedCredentials}" },
-            { "Content-Type", "text/plain" }
-        };
+        UnityWebRequest request = UnityWebRequest.Get(
+            $"https://stream.watsonplatform.net/authorization/api/v1/token?url={encodedUrl}");
+        request.SetRequestHeader("Authorization", $"Basic {encodedCredentials}");
+        await request.Send();
 
-        WWW www = await new WWW($"https://stream.watsonplatform.net/authorization/api/v1/token?url={encodedUrl}",
-            null, headers);
-        ibmWatsonToken = www.text;
+        ibmWatsonToken = request.downloadHandler.text;
     }
 
     public async Task<AudioClip> Synthesize(string text)
     {
-        Dictionary<string, string> headers = new Dictionary<string, string>()
-        {
-            { "X-Watson-Authorization-Token", ibmWatsonToken },
-            { "Accept", "audio/wav" }
-        };
-
         UnityWebRequest request = UnityWebRequest.Get(
             $"{ibmWatsonTtsUrl}/v1/synthesize?text={text}");
         request.SetRequestHeader("X-Watson-Authorization-Token", ibmWatsonToken);
