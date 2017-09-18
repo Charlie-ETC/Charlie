@@ -59,10 +59,10 @@ namespace IBM.Watson.DeveloperCloud.Utilities
         #region Private Functions
         private static T ReadType<T>(BinaryReader reader)
         {
-            byte[] bytes = reader.ReadBytes(Marshal.SizeOf(typeof(T)));
+            byte[] bytes = reader.ReadBytes(Marshal.SizeOf<T>());
 
             GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-            T theStructure = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
+            T theStructure = Marshal.PtrToStructure<T>(handle.AddrOfPinnedObject());
             handle.Free();
 
             return theStructure;
@@ -252,8 +252,8 @@ namespace IBM.Watson.DeveloperCloud.Utilities
             form.form_length = (uint)(writer.BaseStream.Position - form_start);
             writer.Seek(0, SeekOrigin.Begin);
             WriteType(writer, form);
-
-            return stream.GetBuffer();
+            
+            return stream.ToArray();
         }
         #endregion
     }
