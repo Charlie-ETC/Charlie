@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
+#if NETFX_CORE
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
+#else
 using System.Security.Cryptography;
+#endif
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -90,8 +96,18 @@ public class TwitterService : MonoBehaviour {
         string baseString = CreateBaseString(method, url, oauthParams,
             requestParams);
         byte[] baseStringBytes = Encoding.UTF8.GetBytes(baseString);
+
+#if NETFX_CORE
+        MacAlgorithmProvider provider = MacAlgorithmProvider.OpenAlgorithm(MacAlgorithmNames.HmacSha1);
+        CryptographicHash hmac = provider.CreateHash(
+            CryptographicBuffer.ConvertStringToBinary(key, BinaryStringEncoding.Utf8));
+        hmac.Append(WindowsRuntimeBufferExtensions.AsBuffer(baseStringBytes));
+        byte[] hash = WindowsRuntimeBufferExtensions.ToArray(hmac.GetValueAndReset());
+#else
         HMACSHA1 hmac = new HMACSHA1(Encoding.UTF8.GetBytes(key));
         byte[] hash = hmac.ComputeHash(baseStringBytes);
+#endif
+
         return Convert.ToBase64String(hash);
     }
 
