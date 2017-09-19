@@ -362,8 +362,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 612622530}
-  - component: {fileID: 612622531}
   - component: {fileID: 612622532}
+  - component: {fileID: 612622531}
   m_Layer: 0
   m_Name: Context
   m_TagString: Untagged
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 612622529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d128fb31e5c83c24091ea87e92517d99, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b1e69a95dc005d489c759b9817dd6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &612622532
@@ -574,6 +574,7 @@ GameObject:
   - component: {fileID: 1218877856}
   - component: {fileID: 1218877855}
   - component: {fileID: 1218877857}
+  - component: {fileID: 1218877859}
   - component: {fileID: 1218877854}
   m_Layer: 0
   m_Name: DictationMonitor
@@ -772,6 +773,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1218877859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1218877850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1e69a95dc005d489c759b9817dd6d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1618640244
 GameObject:
   m_ObjectHideFlags: 0
