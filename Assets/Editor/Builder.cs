@@ -5,6 +5,13 @@ public class Builder
 {
     public static void Build()
     {
+        // Fixes "Plugin 'VuforiaWrapper.dll' is used from several locations".
+        //
+        // Vuforia updates some plugin settings in Vuforia/Editor/Scripts/ExtensionImport.cs.
+        // Running this method beforehand will give the editor script an
+        // opportunity to run.
+        EditorApplication.update();
+
         List<string> sceneNames = new List<string>();
         foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
         {
