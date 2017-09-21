@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class WorldCursor : MonoBehaviour {
 
     private MeshRenderer meshRenderer;
     private Vector3 cameraPos;
-    private Vector3 gazeDirction;
+    private Vector3 gazeDirection;
 
 	void Start () {
         meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
@@ -16,17 +15,16 @@ public class WorldCursor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         cameraPos = Camera.main.transform.position;
-        gazeDirction = Camera.main.transform.forward;
+        gazeDirection = Camera.main.transform.forward;
 
         RaycastHit hit;
 
-        if (Physics.Raycast(cameraPos, gazeDirction, out hit))
+        if (Physics.Raycast(cameraPos, gazeDirection, out hit))
         {
             // move cursor to the hit point and hug the surface
             meshRenderer.enabled = true;
             transform.position = hit.point;
-            transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal);
-            Debug.Log("yes");
+            transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
         }
         else
         {
