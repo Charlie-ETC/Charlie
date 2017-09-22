@@ -9,7 +9,7 @@ public class GestureManager : MonoBehaviour {
 
     // gameobject that is being gazed at
     public GameObject FocusedObject { get; private set; }
-    private GameObject oldFocusedObject;
+    public GameObject OldFocusedObject { get; private set; }
 
     private GestureRecognizer gestureRecognizer;
 
@@ -21,7 +21,7 @@ public class GestureManager : MonoBehaviour {
     {
         if (Instance == null)
         {
-            Instance = new GestureManager();
+            Instance = this;
         }
         else
         {
@@ -41,7 +41,7 @@ public class GestureManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        oldFocusedObject = FocusedObject;
+        OldFocusedObject = FocusedObject;
 
         cameraPos = Camera.main.transform.position;
         gazeDirection = Camera.main.transform.forward;
@@ -57,7 +57,7 @@ public class GestureManager : MonoBehaviour {
         } 
 
         // if focusedObject changes?
-        if (FocusedObject != oldFocusedObject) {
+        if (FocusedObject != OldFocusedObject) {
             gestureRecognizer.CancelGestures();
             gestureRecognizer.StartCapturingGestures();
         }

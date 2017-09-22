@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 
+// for keyword commands
 public class SpeechManager : MonoBehaviour {
 
     private KeywordRecognizer keywordRecognizer;
@@ -28,6 +29,7 @@ public class SpeechManager : MonoBehaviour {
         System.Action callBack;
 
         if (keywords.TryGetValue(args.text, out callBack)){
+            Debug.Log("speech call back");
             callBack.Invoke();
         }      
     }

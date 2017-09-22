@@ -69,4 +69,15 @@ public class DictationRecognizer : MonoBehaviour {
         dictationResultEvent.Invoke(text, confidence.ToString());
         dictationRecognizer.Stop();
     }
+
+    private void OnDestroy()
+    {
+        Debug.Log("ondestroy");
+        if (PhraseRecognitionSystem.Status == SpeechSystemStatus.Running) {
+            PhraseRecognitionSystem.Shutdown();
+        }
+        //if (dictationRecognizer.Status == SpeechSystemStatus.Running) {
+        //    dictationRecognizer.Stop();
+        //}
+    }
 }
