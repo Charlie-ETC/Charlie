@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Windows.Speech;
@@ -32,6 +33,8 @@ public class DictationRecognizer : MonoBehaviour {
         "the current session.")]
     public float initialSilenceTimeoutSeconds = 5.0f;
 
+    private bool isDestroying = false;
+
 	// Use this for initialization
 	void Start () {
         dictationRecognizer = new UnityEngine.Windows.Speech.DictationRecognizer();
@@ -54,7 +57,11 @@ public class DictationRecognizer : MonoBehaviour {
     {
         Debug.Log($"OnDictationComplete (cause: {cause.ToString()})");
         dictationCompleteEvent.Invoke(cause.ToString());
-        dictationRecognizer.Start();
+        if (!isDestroying)
+        {
+            Debug.Log("Restarting DictationRecognizer after completion");
+            dictationRecognizer.Start();
+        }
     }
 
     private void OnDictationHypothesis(string text)
@@ -72,12 +79,11 @@ public class DictationRecognizer : MonoBehaviour {
 
     private void OnDestroy()
     {
-        Debug.Log("ondestroy");
-        if (PhraseRecognitionSystem.Status == SpeechSystemStatus.Running) {
-            PhraseRecognitionSystem.Shutdown();
+        Debug.Log("Destroying DictationRecognizer");
+        if (dictationRecognizer.Status == SpeechSystemStatus.Running)
+        {
+            isDestroying = true;
+            dictationRecognizer.Stop();
         }
-        //if (dictationRecognizer.Status == SpeechSystemStatus.Running) {
-        //    dictationRecognizer.Stop();
-        //}
     }
 }

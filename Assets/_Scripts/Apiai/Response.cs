@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+[System.Serializable]
 public class Response {
     public string id;
     public string timestamp;

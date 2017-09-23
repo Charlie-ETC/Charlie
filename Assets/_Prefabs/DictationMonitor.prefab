@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 23840060814117580}
   - component: {fileID: 102198296176273242}
   - component: {fileID: 82044599759395870}
-  - component: {fileID: 114655129679286338}
   - component: {fileID: 114513808649257902}
+  - component: {fileID: 114655129679286338}
   - component: {fileID: 114446043903772982}
   - component: {fileID: 114410405562530238}
   - component: {fileID: 114851015398798278}
@@ -235,3 +235,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4f54047b330674cb3f52eaf68bfa91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intentHandlers:
+  - name: keyword.drag
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114851015398798278}
+          m_MethodName: DragHandler
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null

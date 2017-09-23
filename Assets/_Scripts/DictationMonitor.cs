@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class DictationMonitor : MonoBehaviour {
+
+    public List<IntentHandler> intentHandlers;
 
     private ApiaiService apiaiService;
     private WatsonTTSService watsonTTSService;
@@ -10,13 +11,11 @@ public class DictationMonitor : MonoBehaviour {
     private TextMesh textMesh;
     private AudioSource audioSource;
 
+    private Dictionary<string, IntentHandler> intentHandlerIndex = new Dictionary<string, IntentHandler>();
     private string apiaiSessionId;
 
     private string lastRequest;
     private string lastResponse;
-
-    // keyword commands collection
-    private Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
     void Start() {
         textMesh = GetComponent<TextMesh>();
@@ -25,33 +24,50 @@ public class DictationMonitor : MonoBehaviour {
         watsonTTSService = GetComponent<WatsonTTSService>();
         apiaiSessionId = apiaiService.CreateSession();
 
-        // initiate keywords. Case sensitive
-        keywords.Add("tap it", KeywordCommands.OnTapIt);
-        keywords.Add("drag it", KeywordCommands.OnDragIt);
-        keywords.Add("place it here", KeywordCommands.OnPlaceItHere);
-        keywords.Add("reset", KeywordCommands.OnReset);
+        // At startup, index the intentHandler.
+        intentHandlers.ForEach(handler => intentHandlerIndex.Add(handler.name, handler));
     }
 
     public async void HandleDictationResult(string text, string confidenceLevel)
     {
         lastRequest = text;
-        textMesh.text = $"Request: {lastRequest}\nResponse: {lastResponse}";
         Response response = await apiaiService.Query(apiaiSessionId, text);
-        string speech = response.result.speech;
-        AudioClip clip = await watsonTTSService.Synthesize(speech);
-        audioSource.PlayOneShot(clip);
-        CharlieManager.Instance.SpeakAnimation(clip.length);
-        lastResponse = speech;
-    }
 
-    public void HandleKeywordCommand(string text, string confidenceLevel)
-    {
-        Debug.Log("HandleKeywordCommand");
+        // We managed to get an intent, dispatch it.
+        if (response.result.metadata.intentName != null)
+        {
+            DispatchIntent(response.result.metadata.intentName, response);
+        }
 
-        System.Action action;
-        if (keywords.TryGetValue(text, out action)) {
-            action.Invoke();
+        // API.ai crafted a speech response for us, use it.
+        if (response.result.speech.Length != 0)
+        {
+            string speech = response.result.speech;
+            AudioClip clip = await watsonTTSService.Synthesize(speech);
+            audioSource.PlayOneShot(clip);
+            CharlieManager.Instance.SpeakAnimation(clip.length);
+            lastResponse = speech;
+            textMesh.text = $"Request: {lastRequest}\nResponse: {lastResponse}";
         }
     }
 
+    public void DispatchIntent(string intent, Response response)
+    {
+        Debug.Log($"Handling intent: {response.result.metadata.intentName}");
+        IntentHandler handler;
+        bool found = intentHandlerIndex.TryGetValue(intent, out handler);
+        if (found)
+        {
+            handler.unityEvent.Invoke();
+        }
+        else
+        {
+            Debug.Log($"Intent {intent} does not have a handler.");
+        }
+    }
+
+    public void DragHandler()
+    {
+        Debug.Log("DragHandler invoked!");
+    }
 }
