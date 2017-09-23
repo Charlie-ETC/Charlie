@@ -9,6 +9,8 @@ using IBM.Watson.DeveloperCloud.Utilities;
 
 public class WatsonTTSService : MonoBehaviour
 {
+    public string voice = "en-US_LisaVoice";
+
     private string ibmWatsonTtsUrl;
     private string ibmWatsonUsername;
     private string ibmWatsonPassword;
@@ -43,7 +45,7 @@ public class WatsonTTSService : MonoBehaviour
     public async Task<AudioClip> Synthesize(string text)
     {
         UnityWebRequest request = UnityWebRequest.Get(
-            $"{ibmWatsonTtsUrl}/v1/synthesize?text={text}");
+            $"{ibmWatsonTtsUrl}/v1/synthesize?text={text}&voice={voice}");
         request.SetRequestHeader("X-Watson-Authorization-Token", ibmWatsonToken);
         request.SetRequestHeader("Accept", "audio/wav");
         await request.Send();
