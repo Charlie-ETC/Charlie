@@ -91,17 +91,17 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.05
   Loop: 0
   Mute: 0
   Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 0.2
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 30
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
