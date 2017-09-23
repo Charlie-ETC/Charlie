@@ -556,6 +556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c46fd6d44ed86447a36ff889d6b3d8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyMovementClip: {fileID: 7400000, guid: 4d7459dfea3e2e240a8014a2f913e0e6, type: 2}
+  animator: {fileID: 95383806714400466, guid: ba445b1eeb8d8c442bf440187eba3d7d, type: 2}
 --- !u!1 &1577994884
 GameObject:
   m_ObjectHideFlags: 0

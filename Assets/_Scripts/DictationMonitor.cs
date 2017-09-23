@@ -40,6 +40,7 @@ public class DictationMonitor : MonoBehaviour {
         string speech = response.result.speech;
         AudioClip clip = await watsonTTSService.Synthesize(speech);
         audioSource.PlayOneShot(clip);
+        CharlieManager.Instance.SpeakAnimation(clip.length);
         lastResponse = speech;
     }
 
