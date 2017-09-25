@@ -43,6 +43,23 @@ public class GestureManager : MonoBehaviour {
 
         OldFocusedObject = FocusedObject;
 
+#if UNITY_EDITOR
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                Debug.Log(hit.collider.name);
+                CubeCommands cc = hit.collider.gameObject.GetComponentInParent<CubeCommands>();
+                if (cc != null) { cc.OnSelect(); }
+            }
+        }
+        
+        
+#else
         cameraPos = Camera.main.transform.position;
         gazeDirection = Camera.main.transform.forward;
 
@@ -54,13 +71,15 @@ public class GestureManager : MonoBehaviour {
         }
         else {
             FocusedObject = null;
-        } 
+        }
 
         // if focusedObject changes?
         if (FocusedObject != OldFocusedObject) {
             gestureRecognizer.CancelGestures();
             gestureRecognizer.StartCapturingGestures();
         }
+
+#endif
 
     }
 
@@ -73,4 +92,5 @@ public class GestureManager : MonoBehaviour {
             }
         }
     }
+
 }

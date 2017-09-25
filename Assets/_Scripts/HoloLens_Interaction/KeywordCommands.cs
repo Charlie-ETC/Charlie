@@ -22,31 +22,31 @@ public class KeywordCommands : MonoBehaviour {
         }
     }
 
-    public static void OnDragIt()
-    {
-        Debug.Log("OnDragIt");
-        if (GestureManager.Instance.FocusedObject != null)
-        {
-            CubeCommands cc = GestureManager.Instance.FocusedObject.GetComponentInParent<CubeCommands>();
-            if (cc != null)
-            {
-                cc.OnDrag();
-            }
-        }
-    }
+    //public static void OnDragIt()
+    //{
+    //    Debug.Log("OnDragIt");
+    //    if (GestureManager.Instance.FocusedObject != null)
+    //    {
+    //        CubeCommands cc = GestureManager.Instance.FocusedObject.GetComponentInParent<CubeCommands>();
+    //        if (cc != null)
+    //        {
+    //            cc.OnDrag();
+    //        }
+    //    }
+    //}
 
-    public static void OnPlaceItHere()
-    {
-        Debug.Log("OnPlaceItHere");
-        if (GestureManager.Instance.FocusedObject != null)
-        {
-            CubeCommands cc = GestureManager.Instance.FocusedObject.GetComponentInParent<CubeCommands>();
-            if (cc != null)
-            {
-                cc.OnPlaced();
-            }
-        }
-    }
+    //public static void OnPlaceItHere()
+    //{
+    //    Debug.Log("OnPlaceItHere");
+    //    if (GestureManager.Instance.FocusedObject != null)
+    //    {
+    //        CubeCommands cc = GestureManager.Instance.FocusedObject.GetComponentInParent<CubeCommands>();
+    //        if (cc != null)
+    //        {
+    //            cc.OnPlaced();
+    //        }
+    //    }
+    //}
 
 
     /// <summary>

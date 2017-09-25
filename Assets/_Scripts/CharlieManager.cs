@@ -22,6 +22,12 @@ public class CharlieManager : MonoBehaviour {
         }
     }
 
+    // always face the direction that the player is looking at
+    private void Update()
+    {
+        transform.LookAt(Vector3.ProjectOnPlane(Camera.main.transform.position, Vector3.up));
+    }
+
     public void SpeakAnimation(float audioLen) {
         
         if ( bodyMovementClip.length < audioLen) {
@@ -47,6 +53,16 @@ public class CharlieManager : MonoBehaviour {
 
         // set back to idle animation
         animator.Play("girl idle");
+
+        if (animator.GetBool("BlendMovement")) {
+            animator.SetBool("BlendMovement", false);
+        }
+
+        if (animator.GetBool("MouseTalkEyeBlink")) {
+            animator.SetBool("MouseTalkEyeBlink", false);
+        }
+
+        
     }
 
 }
