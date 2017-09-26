@@ -416,6 +416,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!95 &949271979 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95383806714400466, guid: ba445b1eeb8d8c442bf440187eba3d7d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1830016065}
 --- !u!1 &1128987660
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyMovementClip: {fileID: 7400000, guid: 789dd8898897bc3479da8e79c4f0a245, type: 2}
-  animator: {fileID: 95383806714400466, guid: ba445b1eeb8d8c442bf440187eba3d7d, type: 2}
+  animator: {fileID: 949271979}
 --- !u!136 &1304642588
 CapsuleCollider:
   m_ObjectHideFlags: 0
