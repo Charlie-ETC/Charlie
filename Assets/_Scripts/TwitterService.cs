@@ -8,10 +8,13 @@ using Windows.Security.Cryptography.Core;
 using System.Security.Cryptography;
 #endif
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 using Asyncoroutine;
-using System.Text.RegularExpressions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 public class TwitterService : MonoBehaviour {
 
@@ -145,11 +148,14 @@ public class TwitterService : MonoBehaviour {
                 Uri.EscapeDataString(param.Value));
         }
 
+        String requestBody = builder.ToString();
         UnityWebRequest request = new UnityWebRequest(url)
         {
             method = method,
-            uploadHandler = new UploadHandlerRaw(
-                Encoding.UTF8.GetBytes(builder.ToString().Substring(1))),
+            uploadHandler = requestBody.Length > 0 ?
+                new UploadHandlerRaw(
+                    Encoding.UTF8.GetBytes(requestBody.Substring(1))) :
+                null,
             downloadHandler = new DownloadHandlerBuffer()
         };
         request.SetRequestHeader("Authorization", authorization);
@@ -163,10 +169,66 @@ public class TwitterService : MonoBehaviour {
             "https://api.twitter.com/1.1/statuses/update.json",
             new Dictionary<string, string>()
             {
-                {  "status", text }
+                { "status", text }
             });
         await request.SendWebRequest();
-        Debug.Log("Completed tweet?");
-        Debug.Log(request.downloadHandler.text);
+    }
+
+    public async void TweetWithMedia(string text, string[] mediaIds)
+    {
+        UnityWebRequest request = BuildRequest(UnityWebRequest.kHttpVerbPOST,
+            "https://api.twitter.com/1.1/statuses/update.json",
+            new Dictionary<string, string>()
+            {
+                { "status", text },
+                { "media_ids", String.Join(",", mediaIds) }
+            });
+        await request.SendWebRequest();
+    }
+
+    public async Task<Media> UploadMedia(byte[] data)
+    {
+        UnityWebRequest request = BuildRequest(UnityWebRequest.kHttpVerbPOST,
+            "https://upload.twitter.com/1.1/media/upload.json",
+            new Dictionary<string, string>() { });
+
+        // Since this is a multipart/form-data request, we need to have a boundary.
+        byte[] boundary = UnityWebRequest.GenerateBoundary();
+
+        // Construct the request body.
+        List<byte> requestBody = new List<byte>();
+        requestBody.AddRange(Encoding.UTF8.GetBytes("--"));
+        requestBody.AddRange(boundary);
+        requestBody.AddRange(Encoding.UTF8.GetBytes("\r\n"));
+        requestBody.AddRange(Encoding.UTF8.GetBytes("Content-Disposition: form-data; name=\"media\""));
+        requestBody.AddRange(Encoding.UTF8.GetBytes("\r\n\r\n"));
+
+        requestBody.AddRange(data);
+        requestBody.AddRange(Encoding.UTF8.GetBytes("\r\n"));
+
+        requestBody.AddRange(Encoding.UTF8.GetBytes("--"));
+        requestBody.AddRange(boundary);
+        requestBody.AddRange(Encoding.UTF8.GetBytes("--\r\n"));
+        request.uploadHandler = new UploadHandlerRaw(requestBody.ToArray());
+
+        // Add the boundary information into the Content-Type header.
+        List<byte> contentType = new List<byte>();
+        contentType.AddRange(Encoding.UTF8.GetBytes("multipart/form-data; boundary="));
+        contentType.AddRange(boundary);
+
+        request.SetRequestHeader("Content-Type", Encoding.UTF8.GetString(contentType.ToArray()));
+        await request.SendWebRequest();
+
+        JsonSerializerSettings settings = new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            ContractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy()
+            }
+        };
+
+        return JsonConvert.DeserializeObject<Media>(
+            request.downloadHandler.text, settings);
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class DictationMonitor : MonoBehaviour {
@@ -7,6 +8,7 @@ public class DictationMonitor : MonoBehaviour {
 
     private ApiaiService apiaiService;
     private WatsonTTSService watsonTTSService;
+    private TwitterService twitterService;
 
     private TextMesh textMesh;
     private AudioSource audioSource;
@@ -22,10 +24,15 @@ public class DictationMonitor : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         apiaiService = GetComponent<ApiaiService>();
         watsonTTSService = GetComponent<WatsonTTSService>();
+        twitterService = GetComponent<TwitterService>();
         apiaiSessionId = apiaiService.CreateSession();
 
         // At startup, index the intentHandler.
         intentHandlers.ForEach(handler => intentHandlerIndex.Add(handler.name, handler));
+
+        // Usage instructions for Twitter:
+        // Media media = await twitterService.UploadMedia(File.ReadAllBytes("WIN_20161017_22_43_37_Pro.jpg"));
+        // twitterService.TweetWithMedia("hello!", new string[1] { media.mediaIdString });
     }
 
     public async void HandleDictationResult(string text, string confidenceLevel)
