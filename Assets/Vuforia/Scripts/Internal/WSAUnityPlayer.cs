@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 #if HOLOLENS_API_AVAILABLE
-using UnityEngine.VR.WSA;
+
 #endif
 
 
@@ -37,20 +37,20 @@ namespace Vuforia
 
         private class HoloLensApiImplementation : IHoloLensApiAbstraction
         {
-            private Dictionary<TrackableIdPair, WorldAnchor> mWorldAnchors = 
-                new Dictionary<TrackableIdPair, WorldAnchor>();
+            private Dictionary<TrackableIdPair, UnityEngine.XR.WSA.WorldAnchor> mWorldAnchors = 
+                new Dictionary<TrackableIdPair, UnityEngine.XR.WSA.WorldAnchor>();
             private Action<TrackableIdPair, bool> mHoloLensTrackingCallback = null;
  
             public void SetFocusPoint(Vector3 point, Vector3 normal)
             {
                 // use HL specific API to set the focus point
-                HolographicSettings.SetFocusPointForFrame(point, normal);
+                UnityEngine.XR.WSA.HolographicSettings.SetFocusPointForFrame(point, normal);
             }
 
             public void SetWorldAnchor(TrackableBehaviour trackableBehaviour, TrackableIdPair trackableID)
             {
                 // add a world anchor to the given trackablebehaviour
-                WorldAnchor wa = trackableBehaviour.gameObject.AddComponent<WorldAnchor>();
+                UnityEngine.XR.WSA.WorldAnchor wa = trackableBehaviour.gameObject.AddComponent<UnityEngine.XR.WSA.WorldAnchor>();
                 mWorldAnchors[trackableID] = wa;
                 // register for callbacks
                 wa.OnTrackingChanged += OnWorldAnchorTrackingChanged;
@@ -61,7 +61,7 @@ namespace Vuforia
                 // delete an existing world anchor
                 if (mWorldAnchors.ContainsKey(trackableID))
                 {
-                    WorldAnchor wa = mWorldAnchors[trackableID];
+                    UnityEngine.XR.WSA.WorldAnchor wa = mWorldAnchors[trackableID];
                     mWorldAnchors.Remove(trackableID);
 
                     InternalDeleteWA(wa);
@@ -70,14 +70,14 @@ namespace Vuforia
 
             public void DeleteWorldAnchor(TrackableBehaviour trackableBehaviour)
             {
-                WorldAnchor wa = trackableBehaviour.GetComponent<WorldAnchor>();
+                UnityEngine.XR.WSA.WorldAnchor wa = trackableBehaviour.GetComponent<UnityEngine.XR.WSA.WorldAnchor>();
                 if (wa != null)
                 {
                     if (mWorldAnchors.ContainsValue(wa))
                     {
                         // find all occurrences of that world anchor and remove them from the dict:
                         List<TrackableIdPair> idsToRemove = new List<TrackableIdPair>();
-                        foreach (KeyValuePair<TrackableIdPair, WorldAnchor> kvp in mWorldAnchors)
+                        foreach (KeyValuePair<TrackableIdPair, UnityEngine.XR.WSA.WorldAnchor> kvp in mWorldAnchors)
                             if (kvp.Value == wa)
                                 idsToRemove.Add(kvp.Key);
 
@@ -89,7 +89,7 @@ namespace Vuforia
                 }
             }
 
-            private void InternalDeleteWA(WorldAnchor wa)
+            private void InternalDeleteWA(UnityEngine.XR.WSA.WorldAnchor wa)
             {
                     // unregister for callbacks first
                     wa.OnTrackingChanged -= OnWorldAnchorTrackingChanged;
@@ -101,12 +101,12 @@ namespace Vuforia
                 mHoloLensTrackingCallback = trackingCallback;
             }
 
-            private void OnWorldAnchorTrackingChanged(WorldAnchor wa, bool tracked)
+            private void OnWorldAnchorTrackingChanged(UnityEngine.XR.WSA.WorldAnchor wa, bool tracked)
             {
                 if (mHoloLensTrackingCallback != null)
                 {
                     // translate from world anchor to trackable behaviour
-                    foreach (KeyValuePair<TrackableIdPair, WorldAnchor> worldAnchor in mWorldAnchors)
+                    foreach (KeyValuePair<TrackableIdPair, UnityEngine.XR.WSA.WorldAnchor> worldAnchor in mWorldAnchors)
                     {
                         if (worldAnchor.Value == wa)
                         {
@@ -151,8 +151,8 @@ namespace Vuforia
 
 #if HOLOLENS_API_AVAILABLE
                 // This determines if we are starting on a holographic device
-                if (UnityEngine.VR.VRSettings.loadedDeviceName.Equals(UNITY_HOLOLENS_IDENTIFIER)
-                    && UnityEngine.VR.VRDevice.isPresent)
+                if (UnityEngine.XR.XRSettings.loadedDeviceName.Equals(UNITY_HOLOLENS_IDENTIFIER)
+                    && UnityEngine.XR.XRDevice.isPresent)
                 {
                     // set the focus point setter implementation
                     VuforiaUnity.SetHoloLensApiAbstraction(new HoloLensApiImplementation());
@@ -171,10 +171,10 @@ namespace Vuforia
         {
 #if HOLOLENS_API_AVAILABLE
                 // This determines if we are starting on a holographic device
-                if (UnityEngine.VR.VRSettings.loadedDeviceName.Equals(UNITY_HOLOLENS_IDENTIFIER)
-                    && UnityEngine.VR.VRDevice.isPresent)
+                if (UnityEngine.XR.XRSettings.loadedDeviceName.Equals(UNITY_HOLOLENS_IDENTIFIER)
+                    && UnityEngine.XR.XRDevice.isPresent)
                 {
-                    if (!VuforiaUnity.SetHolographicAppCoordinateSystem(WorldManager.GetNativeISpatialCoordinateSystemPtr()))
+                    if (!VuforiaUnity.SetHolographicAppCoordinateSystem(UnityEngine.XR.WSA.WorldManager.GetNativeISpatialCoordinateSystemPtr()))
                     {
                         Debug.LogError("Failed to set holographic coordinate system pointer!");
                     }

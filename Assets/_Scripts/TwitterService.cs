@@ -165,7 +165,7 @@ public class TwitterService : MonoBehaviour {
             {
                 {  "status", text }
             });
-        await request.Send();
+        await request.SendWebRequest();
         Debug.Log("Completed tweet?");
         Debug.Log(request.downloadHandler.text);
     }

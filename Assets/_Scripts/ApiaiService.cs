@@ -46,7 +46,7 @@ public class ApiaiService : MonoBehaviour {
         };
         request.SetRequestHeader("Authorization", $"Bearer {accessToken}");
         request.SetRequestHeader("Content-Type", "application/json");
-        await request.Send();
+        await request.SendWebRequest();
 
         return JsonConvert.DeserializeObject<Response>(
             request.downloadHandler.text, settings);

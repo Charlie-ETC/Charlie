@@ -6,5 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Scenes/HololensCameraTest.unity
+    guid: f8ec09d2c39f1c540bf171a98048a1fb
+  - enabled: 1
     path: Assets/_Scenes/Main.unity
     guid: 80f2757c4b47ac14b91cbc8dd9832608

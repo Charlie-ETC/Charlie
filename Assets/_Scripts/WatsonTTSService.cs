@@ -37,7 +37,7 @@ public class WatsonTTSService : MonoBehaviour
         UnityWebRequest request = UnityWebRequest.Get(
             $"https://stream.watsonplatform.net/authorization/api/v1/token?url={encodedUrl}");
         request.SetRequestHeader("Authorization", $"Basic {encodedCredentials}");
-        await request.Send();
+        await request.SendWebRequest();
 
         ibmWatsonToken = request.downloadHandler.text;
     }
@@ -48,7 +48,7 @@ public class WatsonTTSService : MonoBehaviour
             $"{ibmWatsonTtsUrl}/v1/synthesize?text={text}&voice={voice}");
         request.SetRequestHeader("X-Watson-Authorization-Token", ibmWatsonToken);
         request.SetRequestHeader("Accept", "audio/wav");
-        await request.Send();
+        await request.SendWebRequest();
 
         return WaveFile.ParseWAV("watson", request.downloadHandler.data);
     }

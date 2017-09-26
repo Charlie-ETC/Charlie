@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VR.WSA.Input;
+
 
 public class GestureManager : MonoBehaviour {
 
@@ -11,7 +11,7 @@ public class GestureManager : MonoBehaviour {
     public GameObject FocusedObject { get; private set; }
     public GameObject OldFocusedObject { get; private set; }
 
-    private GestureRecognizer gestureRecognizer;
+    private UnityEngine.XR.WSA.Input.GestureRecognizer gestureRecognizer;
 
     private Vector3 cameraPos;
     private Vector3 gazeDirection;
@@ -33,7 +33,7 @@ public class GestureManager : MonoBehaviour {
     // initialize gesture events
     private void Start()
     {
-        gestureRecognizer = new GestureRecognizer();
+        gestureRecognizer = new UnityEngine.XR.WSA.Input.GestureRecognizer();
         gestureRecognizer.TappedEvent += OnAirTap;
         gestureRecognizer.StartCapturingGestures();
     }
@@ -83,7 +83,7 @@ public class GestureManager : MonoBehaviour {
 
     }
 
-    private void OnAirTap(InteractionSourceKind source, int tapCount, Ray headRay) {
+    private void OnAirTap(UnityEngine.XR.WSA.Input.InteractionSourceKind source, int tapCount, Ray headRay) {
         // air tap focused object to call its OnSelect()
         if (FocusedObject != null) {
             CubeCommands cc = FocusedObject.GetComponentInParent<CubeCommands>();

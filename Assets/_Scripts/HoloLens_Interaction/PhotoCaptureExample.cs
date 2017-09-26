@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
-using UnityEngine.VR.WSA.WebCam;
+
 
 public class PhotoCaptureExample : MonoBehaviour
 {
-    PhotoCapture photoCaptureObject = null;
+    UnityEngine.XR.WSA.WebCam.PhotoCapture photoCaptureObject = null;
     public Texture2D targetTexture = null;
     GameObject quad = null;
 
@@ -25,20 +25,20 @@ public class PhotoCaptureExample : MonoBehaviour
     void Capture()
     {
         Debug.Log("Capture");
-        Resolution cameraResolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
+        Resolution cameraResolution = UnityEngine.XR.WSA.WebCam.PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
         targetTexture = new Texture2D(cameraResolution.width, cameraResolution.height);
 
         // Create a PhotoCapture object
-        PhotoCapture.CreateAsync(false, delegate (PhotoCapture captureObject) {
+        UnityEngine.XR.WSA.WebCam.PhotoCapture.CreateAsync(false, delegate (UnityEngine.XR.WSA.WebCam.PhotoCapture captureObject) {
             photoCaptureObject = captureObject;
-            CameraParameters cameraParameters = new CameraParameters();
+            UnityEngine.XR.WSA.WebCam.CameraParameters cameraParameters = new UnityEngine.XR.WSA.WebCam.CameraParameters();
             cameraParameters.hologramOpacity = 0.0f;
             cameraParameters.cameraResolutionWidth = cameraResolution.width;
             cameraParameters.cameraResolutionHeight = cameraResolution.height;
-            cameraParameters.pixelFormat = CapturePixelFormat.BGRA32;
+            cameraParameters.pixelFormat = UnityEngine.XR.WSA.WebCam.CapturePixelFormat.BGRA32;
 
             // Activate the camera
-            photoCaptureObject.StartPhotoModeAsync(cameraParameters, delegate (PhotoCapture.PhotoCaptureResult result) {
+            photoCaptureObject.StartPhotoModeAsync(cameraParameters, delegate (UnityEngine.XR.WSA.WebCam.PhotoCapture.PhotoCaptureResult result) {
                 // Take a picture
                 Debug.Log("photoCaptureObject.StartPhotoModeAsync");
                 photoCaptureObject.TakePhotoAsync(OnCapturedPhotoToMemory);
@@ -46,7 +46,7 @@ public class PhotoCaptureExample : MonoBehaviour
         });
     }
 
-    void OnCapturedPhotoToMemory(PhotoCapture.PhotoCaptureResult result, PhotoCaptureFrame photoCaptureFrame)
+    void OnCapturedPhotoToMemory(UnityEngine.XR.WSA.WebCam.PhotoCapture.PhotoCaptureResult result, UnityEngine.XR.WSA.WebCam.PhotoCaptureFrame photoCaptureFrame)
     {
         Debug.Log("OnCapturedPhotoToMemory");
         // Copy the raw image data into the target texture
@@ -69,7 +69,7 @@ public class PhotoCaptureExample : MonoBehaviour
         photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
     }
 
-    void OnStoppedPhotoMode(PhotoCapture.PhotoCaptureResult result)
+    void OnStoppedPhotoMode(UnityEngine.XR.WSA.WebCam.PhotoCapture.PhotoCaptureResult result)
     {
         Debug.Log("OnStoppedPhotoMode");
         // Shutdown the photo capture resource
