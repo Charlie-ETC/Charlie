@@ -8,8 +8,8 @@
 Charlie.sln: 373C659804FCB6217B424D7D53A5E3FB
 project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
 Charlie\App.cs: C5790005CDCAC5D523C2714036283C62
-Charlie\Charlie.csproj: 5949D9ACF890FC7185678BDC8D0D1BE0
-Charlie\Charlie.csproj.user: BEFB8AC4886C4CFDD3C68445D6F19B04
+Charlie\Charlie.csproj: modified
+Charlie\Charlie.csproj.user: modified
 Charlie\Package.appxmanifest: 615913EA5C7278FE5052DF94072EEA73
 Charlie\project.json: 1D02BC64BAC0D041019673A1C4C51737
 Charlie\Assets\SplashScreen.scale-200.png: 60618416282ED104FD1473935716045D
@@ -18,5 +18,13 @@ Charlie\Assets\Square44x44Logo.scale-200.png: 6C6EF27184ABE9D870A9D564953775DE
 Charlie\Assets\Square44x44Logo.targetsize-24_altform-unplated.png: 156637F7B5363E983E7A46D8E533A23D
 Charlie\Assets\StoreLogo.png: 90BD194CA4A7CFFF3E8B8222229857FB
 Charlie\Assets\Wide310x150Logo.scale-200.png: C96846A80DF667F87355569CD816192D
+Charlie\obj\x86\Debug\Charlie.csproj.CopyComplete: D41D8CD98F00B204E9800998ECF8427E
+Charlie\obj\x86\Debug\PackageLayout\Assets\SplashScreen.scale-200.png: 60618416282ED104FD1473935716045D
+Charlie\obj\x86\Debug\PackageLayout\Assets\Square150x150Logo.scale-200.png: E02834B4A5DFB97FF8E212C1CACBB084
+Charlie\obj\x86\Debug\PackageLayout\Assets\Square44x44Logo.scale-200.png: 6C6EF27184ABE9D870A9D564953775DE
+Charlie\obj\x86\Debug\PackageLayout\Assets\Square44x44Logo.targetsize-24_altform-unplated.png: 156637F7B5363E983E7A46D8E533A23D
+Charlie\obj\x86\Debug\PackageLayout\Assets\StoreLogo.png: 90BD194CA4A7CFFF3E8B8222229857FB
+Charlie\obj\x86\Debug\PackageLayout\Assets\Wide310x150Logo.scale-200.png: C96846A80DF667F87355569CD816192D
+Charlie\obj\x86\Debug\PackageLayout\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
 Charlie\Properties\AssemblyInfo.cs: E06B926469A7265A4D142AF9C7A9D47F
 Charlie\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
