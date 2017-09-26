@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System.Collections.Generic;
@@ -66,17 +66,6 @@ namespace HoloToolkit.Unity.InputModule
                     Debug.Log("Only one override is specified, and no material is specified for the glTF model. Please set the material or the " + ((LeftControllerOverride == null) ? "left" : "right") + " controller override on " + name + ".");
                 }
             }
-
-            // Since the SpatialInteractionManager exists in the current CoreWindow, this call needs to run on the UI thread.
-            UnityEngine.WSA.Application.InvokeOnUIThread(() =>
-            {
-                spatialInteractionManager = SpatialInteractionManager.GetForCurrentView();
-                if (spatialInteractionManager != null)
-                {
-                    spatialInteractionManager.SourceDetected += SpatialInteractionManager_SourceDetected;
-                    spatialInteractionManager.SourceLost += SpatialInteractionManager_SourceLost;
-                }
-            }, true);
 #else
             // Since we're using non-Unity APIs, glTF will only load in a UWP app.
             if (LeftControllerOverride == null && RightControllerOverride == null)
@@ -94,124 +83,6 @@ namespace HoloToolkit.Unity.InputModule
             InteractionManager.InteractionSourceUpdated += InteractionManager_InteractionSourceUpdated;
 #endif
         }
-
-#if !UNITY_EDITOR && UNITY_WSA
-        /// <summary>
-        /// When a controller is detected, the model is spawned and the controller object
-        /// is added to the tracking dictionary.
-        /// </summary>
-        /// <param name="sender">The SpatialInteractionManager which sent this event.</param>
-        /// <param name="args">The source event data to be used to set up our controller model.</param>
-        private void SpatialInteractionManager_SourceDetected(SpatialInteractionManager sender, SpatialInteractionSourceEventArgs args)
-        {
-            SpatialInteractionSource source = args.State.Source;
-            // We only want to attempt loading a model if this source is actually a controller.
-            if (source.Kind == SpatialInteractionSourceKind.Controller && controllerDictionary != null && !controllerDictionary.ContainsKey(source.Id))
-            {
-                SpatialInteractionController controller = source.Controller;
-                if (controller != null)
-                {
-                    // Since this is a Unity call and will create a GameObject, this must run on Unity's app thread.
-                    UnityEngine.WSA.Application.InvokeOnAppThread(() =>
-                    {
-                        // LoadControllerModel is a coroutine in order to handle/wait for async calls.
-                        StartCoroutine(LoadControllerModel(controller, source));
-                    }, false);
-                }
-            }
-        }
-
-        private void SpatialInteractionManager_SourceLost(SpatialInteractionManager sender, SpatialInteractionSourceEventArgs args)
-        {
-            SpatialInteractionSource source = args.State.Source;
-            if (source.Kind == SpatialInteractionSourceKind.Controller)
-            {
-                ControllerInfo controller;
-                if (controllerDictionary != null && controllerDictionary.TryGetValue(source.Id, out controller))
-                {
-                    controllerDictionary.Remove(source.Id);
-
-                    UnityEngine.WSA.Application.InvokeOnAppThread(() =>
-                    {
-                        Destroy(controller);
-                    }, false);
-                }
-            }
-        }
-
-        private IEnumerator LoadControllerModel(SpatialInteractionController controller, SpatialInteractionSource source)
-        {
-            GameObject controllerModelGameObject;
-            if (source.Handedness == SpatialInteractionSourceHandedness.Left && LeftControllerOverride != null)
-            {
-                controllerModelGameObject = Instantiate(LeftControllerOverride);
-            }
-            else if (source.Handedness == SpatialInteractionSourceHandedness.Right && RightControllerOverride != null)
-            {
-                controllerModelGameObject = Instantiate(RightControllerOverride);
-            }
-            else
-            {
-                if (GLTFMaterial == null)
-                {
-                    Debug.Log("If using glTF, please specify a material on " + name + ".");
-                    yield break;
-                }
-
-                // This API returns the appropriate glTF file according to the motion controller you're currently using, if supported.
-                IAsyncOperation<IRandomAccessStreamWithContentType> modelTask = controller.TryGetRenderableModelAsync();
-
-                if (modelTask == null)
-                {
-                    Debug.Log("Model task is null.");
-                    yield break;
-                }
-
-                while (modelTask.Status == AsyncStatus.Started)
-                {
-                    yield return null;
-                }
-
-                IRandomAccessStreamWithContentType modelStream = modelTask.GetResults();
-
-                if (modelStream == null)
-                {
-                    Debug.Log("Model stream is null.");
-                    yield break;
-                }
-
-                if (modelStream.Size == 0)
-                {
-                    Debug.Log("Model stream is empty.");
-                    yield break;
-                }
-
-                byte[] fileBytes = new byte[modelStream.Size];
-
-                using (DataReader reader = new DataReader(modelStream))
-                {
-                    DataReaderLoadOperation loadModelOp = reader.LoadAsync((uint)modelStream.Size);
-
-                    while (loadModelOp.Status == AsyncStatus.Started)
-                    {
-                        yield return null;
-                    }
-
-                    reader.ReadBytes(fileBytes);
-                }
-
-                controllerModelGameObject = new GameObject();
-                GLTFComponentStreamingAssets gltfScript = controllerModelGameObject.AddComponent<GLTFComponentStreamingAssets>();
-                gltfScript.ColorMaterial = GLTFMaterial;
-                gltfScript.NoColorMaterial = GLTFMaterial;
-                gltfScript.GLTFData = fileBytes;
-
-                yield return gltfScript.LoadModel();
-            }
-
-            FinishControllerSetup(controllerModelGameObject, source.Handedness.ToString(), source.Id);
-        }
-#endif
 
 #if UNITY_WSA
         private void InteractionManager_InteractionSourceDetected(InteractionSourceDetectedEventArgs obj)
