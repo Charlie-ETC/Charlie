@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641216, b: 0.5748169, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641317, b: 0.5748177, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -121,15 +121,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4145056249318044, guid: 328ef216890a74e4f9ed022f772bc76e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.28
+      value: 0.494
       objectReference: {fileID: 0}
     - target: {fileID: 4145056249318044, guid: 328ef216890a74e4f9ed022f772bc76e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.059
+      value: -0.21700001
       objectReference: {fileID: 0}
     - target: {fileID: 4145056249318044, guid: 328ef216890a74e4f9ed022f772bc76e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 16.942
+      value: 2.8769999
       objectReference: {fileID: 0}
     - target: {fileID: 4145056249318044, guid: 328ef216890a74e4f9ed022f772bc76e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -150,6 +150,18 @@ Prefab:
     - target: {fileID: 4145056249318044, guid: 328ef216890a74e4f9ed022f772bc76e, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4145056249318044, guid: 328ef216890a74e4f9ed022f772bc76e, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4145056249318044, guid: 328ef216890a74e4f9ed022f772bc76e, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4145056249318044, guid: 328ef216890a74e4f9ed022f772bc76e, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 328ef216890a74e4f9ed022f772bc76e, type: 2}
@@ -650,7 +662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1577994885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -901,7 +913,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1461060167470668, guid: b7459e1d4a5e2d049beec0d3c528e42f, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7459e1d4a5e2d049beec0d3c528e42f, type: 2}

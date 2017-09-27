@@ -33,6 +33,7 @@ public class CharlieManager : MonoBehaviour {
         if ( bodyMovementClip.length < audioLen) {
             // blend body movement animation
             animator.SetBool("BlendMovement", true);
+            animator.SetBool("MouseTalkEyeBlink", true);
         }
         else {
             // start speak animation 
@@ -52,7 +53,7 @@ public class CharlieManager : MonoBehaviour {
         }
 
         // set back to idle animation
-        animator.Play("girl idle");
+        //animator.Play("girl idle");
 
         if (animator.GetBool("BlendMovement")) {
             animator.SetBool("BlendMovement", false);
