@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
@@ -72,7 +72,8 @@ namespace HoloToolkit.Unity
                 {
                     return null;
                 }
-                string msBuildBinFolder = key.GetValue("MSBuildToolsPath") as string;
+                //string msBuildBinFolder = key.GetValue("MSBuildToolsPath") as string;
+                string msBuildBinFolder = "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\MSBuild\\15.0\\Bin";
                 string msBuildPath = Path.Combine(msBuildBinFolder, "msbuild.exe");
                 return msBuildPath;
             }

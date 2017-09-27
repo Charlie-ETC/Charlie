@@ -1,9 +1,12 @@
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.XR.WSA.WebCam;
+using HoloToolkit.Unity.SpatialMapping;
 
 public class DictationMonitor : MonoBehaviour {
 
+    public SpatialMappingManager spatialMappingManager;
     public List<IntentHandler> intentHandlers;
 
     private ApiaiService apiaiService;
@@ -33,6 +36,11 @@ public class DictationMonitor : MonoBehaviour {
         // Usage instructions for Twitter:
         // Media media = await twitterService.UploadMedia(File.ReadAllBytes("WIN_20161017_22_43_37_Pro.jpg"));
         // twitterService.TweetWithMedia("hello!", new string[1] { media.mediaIdString });
+    }
+
+    public void HandleDictationHypothesis(string text)
+    {
+        textMesh.text = text;
     }
 
     public async void HandleDictationResult(string text, string confidenceLevel)
@@ -76,5 +84,43 @@ public class DictationMonitor : MonoBehaviour {
     public void DragHandler()
     {
         Debug.Log("DragHandler invoked!");
+    }
+
+    public void TakePictureHandler()
+    {
+        Debug.Log("Taking a picture!");
+        Resolution resolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
+        Texture2D texture = new Texture2D(resolution.width, resolution.height);
+        //spatialMappingManager.StopObserver();
+
+        PhotoCapture.CreateAsync(true, delegate (PhotoCapture capture)
+        {
+            CameraParameters cameraParams = new CameraParameters()
+            {
+                hologramOpacity = 0.8f,
+                cameraResolutionWidth = resolution.width,
+                cameraResolutionHeight = resolution.height,
+                pixelFormat = CapturePixelFormat.BGRA32
+            };
+
+            capture.StartPhotoModeAsync(cameraParams, delegate (PhotoCapture.PhotoCaptureResult result)
+            {
+                capture.TakePhotoAsync(async delegate (PhotoCapture.PhotoCaptureResult result2, PhotoCaptureFrame frame)
+                {
+                    frame.UploadImageDataToTexture(texture);
+                    byte[] jpegData = ImageConversion.EncodeToJPG(texture, 80);
+
+                    Debug.Log("Uploading picture to Twitter");
+                    Media media = await twitterService.UploadMedia(jpegData);
+                    twitterService.TweetWithMedia("hello!", new string[1] { media.mediaIdString });
+                    //spatialMappingManager.StartObserver();
+
+                    capture.StopPhotoModeAsync(delegate (PhotoCapture.PhotoCaptureResult result3)
+                    {
+                        Debug.Log("Stopping photo mode");
+                    });
+                });
+            });
+        });
     }
 }

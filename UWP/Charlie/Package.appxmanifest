@@ -26,6 +26,7 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="internetClientServer" />
     <uap:Capability Name="picturesLibrary" />
     <uap:Capability Name="videosLibrary" />
     <uap2:Capability Name="spatialPerception" />

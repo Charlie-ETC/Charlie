@@ -51,7 +51,7 @@ MonoBehaviour:
     videoBackgroundShader: {fileID: 15311, guid: 0000000000000000f000000000000000,
       type: 0}
     matteShader: {fileID: 15310, guid: 0000000000000000f000000000000000, type: 0}
-    videoBackgroundEnabled: 1
+    videoBackgroundEnabled: 0
   smartTerrainTracker:
     autoInitTracker: 0
     autoStartTracker: 0

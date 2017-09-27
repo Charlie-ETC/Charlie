@@ -30,7 +30,7 @@ public class CharlieManager : MonoBehaviour {
 
     public void SpeakAnimation(float audioLen) {
         
-        if ( bodyMovementClip.length < audioLen) {
+        if ( bodyMovementClip.length < audioLen * 2.0f) {
             // blend body movement animation
             animator.SetBool("BlendMovement", true);
             animator.SetBool("MouseTalkEyeBlink", true);
