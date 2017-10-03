@@ -68,8 +68,8 @@ public class DictationMonitor : MonoBehaviour {
             string speech = response.result.speech;
 
             stopwatch.Start();
-            Debug.Log($"[DictationMonitor] perf: Watson synthesis took {stopwatch.ElapsedMilliseconds}ms");
             AudioClip clip = await watsonTTSService.Synthesize(speech);
+            Debug.Log($"[DictationMonitor] perf: Watson synthesis took {stopwatch.ElapsedMilliseconds}ms");
             stopwatch.Reset();
 
             audioSource.PlayOneShot(clip);
