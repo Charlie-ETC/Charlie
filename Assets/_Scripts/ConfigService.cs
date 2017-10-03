@@ -10,7 +10,7 @@ public class ConfigService : MonoBehaviour {
         Config[] configs = Resources.LoadAll<Config>("Config");
         if (configs.Length == 0)
         {
-            Debug.LogError("Unable to locate any configurations! You must " +
+            Debug.LogError("[ConfigService] Unable to locate any configurations! You must " +
                 "create one in Resources/Config");
             return;
         }
@@ -23,16 +23,16 @@ public class ConfigService : MonoBehaviour {
         {
             if (!defaultConfig)
             {
-                Debug.LogError("Unable to locate default configuration. You " +
+                Debug.LogError("[ConfigService] Unable to locate default configuration. You " +
                     "must create one in Resources/Config");
                 return;
             }
 
-            Debug.Log("Selecting default config", this);
+            Debug.Log("[ConfigService] Selecting default config", this);
             selectedConfig = defaultConfig;
         }
 
-        Debug.Log("Selecting local config", this);
+        Debug.Log("[ConfigService] Selecting local config", this);
         selectedConfig = localConfig;
     }
 

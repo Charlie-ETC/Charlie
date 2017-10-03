@@ -49,37 +49,37 @@ public class DictationRecognizer : MonoBehaviour {
 
     private void OnDictationError(string error, int hresult)
     {
-        Debug.Log($"OnDictationError (error: {error}, result: {hresult})");
+        Debug.Log($"[DictationRecognizer] OnDictationError (error: {error}, result: {hresult})");
         dictationErrorEvent.Invoke(error, hresult);
     }
 
     private void OnDictationComplete(DictationCompletionCause cause)
     {
-        Debug.Log($"OnDictationComplete (cause: {cause.ToString()})");
+        Debug.Log($"[DictationRecognizer] OnDictationComplete (cause: {cause.ToString()})");
         dictationCompleteEvent.Invoke(cause.ToString());
         if (!isDestroying)
         {
-            Debug.Log("Restarting DictationRecognizer after completion");
+            Debug.Log("[DictationRecognizer] Restarting DictationRecognizer after completion");
             dictationRecognizer.Start();
         }
     }
 
     private void OnDictationHypothesis(string text)
     {
-        Debug.Log($"OnDictationHypothesis (text: {text})");
+        Debug.Log($"[DictationRecognizer] OnDictationHypothesis (text: {text})");
         dictationHypothesisEvent.Invoke(text);
     }
 
     private void OnDictationResult(string text, ConfidenceLevel confidence)
     {
-        Debug.Log($"OnDictationResult (text: {text}, confidence: {confidence.ToString()})");
+        Debug.Log($"[DictationRecognizer] OnDictationResult (text: {text}, confidence: {confidence.ToString()})");
         dictationResultEvent.Invoke(text, confidence.ToString());
         dictationRecognizer.Stop();
     }
 
     private void OnDestroy()
     {
-        Debug.Log("Destroying DictationRecognizer");
+        Debug.Log("[DictationRecognizer] Destroying DictationRecognizer");
         if (dictationRecognizer.Status == SpeechSystemStatus.Running)
         {
             isDestroying = true;

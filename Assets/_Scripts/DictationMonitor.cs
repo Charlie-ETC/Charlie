@@ -40,25 +40,38 @@ public class DictationMonitor : MonoBehaviour {
 
     public void HandleDictationHypothesis(string text)
     {
-        textMesh.text = text;
+        textMesh.text = $"Request: {text}\nResponse: {lastResponse}";
     }
 
     public async void HandleDictationResult(string text, string confidenceLevel)
     {
+        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+
+        stopwatch.Start();
         lastRequest = text;
         Response response = await apiaiService.Query(apiaiSessionId, text);
+        Debug.Log($"[DictationMonitor] perf: API.ai query took {stopwatch.ElapsedMilliseconds}ms");
+        stopwatch.Reset();
 
         // We managed to get an intent, dispatch it.
         if (response.result.metadata.intentName != null)
         {
+            stopwatch.Start();
             DispatchIntent(response.result.metadata.intentName, response);
+            Debug.Log($"[DictationMonitor] perf: DispatchIntent took {stopwatch.ElapsedMilliseconds}ms");
+            stopwatch.Reset();
         }
 
         // API.ai crafted a speech response for us, use it.
         if (response.result.speech.Length != 0)
         {
             string speech = response.result.speech;
+
+            stopwatch.Start();
+            Debug.Log($"[DictationMonitor] perf: Watson synthesis took {stopwatch.ElapsedMilliseconds}ms");
             AudioClip clip = await watsonTTSService.Synthesize(speech);
+            stopwatch.Reset();
+
             audioSource.PlayOneShot(clip);
             CharlieManager.Instance.SpeakAnimation(clip.length);
             lastResponse = speech;
@@ -83,12 +96,12 @@ public class DictationMonitor : MonoBehaviour {
 
     public void DragHandler()
     {
-        Debug.Log("DragHandler invoked!");
+        Debug.Log("[DictationMonitor] DragHandler invoked!");
     }
 
     public void TakePictureHandler()
     {
-        Debug.Log("Taking a picture!");
+        Debug.Log("[DictationMonitor] Taking a picture!");
         Resolution resolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
         Texture2D texture = new Texture2D(resolution.width, resolution.height);
         //spatialMappingManager.StopObserver();
@@ -110,14 +123,14 @@ public class DictationMonitor : MonoBehaviour {
                     frame.UploadImageDataToTexture(texture);
                     byte[] jpegData = ImageConversion.EncodeToJPG(texture, 80);
 
-                    Debug.Log("Uploading picture to Twitter");
+                    Debug.Log("[DictationMonitor] Uploading picture to Twitter");
                     Media media = await twitterService.UploadMedia(jpegData);
                     twitterService.TweetWithMedia("hello!", new string[1] { media.mediaIdString });
                     //spatialMappingManager.StartObserver();
 
                     capture.StopPhotoModeAsync(delegate (PhotoCapture.PhotoCaptureResult result3)
                     {
-                        Debug.Log("Stopping photo mode");
+                        Debug.Log("[DictationMonitor] Stopping photo mode");
                     });
                 });
             });
