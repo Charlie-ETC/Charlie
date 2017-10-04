@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -49,6 +50,26 @@ public class ApiaiService : MonoBehaviour {
         await request.SendWebRequest();
 
         return JsonConvert.DeserializeObject<Response>(
+            request.downloadHandler.text, settings);
+    }
+
+    public async Task<List<Context>> GetContexts(string sessionId)
+    {
+        JsonSerializerSettings settings = new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        };
+
+        UnityWebRequest request = new UnityWebRequest($"https://api.api.ai/v1/contexts?sessionId={sessionId}")
+        {
+            method = UnityWebRequest.kHttpVerbGET,
+            downloadHandler = new DownloadHandlerBuffer()
+        };
+        request.SetRequestHeader("Authorization", $"Bearer {accessToken}");
+        request.SetRequestHeader("Content-Type", "application/json");
+        await request.SendWebRequest();
+
+        return JsonConvert.DeserializeObject<List<Context>>(
             request.downloadHandler.text, settings);
     }
 }

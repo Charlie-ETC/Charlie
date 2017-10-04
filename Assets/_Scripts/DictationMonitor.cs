@@ -94,12 +94,22 @@ public class DictationMonitor : MonoBehaviour {
         }
     }
 
-    public void DragHandler()
+    public void HandleDrag()
     {
         Debug.Log("[DictationMonitor] DragHandler invoked!");
     }
 
-    public void TakePictureHandler()
+    async public void HandleDebugGetContexts()
+    {
+        List<Context> contexts = await apiaiService.GetContexts(apiaiSessionId);
+        foreach (Context context in contexts)
+        {
+            Debug.Log($"[DictationMonitor] context name={context.name}, " +
+                $"lifespan={context.lifespan}, parameters={context.parameters}");
+        }
+    }
+
+    public void HandleTakePicture()
     {
         Debug.Log("[DictationMonitor] Taking a picture!");
         Resolution resolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
