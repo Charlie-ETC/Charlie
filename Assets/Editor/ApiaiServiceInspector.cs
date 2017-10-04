@@ -14,9 +14,12 @@ class ApiaiServiceInspector : Editor
     private static bool querying = false;
     private static string testConsoleQuery = "Hello world!";
     private static string testConsoleResponseSpeech = "The returned speech will be displayed here.";
+    private static string testConsoleResponseIntent = "(no intent)";
+    private static bool testConsoleResponseActionIncomplete = false;
 
     private static bool showContext = true;
     private static bool gettingContext = false;
+    private static bool clearingContext = false;
     private static string testConsoleContext = "";
 
     private ApiaiService apiaiService;
@@ -55,6 +58,12 @@ class ApiaiServiceInspector : Editor
                     // Show the response text.
                     EditorGUILayout.HelpBox(testConsoleResponseSpeech, MessageType.Info);
 
+                    // Show the intent and action incomplete state.
+                    GUI.enabled = false;
+                    EditorGUILayout.TextField(new GUIContent("Intent"), testConsoleResponseIntent);
+                    EditorGUILayout.Toggle(new GUIContent("Action Incomplete"), testConsoleResponseActionIncomplete);
+                    GUI.enabled = true;
+
                     // Show the query button.
                     GUILayout.BeginHorizontal();
                     GUILayout.Space(EditorGUI.indentLevel * 16.0f);
@@ -88,9 +97,20 @@ class ApiaiServiceInspector : Editor
                     bool getContextClicked = GUILayout.Button(new GUIContent(gettingContext ? "Getting Context" : "Get Context"));
                     GUILayout.EndHorizontal();
 
+                    // Show the clear context button.
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Space(EditorGUI.indentLevel * 16.0f);
+                    bool clearContextClicked = GUILayout.Button(new GUIContent(clearingContext ? "Clearing Context" : "Clear Context"));
+                    GUILayout.EndHorizontal();
+
                     if (getContextClicked)
                     {
                         HandleContextClicked();
+                    }
+
+                    if (clearContextClicked)
+                    {
+                        HandleClearContextClicked();
                     }
 
                     EditorGUI.indentLevel--;
@@ -112,6 +132,8 @@ class ApiaiServiceInspector : Editor
         Repaint();
         Response response = await apiaiService.Query(testConsoleSessionId, testConsoleQuery);
         testConsoleResponseSpeech = response.result.speech;
+        testConsoleResponseIntent = response?.result?.metadata?.intentName ?? "(no intent)";
+        testConsoleResponseActionIncomplete = response.result.actionIncomplete;
         querying = false;
         Repaint();
     }
@@ -129,6 +151,15 @@ class ApiaiServiceInspector : Editor
         testConsoleContext = JsonConvert.SerializeObject(contexts, settings);
 
         gettingContext = false;
+        Repaint();
+    }
+
+    async public void HandleClearContextClicked()
+    {
+        clearingContext = true;
+        Repaint();
+        await apiaiService.DeleteContexts(testConsoleSessionId);
+        clearingContext = false;
         Repaint();
     }
 }

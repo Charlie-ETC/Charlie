@@ -72,4 +72,33 @@ public class ApiaiService : MonoBehaviour {
         return JsonConvert.DeserializeObject<List<Context>>(
             request.downloadHandler.text, settings);
     }
+
+    public async void PostContext(string sessionId, Context context)
+    {
+        JsonSerializerSettings settings = new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        };
+
+        string requestBody = JsonConvert.SerializeObject(context, settings);
+        UnityWebRequest request = new UnityWebRequest($"https://api.api.ai/v1/contexts?sessionId={sessionId}")
+        {
+            method = UnityWebRequest.kHttpVerbPOST,
+            uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(requestBody))
+        };
+        request.SetRequestHeader("Authorization", $"Bearer {accessToken}");
+        request.SetRequestHeader("Content-Type", "application/json");
+        await request.SendWebRequest();
+    }
+
+    public async Task DeleteContexts(string sessionId)
+    {
+        UnityWebRequest request = new UnityWebRequest($"https://api.api.ai/v1/contexts?sessionId={sessionId}")
+        {
+            method = UnityWebRequest.kHttpVerbDELETE
+        };
+        request.SetRequestHeader("Authorization", $"Bearer {accessToken}");
+        request.SetRequestHeader("Content-Type", "application/json");
+        await request.SendWebRequest();
+    }
 }
