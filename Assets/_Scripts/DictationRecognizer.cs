@@ -47,6 +47,18 @@ public class DictationRecognizer : MonoBehaviour {
         dictationRecognizer.Start();
 	}
 
+    public string FakeDictationResult;
+    public bool TriggerFakeDictationResult;
+    private void Update()
+    {
+        if (TriggerFakeDictationResult)
+        {
+            OnDictationResult(FakeDictationResult, ConfidenceLevel.High);
+            TriggerFakeDictationResult = false;
+            FakeDictationResult = "";
+        }
+    }
+
     private void OnDictationError(string error, int hresult)
     {
         Debug.Log($"[DictationRecognizer] OnDictationError (error: {error}, result: {hresult})");
