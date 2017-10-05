@@ -58,7 +58,11 @@ public class DictationMonitor : MonoBehaviour {
         {
             stopwatch.Start();
             DispatchIntent(response.result.metadata.intentName, response);
-            Debug.Log($"[DictationMonitor] perf: DispatchIntent took {stopwatch.ElapsedMilliseconds}ms");
+            Debug.Log($"[DictationMonitor] intentName:{response.result.metadata.intentName}, perf: DispatchIntent took {stopwatch.ElapsedMilliseconds}ms");
+            foreach (var kv in response.result.parameters)
+            {
+                Debug.Log($"{kv.Key}={kv.Value}");
+            }
             stopwatch.Reset();
         }
 
