@@ -22,6 +22,8 @@ public class DictationMonitor : MonoBehaviour {
     private string lastRequest;
     private string lastResponse;
 
+    public APIAIResponse2FSMEvent fsmEvent;
+
     void Start() {
         textMesh = GetComponent<TextMesh>();
         audioSource = GetComponent<AudioSource>();
@@ -52,6 +54,9 @@ public class DictationMonitor : MonoBehaviour {
         Response response = await apiaiService.Query(apiaiSessionId, text);
         Debug.Log($"[DictationMonitor] perf: API.ai query took {stopwatch.ElapsedMilliseconds}ms");
         stopwatch.Reset();
+
+        // send this to FSM anyway
+        fsmEvent.HandleResponse(response);
 
         // We managed to get an intent, dispatch it.
         if (response.result.metadata.intentName != null)
