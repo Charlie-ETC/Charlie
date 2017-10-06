@@ -13,6 +13,7 @@ public class APIAIResponse2FSMEvent : MonoBehaviour {
 
     public void HandleResponse(Response resp)
     {
+        //var intentName = resp?.result?.metadata?.intentName ?? "hello";
         if (string.IsNullOrEmpty(resp.result.metadata.intentName))
             return;
 

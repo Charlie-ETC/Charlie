@@ -696,8 +696,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 386
-        y: 128.99219
+        x: 499
+        y: 115.99219
         width: 135
         height: 48
       isBreakpoint: 0
@@ -796,14 +796,22 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 222
-        y: 114.97656
-        width: 100
-        height: 16
+        x: 282
+        y: 121.97656
+        width: 142
+        height: 32
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
-      transitions: []
+      transitions:
+      - fsmEvent:
+          name: Intent:youarefired
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: AskJoinParty
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.EnableFSM
@@ -880,8 +888,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 72
-        y: 158
+        x: 104
+        y: 190
         width: 107
         height: 16
       isBreakpoint: 0
@@ -964,8 +972,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 51
-        y: 242
+        x: 83
+        y: 274
         width: 107
         height: 16
       isBreakpoint: 0
@@ -1048,14 +1056,22 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 83
-        y: 319
-        width: 114
-        height: 16
+        x: 57
+        y: 360
+        width: 141
+        height: 32
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
-      transitions: []
+      transitions:
+      - fsmEvent:
+          name: Intent:basic.agree
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: AskFavoritePlace
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.EnableFSM
@@ -1132,8 +1148,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 183
-        y: 376
+        x: 273
+        y: 430
         width: 135
         height: 16
       isBreakpoint: 0
@@ -1216,8 +1232,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 351
-        y: 310
+        x: 402
+        y: 348
         width: 100
         height: 16
       isBreakpoint: 0
@@ -1300,8 +1316,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 419
-        y: 208
+        x: 451
+        y: 240
         width: 100
         height: 16
       isBreakpoint: 0
@@ -1384,8 +1400,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 263
-        y: 220
+        x: 295
+        y: 252
         width: 100
         height: 16
       isBreakpoint: 0
@@ -1468,8 +1484,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 702
-        y: 403.875
+        x: 734
+        y: 435.875
         width: 135
         height: 48
       isBreakpoint: 0
@@ -1564,10 +1580,19 @@ MonoBehaviour:
         paramDataPos: 00000000000000000000000001000000
         paramByteDataSize: 00000000000000000000000000000000
     events:
+    - name: Intent:basic.agree
+      isSystemEvent: 0
+      isGlobal: 0
     - name: Intent:basic.hello
       isSystemEvent: 0
       isGlobal: 0
+    - name: Intent:youarefired
+      isSystemEvent: 0
+      isGlobal: 0
     - name: PlayerTooClose
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: asifjowief
       isSystemEvent: 0
       isGlobal: 0
     globalTransitions: []
