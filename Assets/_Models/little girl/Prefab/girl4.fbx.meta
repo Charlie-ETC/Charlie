@@ -3,7 +3,7 @@ guid: b8617f4aec3dba849af92c454041736e
 timeCreated: 1506037986
 licenseType: Pro
 ModelImporter:
-  serializedVersion: 21
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: Body
     100002: eye_L
@@ -202,10 +202,32 @@ ModelImporter:
     13700022: hair_tail
     13700024: leg_L
     13700026: leg_R
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body
+    second: {fileID: 2100000, guid: b7e8691ff93cfeb4d8c88befd168efd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hair
+    second: {fileID: 2100000, guid: 081e9aec7d513814589e5bb9cc4a7b0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lefteye
+    second: {fileID: 2100000, guid: afd4a183c95cb6842b43c9f71aa669bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: righteye
+    second: {fileID: 2100000, guid: 92708988c4329d5478b6d9c2633938d1, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -218,6 +240,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5

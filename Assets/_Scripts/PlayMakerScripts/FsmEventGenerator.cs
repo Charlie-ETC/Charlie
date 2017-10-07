@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class APIAIResponse2FSMEvent : MonoBehaviour {
+public class FsmEventGenerator : MonoBehaviour {
 
     PlayMakerFSM[] FSMArray;
 

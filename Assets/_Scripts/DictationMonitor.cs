@@ -22,7 +22,7 @@ public class DictationMonitor : MonoBehaviour {
     private string lastRequest;
     private string lastResponse;
 
-    public APIAIResponse2FSMEvent fsmEvent;
+    public FsmEventGenerator fsmEvent;
 
     void Start() {
         textMesh = GetComponent<TextMesh>();
@@ -82,7 +82,7 @@ public class DictationMonitor : MonoBehaviour {
             stopwatch.Reset();
 
             audioSource.PlayOneShot(clip);
-            CharlieManager.Instance.SpeakAnimation(clip.length);
+            //CharlieManager.Instance.SpeakAnimation(clip.length);
             lastResponse = speech;
             textMesh.text = $"Request: {lastRequest}\nResponse: {lastResponse}";
         }

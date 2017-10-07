@@ -23,10 +23,10 @@ public class CharlieManager : MonoBehaviour {
     }
 
     // always face the direction that the player is looking at
-    private void Update()
-    {
-        transform.LookAt(Vector3.ProjectOnPlane(Camera.main.transform.position, Vector3.up));
-    }
+    //private void Update()
+    //{
+    //    transform.LookAt(Vector3.ProjectOnPlane(Camera.main.transform.position, Vector3.up));
+    //}
 
     public void SpeakAnimation(float audioLen) {
         

@@ -33,3 +33,5 @@ MonoBehaviour:
   events:
   - Intent:basic.hello
   - PlayerTooClose
+  - Intent:youarefired
+  - Intent:basic.agree

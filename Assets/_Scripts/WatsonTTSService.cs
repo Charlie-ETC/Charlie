@@ -17,8 +17,12 @@ public class WatsonTTSService : MonoBehaviour
 
     private string ibmWatsonToken;
 
+    public static WatsonTTSService Instance;
+
     private void Start()
     {
+        Instance = this;
+
         ConfigService service = GetComponent<ConfigService>();
         ibmWatsonTtsUrl = service.SelectedConfig().ibmWatsonTtsUrl;
         ibmWatsonUsername = service.SelectedConfig().ibmWatsonUsername;
