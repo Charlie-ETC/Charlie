@@ -14,12 +14,19 @@ public class FsmEventGenerator : MonoBehaviour {
     public void HandleResponse(Response resp)
     {
         //var intentName = resp?.result?.metadata?.intentName ?? "hello";
-        if (string.IsNullOrEmpty(resp.result.metadata.intentName))
-            return;
-
-        foreach (var fsm in FSMArray)
+        if (!string.IsNullOrEmpty(resp.result.metadata.intentName))
         {
-            fsm.SendEvent("Intent:" + resp.result.metadata.intentName);
+            foreach (var fsm in FSMArray)
+            {
+                fsm.SendEvent("Intent:" + resp.result.metadata.intentName);
+            }
+        }
+        else if (!string.IsNullOrEmpty(resp.result.action))
+        {
+            foreach (var fsm in FSMArray)
+            {
+                fsm.SendEvent("Action:" + resp.result.action);
+            }
         }
     }
 }

@@ -830,6 +830,7 @@ GameObject:
   - component: {fileID: 1304642592}
   - component: {fileID: 1304642593}
   - component: {fileID: 1304642595}
+  - component: {fileID: 1304642597}
   m_Layer: 0
   m_Name: Charlie
   m_TagString: Untagged
@@ -938,7 +939,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 499
-        y: 115.99219
+        y: 131.99219
         width: 135
         height: 48
       isBreakpoint: 0
@@ -1037,8 +1038,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 288.3828
-        y: 104.953125
+        x: 292.3828
+        y: 114.953125
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1130,7 +1131,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 104
-        y: 190
+        y: 206
         width: 107
         height: 16
       isBreakpoint: 0
@@ -1214,7 +1215,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 83
-        y: 274
+        y: 290
         width: 107
         height: 16
       isBreakpoint: 0
@@ -1298,7 +1299,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 57
-        y: 360
+        y: 376
         width: 114
         height: 16
       isBreakpoint: 0
@@ -1382,7 +1383,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 273
-        y: 430
+        y: 446
         width: 135
         height: 16
       isBreakpoint: 0
@@ -1466,7 +1467,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 402
-        y: 348
+        y: 364
         width: 100
         height: 16
       isBreakpoint: 0
@@ -1550,7 +1551,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 451
-        y: 240
+        y: 256
         width: 100
         height: 16
       isBreakpoint: 0
@@ -1634,7 +1635,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 295
-        y: 252
+        y: 268
         width: 100
         height: 16
       isBreakpoint: 0
@@ -1762,7 +1763,7 @@ MonoBehaviour:
     RestartOnEnable: 1
     EnableDebugFlow: 0
     EnableBreakpoints: 1
-    editorFlags: 3
+    editorFlags: 0
     activeStateName: 
     mouseEvents: 0
     handleLevelLoaded: 0
@@ -2154,7 +2155,7 @@ MonoBehaviour:
     RestartOnEnable: 1
     EnableDebugFlow: 0
     EnableBreakpoints: 1
-    editorFlags: 3
+    editorFlags: 2
     activeStateName: 
     mouseEvents: 0
     handleLevelLoaded: 0
@@ -2216,8 +2217,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 60
-        y: 107
+        x: 50
+        y: 121
         width: 100
         height: 32
       isBreakpoint: 0
@@ -2228,7 +2229,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: WhoAreYou
+        toState: YouAreHere
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -2289,13 +2290,91 @@ MonoBehaviour:
         - audioSourceObj
         paramDataPos: 0000000000000000
         paramByteDataSize: 0000000000000000
-    - name: WhoAreYou
+    - name: YouAreHere
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 209.4375
-        y: 117.41406
+        x: 198.4375
+        y: 136.41406
+        width: 101
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: YouMustBe
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionSpeak
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: d4821a03
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: You are here
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 1200000014000000
+        paramName:
+        - speech
+        - audioSourceObj
+        paramDataPos: 0000000000000000
+        paramByteDataSize: 0000000000000000
+    - name: YouMustBe
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 349.4375
+        y: 183.41406
         width: 100
         height: 32
       isBreakpoint: 0
@@ -2306,7 +2385,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: YouKnowWhat
+        toState: WaitForName
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -2342,7 +2421,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Who are you
+          value: You must be pumpkin
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -2367,14 +2446,93 @@ MonoBehaviour:
         - audioSourceObj
         paramDataPos: 0000000000000000
         paramByteDataSize: 0000000000000000
-    - name: YouKnowWhat
+    - name: WaitForName
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 363.4375
-        y: 133.41406
-        width: 118
+        x: 578
+        y: 232
+        width: 240
+        height: 64
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: Action:smalltalk.confirmation.yes
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Great
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: SoWhatsYourName
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Action:smalltalk.confirmation.no
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: SoWhatsYourName
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionTimeout
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: deb16303
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00000041
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 02000000
+        paramName:
+        - secs
+        paramDataPos: 00000000
+        paramByteDataSize: 04000000
+    - name: SoWhatsYourName
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 318
+        y: 254
+        width: 149
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -2384,7 +2542,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: IDontCare
+        toState: WaitForName
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -2420,7 +2578,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: You know <emphasis level="strong">What</emphasis>?
+          value: So what's your name?
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -2445,91 +2603,13 @@ MonoBehaviour:
         - audioSourceObj
         paramDataPos: 0000000000000000
         paramByteDataSize: 0000000000000000
-    - name: IDontCare
+    - name: Great
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 536
-        y: 162
-        width: 100
-        height: 32
-      isBreakpoint: 0
-      isSequence: 0
-      hideUnused: 0
-      transitions:
-      - fsmEvent:
-          name: FINISHED
-          isSystemEvent: 1
-          isGlobal: 0
-        toState: Get Out!
-        linkStyle: 0
-        linkConstraint: 0
-        colorIndex: 0
-      actionData:
-        actionNames:
-        - ActionSpeak
-        customNames:
-        - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: d4821a03
-        unityObjectParams: []
-        fsmGameObjectParams: []
-        fsmOwnerDefaultParams:
-        - ownerOption: 0
-          gameObject:
-            useVariable: 0
-            name: 
-            tooltip: 
-            showInInspector: 0
-            networkSync: 0
-            value: {fileID: 0}
-        animationCurveParams: []
-        functionCallParams: []
-        fsmTemplateControlParams: []
-        fsmEventTargetParams: []
-        fsmPropertyParams: []
-        layoutOptionParams: []
-        fsmStringParams:
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: I don't care
-        fsmObjectParams: []
-        fsmVarParams: []
-        fsmArrayParams: []
-        fsmEnumParams: []
-        fsmFloatParams: []
-        fsmIntParams: []
-        fsmBoolParams: []
-        fsmVector2Params: []
-        fsmVector3Params: []
-        fsmColorParams: []
-        fsmRectParams: []
-        fsmQuaternionParams: []
-        stringParams: []
-        byteData: 
-        arrayParamSizes: 
-        arrayParamTypes: []
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 1200000014000000
-        paramName:
-        - speech
-        - audioSourceObj
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
-    - name: Get Out!
-      description: 
-      colorIndex: 0
-      position:
-        serializedVersion: 2
-        x: 495.4375
-        y: 224.41406
+        x: 620
+        y: 106
         width: 100
         height: 16
       isBreakpoint: 0
@@ -2539,12 +2619,14 @@ MonoBehaviour:
       actionData:
         actionNames:
         - ActionSpeak
+        - HutongGames.PlayMaker.Actions.SendEvent
         customNames:
         - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: d4821a03
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000002000000
+        actionHashCodes: d4821a035e69bb04
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -2559,7 +2641,39 @@ MonoBehaviour:
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []
-        fsmEventTargetParams: []
+        fsmEventTargetParams:
+        - target: 2
+          excludeSelf:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: 0
+          gameObject:
+            ownerOption: 0
+            gameObject:
+              useVariable: 0
+              name: 
+              tooltip: 
+              showInInspector: 0
+              networkSync: 0
+              value: {fileID: 0}
+          fsmName:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: StoryFSM
+          sendToChildren:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: 0
+          fsmComponent: {fileID: 0}
         fsmPropertyParams: []
         layoutOptionParams: []
         fsmStringParams:
@@ -2568,12 +2682,18 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Get out!
+          value: Great! Nice to meet you pumpkin
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
-        fsmFloatParams: []
+        fsmFloatParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
         fsmIntParams: []
         fsmBoolParams: []
         fsmVector2Params: []
@@ -2581,21 +2701,32 @@ MonoBehaviour:
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
-        stringParams: []
-        byteData: 
+        stringParams:
+        - FINISHED
+        byteData: 00
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1200000014000000
+        paramDataType: 12000000140000001f000000170000000f00000001000000
         paramName:
         - speech
         - audioSourceObj
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
+        - eventTarget
+        - sendEvent
+        - delay
+        - everyFrame
+        paramDataPos: 000000000000000000000000000000000000000000000000
+        paramByteDataSize: 000000000000000000000000000000000000000001000000
     events:
     - name: FINISHED
       isSystemEvent: 1
+      isGlobal: 0
+    - name: Action:smalltalk.confirmation.no
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: Action:smalltalk.confirmation.yes
+      isSystemEvent: 0
       isGlobal: 0
     globalTransitions: []
     variables:
@@ -2631,7 +2762,7 @@ MonoBehaviour:
     RestartOnEnable: 1
     EnableDebugFlow: 0
     EnableBreakpoints: 1
-    editorFlags: 3
+    editorFlags: 0
     activeStateName: 
     mouseEvents: 0
     handleLevelLoaded: 0
@@ -2740,6 +2871,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1304642597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1304642585}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1357312fa23082d48b957257441ce171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1356476697
 GameObject:
   m_ObjectHideFlags: 0
@@ -3688,7 +3830,7 @@ Prefab:
     - target: {fileID: 95383806714400466, guid: ba445b1eeb8d8c442bf440187eba3d7d,
         type: 2}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba445b1eeb8d8c442bf440187eba3d7d, type: 2}

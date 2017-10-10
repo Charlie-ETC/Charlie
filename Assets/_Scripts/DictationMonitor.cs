@@ -59,33 +59,33 @@ public class DictationMonitor : MonoBehaviour {
         fsmEvent.HandleResponse(response);
 
         // We managed to get an intent, dispatch it.
-        if (response.result.metadata.intentName != null)
-        {
-            stopwatch.Start();
-            DispatchIntent(response.result.metadata.intentName, response);
-            Debug.Log($"[DictationMonitor] intentName:{response.result.metadata.intentName}, perf: DispatchIntent took {stopwatch.ElapsedMilliseconds}ms");
-            foreach (var kv in response.result.parameters)
-            {
-                Debug.Log($"{kv.Key}={kv.Value}");
-            }
-            stopwatch.Reset();
-        }
+        //if (response.result.metadata.intentName != null)
+        //{
+        //    stopwatch.Start();
+        //    DispatchIntent(response.result.metadata.intentName, response);
+        //    Debug.Log($"[DictationMonitor] intentName:{response.result.metadata.intentName}, perf: DispatchIntent took {stopwatch.ElapsedMilliseconds}ms");
+        //    foreach (var kv in response.result.parameters)
+        //    {
+        //        Debug.Log($"{kv.Key}={kv.Value}");
+        //    }
+        //    stopwatch.Reset();
+        //}
 
-        // API.ai crafted a speech response for us, use it.
-        if (response.result.speech.Length != 0)
-        {
-            string speech = response.result.speech;
+        //// API.ai crafted a speech response for us, use it.
+        //if (response.result.speech.Length != 0)
+        //{
+        //    string speech = response.result.speech;
 
-            stopwatch.Start();
-            AudioClip clip = await watsonTTSService.Synthesize(speech);
-            Debug.Log($"[DictationMonitor] perf: Watson synthesis took {stopwatch.ElapsedMilliseconds}ms");
-            stopwatch.Reset();
+        //    stopwatch.Start();
+        //    AudioClip clip = await watsonTTSService.Synthesize(speech);
+        //    Debug.Log($"[DictationMonitor] perf: Watson synthesis took {stopwatch.ElapsedMilliseconds}ms");
+        //    stopwatch.Reset();
 
-            audioSource.PlayOneShot(clip);
-            //CharlieManager.Instance.SpeakAnimation(clip.length);
-            lastResponse = speech;
-            textMesh.text = $"Request: {lastRequest}\nResponse: {lastResponse}";
-        }
+        //    audioSource.PlayOneShot(clip);
+        //    //CharlieManager.Instance.SpeakAnimation(clip.length);
+        //    lastResponse = speech;
+        //    textMesh.text = $"Request: {lastRequest}\nResponse: {lastResponse}";
+        //}
     }
 
     public void DispatchIntent(string intent, Response response)
