@@ -3066,7 +3066,7 @@ MonoBehaviour:
     locked: 0
     manualUpdate: 0
     keepDelayedEventsOnStateExit: 0
-    preprocessed: 0
+    preprocessed: 1
     ExposedEvents: []
     RestartOnEnable: 1
     EnableDebugFlow: 0
@@ -3206,7 +3206,7 @@ MonoBehaviour:
     dataVersion: 2
     usedInTemplate: {fileID: 0}
     name: AskJoinParty
-    startState: WalkToCube
+    startState: State 3
     states:
     - name: WalkToCube
       description: 
@@ -3214,7 +3214,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 64
-        y: 106
+        y: 175
         width: 240
         height: 48
       isBreakpoint: 0
@@ -3239,29 +3239,18 @@ MonoBehaviour:
         colorIndex: 0
       actionData:
         actionNames:
-        - ActionWalkTo
         - ActionSpeak
         - ActionTimeout
         customNames:
         - 
         - 
-        - 
-        actionEnabled: 010101
-        actionIsOpen: 010101
-        actionStartIndex: 000000000200000004000000
-        actionHashCodes: 47ec5401d4821a03deb16303
-        unityObjectParams:
-        - {fileID: 2009126382}
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000002000000
+        actionHashCodes: d4821a03deb16303
+        unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
-        - ownerOption: 0
-          gameObject:
-            useVariable: 0
-            name: 
-            tooltip: 
-            showInInspector: 0
-            networkSync: 0
-            value: {fileID: 0}
         - ownerOption: 0
           gameObject:
             useVariable: 0
@@ -3301,22 +3290,20 @@ MonoBehaviour:
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 0500000014000000120000001400000002000000
+        paramDataType: 120000001400000002000000
         paramName:
-        - target
-        - objSelf
         - speech
         - audioSourceObj
         - secs
-        paramDataPos: 0000000000000000000000000100000000000000
-        paramByteDataSize: 0000000000000000000000000000000004000000
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000000000004000000
     - name: State 1
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 411
-        y: 135
+        x: 379
+        y: 119
         width: 100
         height: 32
       isBreakpoint: 0
@@ -3393,8 +3380,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 124
-        y: 282
+        x: 147
+        y: 297
         width: 100
         height: 32
       isBreakpoint: 0
@@ -3471,8 +3458,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 605
-        y: 202
+        x: 573
+        y: 186
         width: 100
         height: 16
       isBreakpoint: 0
@@ -3534,6 +3521,79 @@ MonoBehaviour:
         paramName:
         - speech
         - audioSourceObj
+        paramDataPos: 0000000000000000
+        paramByteDataSize: 0000000000000000
+    - name: State 3
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 121
+        y: 113
+        width: 100
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: WalkToCube
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionWalkTo
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 47ec5401
+        unityObjectParams:
+        - {fileID: 2009126382}
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 0500000014000000
+        paramName:
+        - target
+        - objSelf
         paramDataPos: 0000000000000000
         paramByteDataSize: 0000000000000000
     events:
@@ -4624,7 +4684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1969215039
 MeshRenderer:
   m_ObjectHideFlags: 0
