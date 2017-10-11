@@ -21,7 +21,7 @@ MonoBehaviour:
       tooltip: 
       showInInspector: 0
       networkSync: 0
-      value: Zebra
+      value: 
     vector2Variables: []
     vector3Variables: []
     colorVariables: []
