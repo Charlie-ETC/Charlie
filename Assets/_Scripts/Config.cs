@@ -12,4 +12,6 @@ public class Config : ScriptableObject {
     public string twitterConsumerSecret;
     public string twitterAccessToken;
     public string twitterAccessTokenSecret;
+    public string unsplashAppId;
+    public string unsplashImageSize = "regular";
 }
