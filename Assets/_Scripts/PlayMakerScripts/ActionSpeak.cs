@@ -42,7 +42,7 @@ public class ActionSpeak : FsmStateAction
 
         Debug.Log($"ActionSpeak, start speech:{actualSpeech}");
         Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("toTalk", true); // for facial animation
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetInteger("toTalkBody", UnityEngine.Random.Range(1, 8)); // for body talk animation
+        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetInteger("toTalkBody", UnityEngine.Random.Range(1, 9)); // for body talk animation
 
         prevLookatPlayerState = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled;
         Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled = true;
