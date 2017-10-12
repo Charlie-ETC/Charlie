@@ -41,7 +41,8 @@ public class ActionSpeak : FsmStateAction
         
 
         Debug.Log($"ActionSpeak, start speech:{actualSpeech}");
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("talk", true);
+        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("toTalk", true); // for facial animation
+        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetInteger("toTalkBody", UnityEngine.Random.Range(1, 8)); // for body talk animation
 
         prevLookatPlayerState = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled;
         Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled = true;
@@ -57,7 +58,8 @@ public class ActionSpeak : FsmStateAction
 
     public override void OnExit()
     {
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("talk", false);
+        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("toTalk", false); // for facial animation
+        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetInteger("toTalkBody", 0); // for body talk animation
         Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled = prevLookatPlayerState;
     }
 }

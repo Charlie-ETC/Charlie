@@ -22,7 +22,10 @@ public class ActionWalkTo : FsmStateAction
         Debug.Log($"ActionWalkTo, start");
         var go = Fsm.GetOwnerDefaultTarget(objSelf);
         anim = go.GetComponentInChildren<Animator>();
-        anim.SetBool("walk", true);
+        //anim.SetBool("toWalk", true);
+        int i = UnityEngine.Random.Range(1, 3);
+        Debug.Log(i);
+        anim.SetInteger("toWalk", i);
 
         while (ended == false)
         {
@@ -64,7 +67,8 @@ public class ActionWalkTo : FsmStateAction
     public override void OnExit()
     {
         ended = true;
-        anim.SetBool("walk", false);
+        //anim.SetBool("toWalk", false);
+        anim.SetInteger("toWalk", 0);
     }
 
 }

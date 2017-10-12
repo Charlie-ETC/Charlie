@@ -19,6 +19,7 @@ public class ActionAnimationTrigger : FsmStateAction
         anim = go.GetComponentInChildren<Animator>();
 
         anim.SetTrigger(trigger.ToString());
+
         Finish();
     }
 }
@@ -32,6 +33,7 @@ public class ActionAnimationBool : FsmStateAction
 
     public override void OnEnter()
     {
+        Debug.Log("enter");
         var go = Fsm.GetOwnerDefaultTarget(objSelf);
         anim = go.GetComponentInChildren<Animator>();
 
@@ -40,6 +42,29 @@ public class ActionAnimationBool : FsmStateAction
 
     public override void OnExit()
     {
+        Debug.Log("exit");
         anim.SetBool(boolvar.ToString(), false);
     }
+}
+
+
+[ActionCategory(ActionCategory.Audio)]
+public class ActionAnimationTriggerTimeOut : FsmStateAction
+{
+    public FsmString timeOutTrigger;
+    public FsmOwnerDefault objSelf;
+    public float secs;
+    Animator anim;
+
+    public override async void OnEnter()
+    {
+        var go = Fsm.GetOwnerDefaultTarget(objSelf);
+        anim = go.GetComponentInChildren<Animator>();
+
+        await new WaitForSeconds(secs);
+        anim.SetTrigger(timeOutTrigger.ToString());
+        
+        Finish();
+    }
+
 }
