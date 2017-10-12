@@ -639,6 +639,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4860591022630622, guid: ba445b1eeb8d8c442bf440187eba3d7d,
     type: 2}
   m_PrefabInternal: {fileID: 1830016065}
+--- !u!1 &777949433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 777949434}
+  m_Layer: 0
+  m_Name: CharlieStandPoint_Tree
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &777949434
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 777949433}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.43, y: 0, z: -2.24}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1969215041}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &798433997
 GameObject:
   m_ObjectHideFlags: 0
@@ -3563,14 +3591,7 @@ Prefab:
     - target: {fileID: 95383806714400466, guid: ba445b1eeb8d8c442bf440187eba3d7d,
         type: 2}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) use transforms that are already
-        bound by a Humanoid avatar. These transforms can only be changed by Humanoid
-        clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
-        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
-        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
-        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'body_idle'\n\tFrom
-        animation clip 'body_walk'\n\tFrom animation clip 'body_ballet'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4088729189142084, guid: ba445b1eeb8d8c442bf440187eba3d7d, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4538,6 +4559,7 @@ Transform:
   - {fileID: 798434001}
   - {fileID: 2009126382}
   - {fileID: 176338636}
+  - {fileID: 777949434}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
