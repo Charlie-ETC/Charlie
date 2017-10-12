@@ -37,7 +37,9 @@ public class ActionSpeak : FsmStateAction
 
         //Regex r = new Regex("{.*}");
         //Match m = r.Match(actualSpeech);
-        actualSpeech = actualSpeech.Replace("{PlayerName}", FsmVariables.GlobalVariables.GetFsmString("PlayerName").ToString());
+        if (actualSpeech.Contains("{PlayerName}")) {
+            actualSpeech = actualSpeech.Replace("{PlayerName}", UserProfile.Content["PlayerName"]);
+        }
         
 
         Debug.Log($"ActionSpeak, start speech:{actualSpeech}");
