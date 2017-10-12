@@ -596,6 +596,12 @@ MonoBehaviour:
     - name: PlayerTooClose
       isSystemEvent: 0
       isGlobal: 1
+    - name: substate:finish
+      isSystemEvent: 0
+      isGlobal: 1
+    - name: FINISHED
+      isSystemEvent: 1
+      isGlobal: 0
     RestartOnEnable: 1
     EnableDebugFlow: 0
     EnableBreakpoints: 1

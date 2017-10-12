@@ -268,7 +268,7 @@ MonoBehaviour:
       - fsmEvent:
           name: Action:smalltalk.confirmation.yes
           isSystemEvent: 0
-          isGlobal: 0
+          isGlobal: 1
         toState: SetName
         linkStyle: 0
         linkConstraint: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
       - fsmEvent:
           name: Action:smalltalk.confirmation.no
           isSystemEvent: 0
-          isGlobal: 0
+          isGlobal: 1
         toState: YouArePineapple
         linkStyle: 0
         linkConstraint: 0
@@ -542,7 +542,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: UserName
+          value: PlayerName
         - useVariable: 0
           name: 
           tooltip: 
@@ -628,7 +628,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: UserName
+          value: PlayerName
         - useVariable: 0
           name: 
           tooltip: 
@@ -762,10 +762,10 @@ MonoBehaviour:
       isGlobal: 0
     - name: Action:smalltalk.confirmation.no
       isSystemEvent: 0
-      isGlobal: 0
+      isGlobal: 1
     - name: Action:smalltalk.confirmation.yes
       isSystemEvent: 0
-      isGlobal: 0
+      isGlobal: 1
     - name: substate:finish
       isSystemEvent: 0
       isGlobal: 1
@@ -799,7 +799,13 @@ MonoBehaviour:
     manualUpdate: 0
     keepDelayedEventsOnStateExit: 0
     preprocessed: 0
-    ExposedEvents: []
+    ExposedEvents:
+    - name: Action:smalltalk.confirmation.yes
+      isSystemEvent: 0
+      isGlobal: 1
+    - name: Action:smalltalk.confirmation.no
+      isSystemEvent: 0
+      isGlobal: 1
     RestartOnEnable: 1
     EnableDebugFlow: 0
     EnableBreakpoints: 1

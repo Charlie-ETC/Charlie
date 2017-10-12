@@ -41,4 +41,6 @@ MonoBehaviour:
   - PlayerTooClose
   - Intent:youarefired
   - Intent:basic.agree
+  - Action:smalltalk.confirmation.no
+  - Action:smalltalk.confirmation.yes
   - substate:finish
