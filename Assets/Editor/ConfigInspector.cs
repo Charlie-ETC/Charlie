@@ -9,6 +9,7 @@ using UnityEngine;
 public class ConfigInspector : Editor {
     private static bool showIbmWatson;
     private static bool showTwitter;
+    private static bool showUnsplash;
 
     SerializedProperty apiaiClientAccessTokenProp;
     SerializedProperty ibmWatsonTtsUrlProp;
@@ -18,6 +19,8 @@ public class ConfigInspector : Editor {
     SerializedProperty twitterConsumerSecretProp;
     SerializedProperty twitterAccessTokenProp;
     SerializedProperty twitterAccessTokenSecretProp;
+    SerializedProperty unsplashAppIdProp;
+    SerializedProperty unsplashImageSizeProp;
 
     void OnEnable()
     {
@@ -29,6 +32,8 @@ public class ConfigInspector : Editor {
         twitterConsumerSecretProp = serializedObject.FindProperty("twitterConsumerSecret");
         twitterAccessTokenProp = serializedObject.FindProperty("twitterAccessToken");
         twitterAccessTokenSecretProp = serializedObject.FindProperty("twitterAccessTokenSecret");
+        unsplashAppIdProp = serializedObject.FindProperty("unsplashAppId");
+        unsplashImageSizeProp = serializedObject.FindProperty("unsplashImageSize");
     }
 
     public override void OnInspectorGUI()
@@ -57,6 +62,15 @@ public class ConfigInspector : Editor {
             EditorGUILayout.PropertyField(twitterAccessTokenProp, new GUIContent("Access Token"));
             EditorGUILayout.PropertyField(twitterAccessTokenSecretProp, new GUIContent("Access Token Secret"));
             EditorGUILayout.HelpBox("These parameters can be found on apps.twitter.com.", MessageType.Info);
+            EditorGUI.indentLevel--;
+        }
+
+        showUnsplash = EditorGUILayout.Foldout(showUnsplash, new GUIContent("Unsplash"));
+        if (showUnsplash)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(unsplashAppIdProp, new GUIContent("App ID"));
+            EditorGUILayout.PropertyField(unsplashImageSizeProp, new GUIContent("Image Size"));
             EditorGUI.indentLevel--;
         }
 
