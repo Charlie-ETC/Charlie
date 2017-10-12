@@ -362,9 +362,8 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: 47ec5401
-        unityObjectParams:
-        - {fileID: 0}
+        actionHashCodes: 05174b05
+        unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
         - ownerOption: 0
@@ -394,15 +393,16 @@ MonoBehaviour:
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
-        stringParams: []
+        stringParams:
+        - 
         byteData: 
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 0500000014000000
+        paramDataType: 0300000014000000
         paramName:
-        - target
+        - targetName
         - objSelf
         paramDataPos: 0000000000000000
         paramByteDataSize: 0000000000000000

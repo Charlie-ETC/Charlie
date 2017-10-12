@@ -10,7 +10,7 @@ using UnityEngine.AI;
 [ActionCategory(ActionCategory.Audio)]
 public class ActionWalkTo : FsmStateAction
 {
-    public Transform target;
+    public string targetName;
     public FsmOwnerDefault objSelf;
 
     Animator anim = null;
@@ -21,6 +21,7 @@ public class ActionWalkTo : FsmStateAction
         ended = false;
         Debug.Log($"ActionWalkTo, start");
         var go = Fsm.GetOwnerDefaultTarget(objSelf);
+        var target = GameObject.FindGameObjectWithTag("TargetRoot").transform.Find(targetName);
         anim = go.GetComponentInChildren<Animator>();
         //anim.SetBool("toWalk", true);
         int i = UnityEngine.Random.Range(1, 3);
