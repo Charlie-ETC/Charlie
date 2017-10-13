@@ -6,32 +6,25 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Asyncoroutine;
 
-[ActionCategory(ActionCategory.Audio)]
+//[ActionCategory(ActionCategory.Audio)]
 public class ActionLookatPlayer : FsmStateAction
 {
-    [UIHint(UIHint.TextArea)]
-    public FsmString speech;
+    //[UIHint(UIHint.TextArea)]
+    //public FsmString speech;
 
-    public FsmOwnerDefault audioSourceObj;
+    public FsmOwnerDefault objSelf;
+    public bool lookAtPlayerOn;
 
-    public override async void OnEnter()
+    public override void OnEnter()
     {
-        Debug.Log($"ActionSpeak, start speech:{speech}");
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("talk", true);
+        // if we want to control her neck
+        Fsm.GetOwnerDefaultTarget(objSelf).GetComponent<LookatPlayer>().enabled = lookAtPlayerOn;
 
-        AudioClip clip = await WatsonTTSService.Instance.Synthesize(speech.ToString());
-
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>().PlayOneShot(clip);
-        //CharlieManager.Instance.SpeakAnimation(clip.length);
-
-        await new WaitForSeconds(clip.length);
-
-        Debug.Log($"ActionSpeak, finish speech:{speech}");
         Finish();
     }
 
-    public override void OnExit()
-    {
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("talk", false);
-    }
+    //public override void OnExit()
+    //{
+        
+    //}
 }
