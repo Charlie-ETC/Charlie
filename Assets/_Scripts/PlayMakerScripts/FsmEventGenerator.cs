@@ -5,17 +5,19 @@ using UnityEngine;
 public class FsmEventGenerator : MonoBehaviour {
 
     PlayMakerFSM[] FSMArray;
+    public string LastSpeech;
 
     void Start()
     {
         FSMArray = gameObject.GetComponents<PlayMakerFSM>();
     }
 
-    public void HandleSpeech(string text)
+    public void HandleDictationResult(string text)
     {
+        LastSpeech = text;
         foreach (var fsm in FSMArray)
         {
-            fsm.SendEvent("Speech:" + text);
+            fsm.SendEvent("SpeechFinish");
         }
     }
 

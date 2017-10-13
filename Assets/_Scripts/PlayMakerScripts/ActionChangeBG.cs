@@ -9,11 +9,13 @@ using UnityEngine.AI;
 
 public class ActionChangeBG : FsmStateAction
 {
-    public bool isActive;
+    public FsmVar speechVar;
 
     public override void OnEnter()
     {
-        GameObject.FindGameObjectWithTag("TargetRoot").transform.Find("WindowAnim").GetComponent<WindowAnimControl>().ChangeBG(UserProfile.Content["FavoriteView"]);
+        speechVar.UpdateValue();
+        Debug.Log("text == " + speechVar.GetValue());
+        GameObject.FindGameObjectWithTag("TargetRoot").transform.Find("WindowAnim").GetComponent<WindowAnimControl>().ChangeBG(speechVar.GetValue() as string);
         Finish();
     }
 

@@ -9,11 +9,13 @@ using UnityEngine.AI;
 
 public class ActionWaitForSpeech : FsmStateAction
 {
-    public bool isActive;
+    public FsmVar textVar;
+    public FsmOwnerDefault owner;
 
-    public override void OnEnter()
+    public override void OnExit()
     {
-        GameObject.FindGameObjectWithTag("TargetRoot").transform.Find("WindowAnim").GetComponent<WindowAnimControl>().ChangeBG(UserProfile.Content["FavoriteView"]);
-        Finish();
+        string text = Fsm.GetOwnerDefaultTarget(owner).GetComponent<FsmEventGenerator>().LastSpeech;
+        Debug.Log("HIHIHIIHIHIHI" + text);
+        textVar.SetValue(text);
     }
 }

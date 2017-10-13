@@ -5,8 +5,20 @@ using Asyncoroutine;
 
 public class WindowAnimControl : MonoBehaviour {
 
-	// Use this for initialization
-	void OnEnable () {
+    public string keyword;
+    public bool trigger;
+
+    private void Update()
+    {
+        if (trigger)
+        {
+            trigger = false;
+            ChangeBG(keyword);
+        }
+    }
+
+    // Use this for initialization
+    void OnEnable () {
         ChangeBG("Water");
     }
 
