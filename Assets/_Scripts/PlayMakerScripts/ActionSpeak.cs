@@ -51,7 +51,22 @@ public class ActionSpeak : FsmStateAction
             //prevLookatPlayerState = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled;
             //Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled = true;
             AudioClip clip = await WatsonTTSService.Instance.Synthesize(actualSpeech);
-            Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>().PlayOneShot(clip);
+
+            //Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>().PlayOneShot(clip);
+            AudioSource audioSource = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>();
+            if (audioSource != null) // make sure only play single audioclip at one time
+            {
+                if (audioSource.isPlaying) {
+                    audioSource.Stop();
+                }
+
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.Log("No audioSource attached to Charlie");
+            }
             //CharlieManager.Instance.SpeakAnimation(clip.length);
 
             await new WaitForSeconds(clip.length);

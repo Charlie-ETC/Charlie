@@ -67,7 +67,12 @@ public class ActionAnimationIntTimeOut : FsmStateAction
 
         await new WaitForSeconds(secs);
         anim.SetInteger(intvar.ToString(), timeOutValue);
-        Finish();
+        //Finish();
+    }
+
+    public override void OnExit()
+    {
+        anim.SetInteger(intvar.ToString(), timeOutValue);
     }
 
 }
