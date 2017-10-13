@@ -11,6 +11,14 @@ public class FsmEventGenerator : MonoBehaviour {
         FSMArray = gameObject.GetComponents<PlayMakerFSM>();
     }
 
+    public void HandleSpeech(string text)
+    {
+        foreach (var fsm in FSMArray)
+        {
+            fsm.SendEvent("Speech:" + text);
+        }
+    }
+
     public void HandleResponse(Response resp)
     {
         //var intentName = resp?.result?.metadata?.intentName ?? "hello";

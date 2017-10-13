@@ -23,8 +23,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 64
-        y: 175
+        x: 62
+        y: 198
         width: 240
         height: 48
       isBreakpoint: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
       - fsmEvent:
           name: Action:smalltalk.confirmation.yes
           isSystemEvent: 0
-          isGlobal: 0
+          isGlobal: 1
         toState: State 1
         linkStyle: 0
         linkConstraint: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
       - fsmEvent:
           name: Action:smalltalk.confirmation.no
           isSystemEvent: 0
-          isGlobal: 0
+          isGlobal: 1
         toState: Please
         linkStyle: 0
         linkConstraint: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 379
+        x: 363
         y: 119
         width: 100
         height: 32
@@ -124,7 +124,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: State 2
+        toState: End
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -190,8 +190,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 147
-        y: 297
+        x: 105
+        y: 327
         width: 100
         height: 32
       isBreakpoint: 0
@@ -263,13 +263,13 @@ MonoBehaviour:
         - audioSourceObj
         paramDataPos: 0000000000000000
         paramByteDataSize: 0000000000000000
-    - name: State 2
+    - name: End
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 573
-        y: 186
+        x: 582
+        y: 156
         width: 100
         height: 16
       isBreakpoint: 0
@@ -278,42 +278,66 @@ MonoBehaviour:
       transitions: []
       actionData:
         actionNames:
-        - ActionSpeak
+        - HutongGames.PlayMaker.Actions.SendEvent
         customNames:
         - 
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: d4821a03
+        actionHashCodes: 5e69bb04
         unityObjectParams: []
         fsmGameObjectParams: []
-        fsmOwnerDefaultParams:
-        - ownerOption: 0
-          gameObject:
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams:
+        - target: 2
+          excludeSelf:
             useVariable: 0
             name: 
             tooltip: 
             showInInspector: 0
             networkSync: 0
-            value: {fileID: 0}
-        animationCurveParams: []
-        functionCallParams: []
-        fsmTemplateControlParams: []
-        fsmEventTargetParams: []
+            value: 0
+          gameObject:
+            ownerOption: 0
+            gameObject:
+              useVariable: 0
+              name: 
+              tooltip: 
+              showInInspector: 0
+              networkSync: 0
+              value: {fileID: 0}
+          fsmName:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: StoryFSM
+          sendToChildren:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: 0
+          fsmComponent: {fileID: 0}
         fsmPropertyParams: []
         layoutOptionParams: []
-        fsmStringParams:
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams:
         - useVariable: 0
           name: 
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: That's it for now, please air tap to restart the experience
-        fsmObjectParams: []
-        fsmVarParams: []
-        fsmArrayParams: []
-        fsmEnumParams: []
-        fsmFloatParams: []
+          value: 0
         fsmIntParams: []
         fsmBoolParams: []
         fsmVector2Params: []
@@ -321,24 +345,27 @@ MonoBehaviour:
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
-        stringParams: []
-        byteData: 
+        stringParams:
+        - substate:finish
+        byteData: 00
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1200000014000000
+        paramDataType: 1f000000170000000f00000001000000
         paramName:
-        - speech
-        - audioSourceObj
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
+        - eventTarget
+        - sendEvent
+        - delay
+        - everyFrame
+        paramDataPos: 00000000000000000000000000000000
+        paramByteDataSize: 00000000000000000000000001000000
     - name: State 3
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 121
+        x: 105
         y: 113
         width: 100
         height: 32
@@ -355,25 +382,15 @@ MonoBehaviour:
         linkConstraint: 0
         colorIndex: 0
       actionData:
-        actionNames:
-        - ActionWalkTo
-        customNames:
-        - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: 05174b05
+        actionNames: []
+        customNames: []
+        actionEnabled: 
+        actionIsOpen: 
+        actionStartIndex: 
+        actionHashCodes: 
         unityObjectParams: []
         fsmGameObjectParams: []
-        fsmOwnerDefaultParams:
-        - ownerOption: 0
-          gameObject:
-            useVariable: 0
-            name: 
-            tooltip: 
-            showInInspector: 0
-            networkSync: 0
-            value: {fileID: 0}
+        fsmOwnerDefaultParams: []
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []
@@ -393,19 +410,16 @@ MonoBehaviour:
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
-        stringParams:
-        - 
+        stringParams: []
         byteData: 
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 0300000014000000
-        paramName:
-        - targetName
-        - objSelf
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
+        paramDataType: 
+        paramName: []
+        paramDataPos: 
+        paramByteDataSize: 
     events:
     - name: FINISHED
       isSystemEvent: 1

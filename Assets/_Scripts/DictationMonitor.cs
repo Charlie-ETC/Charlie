@@ -47,6 +47,8 @@ public class DictationMonitor : MonoBehaviour {
 
     public async void HandleDictationResult(string text, string confidenceLevel)
     {
+        fsmEvent.HandleSpeech(text);
+
         System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
         stopwatch.Start();

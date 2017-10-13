@@ -24,7 +24,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 50
-        y: 119.99219
+        y: 167.99219
         width: 135
         height: 48
       isBreakpoint: 0
@@ -123,8 +123,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 252.38281
-        y: 123.94531
+        x: 265.3828
+        y: 156.94531
         width: 117
         height: 32
       isBreakpoint: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
           name: substate:finish
           isSystemEvent: 0
           isGlobal: 1
-        toState: Conversation
+        toState: AskJoinParty
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -215,14 +215,22 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 592
-        y: 120
-        width: 107
-        height: 16
+        x: 609
+        y: 142
+        width: 117
+        height: 32
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
-      transitions: []
+      transitions:
+      - fsmEvent:
+          name: substate:finish
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: TakePhoto
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.EnableFSM
@@ -299,8 +307,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 431
-        y: 121
+        x: 438
+        y: 108
         width: 107
         height: 16
       isBreakpoint: 0
@@ -383,14 +391,22 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 759
-        y: 118
-        width: 100
-        height: 16
+        x: 788
+        y: 152
+        width: 117
+        height: 32
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
-      transitions: []
+      transitions:
+      - fsmEvent:
+          name: substate:finish
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: PhotoTaken
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.EnableFSM
@@ -467,8 +483,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 930
-        y: 114
+        x: 974
+        y: 149
         width: 100
         height: 16
       isBreakpoint: 0
