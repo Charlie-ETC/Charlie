@@ -17,51 +17,72 @@ public class ActionSpeak : FsmStateAction
 
     public FsmOwnerDefault audioSourceObj;
 
-    bool prevLookatPlayerState;
+    //bool prevLookatPlayerState;
 
     public override async void OnEnter()
     {
-        //string[] s = new string[formatVariable.Length];
-        //int idx = 0;
-        //foreach (var v in formatVariable)
-        //{
-        //    v.UpdateValue();
-        //    s[idx] = v.GetValue().ToString();
-        //    idx++;
-        //}
-        string actualSpeech = "";
-        //if (idx == 0)
+        if (!String.IsNullOrEmpty(speech.ToString())) {
+            //string[] s = new string[formatVariable.Length];
+            //int idx = 0;
+            //foreach (var v in formatVariable)
+            //{
+            //    v.UpdateValue();
+            //    s[idx] = v.GetValue().ToString();
+            //    idx++;
+            //}
+            string actualSpeech = "";
+            //if (idx == 0)
             actualSpeech = speech.ToString();
-        //else
-        //    actualSpeech = String.Format(speech.ToString(), s);
+            //else
+            //    actualSpeech = String.Format(speech.ToString(), s);
 
-        //Regex r = new Regex("{.*}");
-        //Match m = r.Match(actualSpeech);
-        if (actualSpeech.Contains("{PlayerName}")) {
-            actualSpeech = actualSpeech.Replace("{PlayerName}", UserProfile.Content["PlayerName"]);
+            //Regex r = new Regex("{.*}");
+            //Match m = r.Match(actualSpeech);
+            if (actualSpeech.Contains("{PlayerName}"))
+            {
+                actualSpeech = actualSpeech.Replace("{PlayerName}", UserProfile.Content["PlayerName"]);
+            }
+
+
+            Debug.Log($"ActionSpeak, start speech:{actualSpeech}");
+            Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("toTalk", true); // for facial animation
+            Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetInteger("toTalkBody", UnityEngine.Random.Range(1, 9)); // for body talk animation
+
+            //prevLookatPlayerState = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled;
+            //Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled = true;
+            AudioClip clip = await WatsonTTSService.Instance.Synthesize(actualSpeech);
+
+            //Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>().PlayOneShot(clip);
+            AudioSource audioSource = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>();
+            if (audioSource != null) // make sure only play single audioclip at one time
+            {
+                if (audioSource.isPlaying) {
+                    audioSource.Stop();
+                }
+
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.Log("No audioSource attached to Charlie");
+            }
+            //CharlieManager.Instance.SpeakAnimation(clip.length);
+
+            await new WaitForSeconds(clip.length);
+
+            Debug.Log($"ActionSpeak, finish speech:{actualSpeech}");
+
+            Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("toTalk", false); // for facial animation
+            Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetInteger("toTalkBody", 0); // for body talk animation
+                                                                                                                     
         }
-        
 
-        Debug.Log($"ActionSpeak, start speech:{actualSpeech}");
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("toTalk", true); // for facial animation
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetInteger("toTalkBody", UnityEngine.Random.Range(1, 9)); // for body talk animation
-
-        prevLookatPlayerState = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled;
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled = true;
-        AudioClip clip = await WatsonTTSService.Instance.Synthesize(actualSpeech);
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>().PlayOneShot(clip);
-        //CharlieManager.Instance.SpeakAnimation(clip.length);
-
-        await new WaitForSeconds(clip.length);
-   
-        Debug.Log($"ActionSpeak, finish speech:{actualSpeech}");
         Finish();
     }
 
-    public override void OnExit()
-    {
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("toTalk", false); // for facial animation
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetInteger("toTalkBody", 0); // for body talk animation
-        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<LookatPlayer>().enabled = prevLookatPlayerState;
-    }
+    //public override void OnExit()
+    //{
+        
+    //}
 }

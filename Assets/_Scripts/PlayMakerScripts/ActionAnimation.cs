@@ -49,6 +49,36 @@ public class ActionAnimationBool : FsmStateAction
 
 
 [ActionCategory(ActionCategory.Audio)]
+public class ActionAnimationIntTimeOut : FsmStateAction
+{
+    public FsmString intvar;
+    public int intValue;
+    public int timeOutValue;
+    public float secs; 
+    Animator anim;
+    public FsmOwnerDefault objSelf;
+
+    public override async void OnEnter()
+    {
+        var go = Fsm.GetOwnerDefaultTarget(objSelf);
+        anim = go.GetComponentInChildren<Animator>();
+
+        anim.SetInteger(intvar.ToString(), intValue);
+
+        await new WaitForSeconds(secs);
+        anim.SetInteger(intvar.ToString(), timeOutValue);
+        //Finish();
+    }
+
+    public override void OnExit()
+    {
+        anim.SetInteger(intvar.ToString(), timeOutValue);
+    }
+
+}
+
+
+[ActionCategory(ActionCategory.Audio)]
 public class ActionAnimationTriggerTimeOut : FsmStateAction
 {
     public FsmString timeOutTrigger;

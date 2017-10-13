@@ -79,7 +79,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams:
-        - Tree
+        - CharlieStandPoint_Tree
         byteData: 
         arrayParamSizes: 
         arrayParamTypes: []
@@ -96,35 +96,37 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 295
-        y: 111
+        x: 314
+        y: 112
         width: 102
         height: 32
       isBreakpoint: 0
-      isSequence: 0
+      isSequence: 1
       hideUnused: 0
       transitions:
       - fsmEvent:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: 
+        toState: PlayWithSth
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
       actionData:
         actionNames:
-        - ActionAnimationTrigger
-        - ActionAnimationTriggerTimeOut
+        - ActionAnimationIntTimeOut
+        - ActionTimeout
+        - ActionAnimationIntTimeOut
         - ActionTimeout
         customNames:
         - 
         - 
         - 
-        actionEnabled: 010100
-        actionIsOpen: 010101
-        actionStartIndex: 000000000200000005000000
-        actionHashCodes: d4821a03065a4403deb16303
+        - 
+        actionEnabled: 01010101
+        actionIsOpen: 01010101
+        actionStartIndex: 0000000005000000060000000b000000
+        actionHashCodes: d5016405deb16303d5016405deb16303
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -156,13 +158,13 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: toPose
+          value: toPlay
         - useVariable: 0
           name: 
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: exitPose
+          value: toPlay
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -176,21 +178,27 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 0000404000004040
+        byteData: 01000000000000000000a0410000004002000000000000000000204100000040
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 120000001400000012000000140000000200000002000000
+        paramDataType: 120000000000000000000000020000001400000002000000120000000000000000000000020000001400000002000000
         paramName:
-        - trigger
-        - objSelf
-        - timeOutTrigger
+        - intvar
+        - intValue
+        - timeOutValue
+        - secs
         - objSelf
         - secs
+        - intvar
+        - intValue
+        - timeOutValue
         - secs
-        paramDataPos: 000000000000000001000000010000000000000004000000
-        paramByteDataSize: 000000000000000000000000000000000400000004000000
+        - objSelf
+        - secs
+        paramDataPos: 00000000000000000400000008000000000000000c00000001000000100000001400000018000000010000001c000000
+        paramByteDataSize: 000000000400000004000000040000000000000004000000000000000400000004000000040000000000000004000000
     events:
     - name: FINISHED
       isSystemEvent: 1
