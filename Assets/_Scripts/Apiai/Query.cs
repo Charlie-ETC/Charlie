@@ -1,8 +1,10 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 public class Query {
     public string query;
     public string v;
+    [JsonProperty(PropertyName = "event")]
     public Event e;
     public string sessionId;
     public string lang;

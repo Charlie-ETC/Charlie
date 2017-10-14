@@ -245,6 +245,21 @@ Prefab:
       propertyPath: fsmEvent
       value: 
       objectReference: {fileID: 1304642594}
+    - target: {fileID: 82044599759395870, guid: 328ef216890a74e4f9ed022f772bc76e,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851015398798278, guid: 328ef216890a74e4f9ed022f772bc76e,
+        type: 2}
+      propertyPath: charlieAudio
+      value: 
+      objectReference: {fileID: 1304642596}
+    - target: {fileID: 114851015398798278, guid: 328ef216890a74e4f9ed022f772bc76e,
+        type: 2}
+      propertyPath: charlieAnimator
+      value: 
+      objectReference: {fileID: 949271979}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 328ef216890a74e4f9ed022f772bc76e, type: 2}
   m_IsPrefabParent: 0
@@ -481,6 +496,11 @@ Prefab:
       propertyPath: dictationResultEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1218877854}
+    - target: {fileID: 114467496427190324, guid: 9a00200de583e694f9b7fd67d75b18f2,
+        type: 2}
+      propertyPath: FakeDictationResult
+      value: 'who are you '
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a00200de583e694f9b7fd67d75b18f2, type: 2}
   m_IsPrefabParent: 0
@@ -1030,7 +1050,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1304642585}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.05
   m_Height: 0.2
   m_Direction: 1
@@ -1043,7 +1063,7 @@ BoxCollider:
   m_GameObject: {fileID: 1304642585}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.21760428, y: 0.45416605, z: 0.1467247}
   m_Center: {x: -0.022350416, y: 0.23, z: 0}
@@ -1055,7 +1075,7 @@ SphereCollider:
   m_GameObject: {fileID: 1304642585}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.17
   m_Center: {x: 0, y: 0.63, z: 0.02}
@@ -1211,7 +1231,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1304642585}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1384774831, guid: e743331561ef77147ae48cda9bcb8209, type: 3}
   m_Name: 
@@ -1349,6 +1369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7299435f601eaa4fb9f798cef8da339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LastSpeech: 
 --- !u!114 &1304642595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1497,7 +1518,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
+  Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
@@ -1531,7 +1552,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1914,7 +1935,13 @@ MonoBehaviour:
       floatVariables: []
       intVariables: []
       boolVariables: []
-      stringVariables: []
+      stringVariables:
+      - useVariable: 1
+        name: speech
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 
       vector2Variables: []
       vector3Variables: []
       colorVariables: []
@@ -1928,7 +1955,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 
+      variableCategoryIDs: 00000000
     description: 
     docUrl: 
     showStateLabel: 1

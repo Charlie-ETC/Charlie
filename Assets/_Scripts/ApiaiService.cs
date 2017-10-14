@@ -23,15 +23,26 @@ public class ApiaiService : MonoBehaviour {
         return Guid.NewGuid().ToString();
     }
 
-    public async Task<Response> Query(string sessionId, string text)
+    public async Task<Response> Query(string sessionId, string text, bool sendAsEvent)
     {
         Query query = new Query
         {
             v = "20150910",
             lang = "en",
-            query = text,
             sessionId = sessionId
         };
+
+        if (sendAsEvent)
+        {
+            query.e = new Query.Event
+            {
+                name = text
+            };
+        }
+        else
+        {
+            query.query = text;
+        }
 
         JsonSerializerSettings settings = new JsonSerializerSettings
         {
@@ -49,8 +60,14 @@ public class ApiaiService : MonoBehaviour {
         request.SetRequestHeader("Content-Type", "application/json");
         await request.SendWebRequest();
 
+        Debug.Log(request.downloadHandler.text);
         return JsonConvert.DeserializeObject<Response>(
             request.downloadHandler.text, settings);
+    }
+
+    public async Task<Response> Query(string sessionId, string text)
+    {
+        return await Query(sessionId, text, false);
     }
 
     public async Task<List<Context>> GetContexts(string sessionId)
