@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class GestureManager : MonoBehaviour {
 
@@ -85,12 +85,14 @@ public class GestureManager : MonoBehaviour {
 
     private void OnAirTap(UnityEngine.XR.WSA.Input.InteractionSourceKind source, int tapCount, Ray headRay) {
         // air tap focused object to call its OnSelect()
-        if (FocusedObject != null) {
-            CubeCommands cc = FocusedObject.GetComponentInParent<CubeCommands>();
-            if (cc != null) {
-                cc.OnSelect();
-            }
-        }
+        //if (FocusedObject != null) {
+        //    CubeCommands cc = FocusedObject.GetComponentInParent<CubeCommands>();
+        //    if (cc != null) {
+        //        cc.OnSelect();
+        //    }
+        //}
+
+        SceneManager.LoadScene("Main");
     }
 
 }
