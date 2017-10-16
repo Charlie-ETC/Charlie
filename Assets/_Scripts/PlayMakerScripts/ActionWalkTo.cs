@@ -30,7 +30,7 @@ public class ActionWalkTo : FsmStateAction
 
         while (ended == false)
         {
-            if ((go.transform.position - target.position).magnitude < 0.3)
+            if ((go.transform.position - target.position).magnitude < 0.03)
                 break;
 
             NavMeshPath path = new NavMeshPath();
@@ -42,7 +42,7 @@ public class ActionWalkTo : FsmStateAction
             }
             var waypoints = new List<Vector3>(path.corners);
 
-            float dist = Time.deltaTime * 0.8f;
+            float dist = Time.deltaTime * 0.12f;
             while (waypoints.Count > 0 && (go.transform.position - waypoints[0]).magnitude < dist)
             {
                 dist -= (go.transform.position - waypoints[0]).magnitude;
