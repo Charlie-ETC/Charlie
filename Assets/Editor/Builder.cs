@@ -18,6 +18,8 @@ public class Builder
             sceneNames.Add(scene.path);
         }
 
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.WSA, BuildTarget.WSAPlayer);
+        EditorUserBuildSettings.wsaSubtarget = WSASubtarget.HoloLens;
         BuildPlayerOptions options = new BuildPlayerOptions
         {
             scenes = sceneNames.ToArray(),

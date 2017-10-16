@@ -62,6 +62,7 @@ public class ActionSpeak : FsmStateAction
 
                 audioSource.clip = clip;
                 audioSource.Play();
+                DictationMonitor.Instance.plotSpeaking = true;
             }
             else
             {
@@ -75,7 +76,13 @@ public class ActionSpeak : FsmStateAction
 
             Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("toTalk", false); // for facial animation
             Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetInteger("toTalkBody", 0); // for body talk animation
-                                                                                                                     
+
+            DictationMonitor.Instance.plotSpeaking = false;
+            if (DictationMonitor.Instance.MissedQ) {
+                DictationMonitor.Instance.TriggerApiaiEvent(ApiaiEventNames.INPUT_UNKNOWN);
+                //DictationMonitor.Instance.HandleDictationResult("", "");
+                DictationMonitor.Instance.MissedQ = false;
+            }
         }
 
         Finish();

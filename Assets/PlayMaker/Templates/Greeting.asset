@@ -71,7 +71,8 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Wow
+          value: Wow this is a very long sentence no stop here I just want to test
+            this audio conflict thing
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
