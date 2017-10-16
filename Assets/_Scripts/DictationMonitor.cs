@@ -15,7 +15,7 @@ public class DictationMonitor : MonoBehaviour {
 
     private ApiaiService apiaiService;
     private WatsonTTSService watsonTTSService;
-    private TwitterService twitterService;
+    public TwitterService twitterService;
 
     private TextMesh textMesh;
     //private AudioSource audioSource;
