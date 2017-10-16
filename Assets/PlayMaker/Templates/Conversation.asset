@@ -23,8 +23,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 51
-        y: 109
+        x: 61
+        y: 108
         width: 180
         height: 32
       isBreakpoint: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 010000a041
+        byteData: 0100000041
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
@@ -105,8 +105,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 534
-        y: 124
+        x: 502
+        y: 108
         width: 100
         height: 16
       isBreakpoint: 0
@@ -202,8 +202,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 336
-        y: 113
+        x: 323
+        y: 127
         width: 100
         height: 32
       isBreakpoint: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 010000f041
+        byteData: 0100000041
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
