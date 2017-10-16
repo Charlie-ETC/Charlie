@@ -12,6 +12,7 @@ public class ActionSpeak : FsmStateAction
 {
     [UIHint(UIHint.TextArea)]
     public FsmString speech;
+    public bool ignoredApiResponse;
 
     //public FsmVar[] formatVariable;
 
@@ -21,7 +22,8 @@ public class ActionSpeak : FsmStateAction
 
     public override async void OnEnter()
     {
-        if (!String.IsNullOrEmpty(speech.ToString())) {
+        if (!String.IsNullOrEmpty(speech.ToString()))
+        {
             //string[] s = new string[formatVariable.Length];
             //int idx = 0;
             //foreach (var v in formatVariable)
@@ -56,7 +58,8 @@ public class ActionSpeak : FsmStateAction
             AudioSource audioSource = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>();
             if (audioSource != null) // make sure only play single audioclip at one time
             {
-                if (audioSource.isPlaying) {
+                if (audioSource.isPlaying)
+                {
                     audioSource.Stop();
                 }
 
@@ -78,9 +81,11 @@ public class ActionSpeak : FsmStateAction
             Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetInteger("toTalkBody", 0); // for body talk animation
 
             DictationMonitor.Instance.plotSpeaking = false;
-            if (DictationMonitor.Instance.MissedQ) {
-                DictationMonitor.Instance.TriggerApiaiEvent(ApiaiEventNames.INPUT_UNKNOWN);
-                //DictationMonitor.Instance.HandleDictationResult("", "");
+            if (DictationMonitor.Instance.MissedQ)
+            {
+                if (!ignoredApiResponse) {
+                    DictationMonitor.Instance.TriggerApiaiEvent(ApiaiEventNames.INPUT_UNKNOWN);
+                }
                 DictationMonitor.Instance.MissedQ = false;
             }
         }

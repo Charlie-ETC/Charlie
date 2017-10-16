@@ -5,6 +5,7 @@ using UnityEngine.Windows.Speech;
 
 public class DictationRecognizer : MonoBehaviour {
 
+
     [System.Serializable]
     public class DictationCompleteEvent : UnityEvent<string> { }
 
@@ -49,6 +50,7 @@ public class DictationRecognizer : MonoBehaviour {
 
     public string FakeDictationResult;
     public bool TriggerFakeDictationResult;
+
     private void Update()
     {
         if (TriggerFakeDictationResult)

@@ -125,7 +125,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: d4821a03
+        actionHashCodes: 16192d01
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -163,17 +163,18 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 
+        byteData: 00
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1200000014000000
+        paramDataType: 120000000100000014000000
         paramName:
         - speech
+        - ignoredApiResponse
         - audioSourceObj
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
     - name: Please
       description: 
       colorIndex: 0
@@ -203,7 +204,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: d4821a03
+        actionHashCodes: 16192d01
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -241,17 +242,18 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 
+        byteData: 00
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1200000014000000
+        paramDataType: 120000000100000014000000
         paramName:
         - speech
+        - ignoredApiResponse
         - audioSourceObj
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
     - name: WaitForName
       description: 
       colorIndex: 0
@@ -360,7 +362,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: d4821a03
+        actionHashCodes: 16192d01
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -398,17 +400,18 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 
+        byteData: 00
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1200000014000000
+        paramDataType: 120000000100000014000000
         paramName:
         - speech
+        - ignoredApiResponse
         - audioSourceObj
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
     - name: ConfirmBackground
       description: 
       colorIndex: 0
@@ -438,7 +441,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: d4821a03
+        actionHashCodes: 16192d01
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -476,17 +479,18 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 
+        byteData: 00
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1200000014000000
+        paramDataType: 120000000100000014000000
         paramName:
         - speech
+        - ignoredApiResponse
         - audioSourceObj
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
     - name: WaitForName 2
       description: 
       colorIndex: 0
@@ -595,7 +599,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: d4821a03
+        actionHashCodes: 16192d01
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -633,17 +637,18 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 
+        byteData: 00
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1200000014000000
+        paramDataType: 120000000100000014000000
         paramName:
         - speech
+        - ignoredApiResponse
         - audioSourceObj
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
     - name: Wait For Keyword
       description: 
       colorIndex: 0
@@ -769,7 +774,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: d4821a03
+        actionHashCodes: 16192d01
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -807,17 +812,18 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 
+        byteData: 00
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1200000014000000
+        paramDataType: 120000000100000014000000
         paramName:
         - speech
+        - ignoredApiResponse
         - audioSourceObj
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
     - name: Change BG
       description: 
       colorIndex: 0
