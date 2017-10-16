@@ -42,15 +42,25 @@ MonoBehaviour:
       actionData:
         actionNames:
         - ActionWalkTo
+        - ActionLookatPlayer
         customNames:
         - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: 05174b05
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000002000000
+        actionHashCodes: 05174b05ae88b905
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         - ownerOption: 0
           gameObject:
             useVariable: 0
@@ -80,17 +90,19 @@ MonoBehaviour:
         fsmQuaternionParams: []
         stringParams:
         - Tablet
-        byteData: 
+        byteData: 00
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 0300000014000000
+        paramDataType: 03000000140000001400000001000000
         paramName:
         - targetName
         - objSelf
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
+        - objSelf
+        - lookAtPlayerOn
+        paramDataPos: 00000000000000000100000000000000
+        paramByteDataSize: 00000000000000000000000001000000
     - name: ShowPhoto
       description: 
       colorIndex: 0
