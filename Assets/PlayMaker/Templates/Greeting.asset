@@ -241,7 +241,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: You must be pumpkin
+          value: Are you pumpkin?
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
