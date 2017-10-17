@@ -6,6 +6,7 @@ public class FsmEventGenerator : MonoBehaviour {
 
     PlayMakerFSM[] FSMArray;
     public string LastSpeech;
+    public Dictionary<string, string> LastParam;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class FsmEventGenerator : MonoBehaviour {
     public void HandleResponse(Response resp)
     {
         //var intentName = resp?.result?.metadata?.intentName ?? "hello";
+        LastParam = resp.result.parameters;
         if (!string.IsNullOrEmpty(resp.result.metadata.intentName))
         {
             foreach (var fsm in FSMArray)

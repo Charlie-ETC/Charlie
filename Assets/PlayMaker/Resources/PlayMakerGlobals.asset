@@ -56,3 +56,6 @@ MonoBehaviour:
   - Action:smalltalk.confirmation.no
   - Action:smalltalk.confirmation.yes
   - substate:finish
+  - Intent:name
+  - Intent:guess.name
+  - Intent:guest.name
