@@ -3197,7 +3197,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 664177761}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 0.7
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -3214,8 +3214,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1717627423}
   m_LocalRotation: {x: -0, y: 0.13011943, z: -0, w: 0.99149835}
-  m_LocalPosition: {x: 25.802639, y: 0, z: 96.613785}
-  m_LocalScale: {x: 0.22508782, y: 0.22508782, z: 0.22508782}
+  m_LocalPosition: {x: 0.18061846, y: 0, z: 0.67629653}
+  m_LocalScale: {x: 0.0015756148, y: 0.0015756148, z: 0.0015756148}
   m_Children:
   - {fileID: 147713703}
   - {fileID: 11511252}
