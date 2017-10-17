@@ -81,7 +81,8 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Come on, {PlayerName}, we are having a party now, join us!
+          value: Come on, {PlayerName}, we are having a party now, would you like
+            to join us?
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
