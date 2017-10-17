@@ -36,14 +36,7 @@ public class DictationMonitor : MonoBehaviour {
     // singleton instance
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
+        Instance = this;
     }
 
     void Start() {

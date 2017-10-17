@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.WSA.Input;
 
 public class GestureManager : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class GestureManager : MonoBehaviour {
     public GameObject FocusedObject { get; private set; }
     public GameObject OldFocusedObject { get; private set; }
 
-    private UnityEngine.XR.WSA.Input.GestureRecognizer gestureRecognizer;
+    private GestureRecognizer gestureRecognizer;
 
     private Vector3 cameraPos;
     private Vector3 gazeDirection;
@@ -27,20 +28,19 @@ public class GestureManager : MonoBehaviour {
         {
             // destroy this instance when guestureManager already exists
             Destroy(this);
-        }    
+        }
     }
 
     // initialize gesture events
     private void Start()
     {
-        gestureRecognizer = new UnityEngine.XR.WSA.Input.GestureRecognizer();
+        gestureRecognizer = new GestureRecognizer();
         gestureRecognizer.TappedEvent += OnAirTap;
         gestureRecognizer.StartCapturingGestures();
     }
 
     // Update is called once per frame
     void Update () {
-
         OldFocusedObject = FocusedObject;
 
 #if UNITY_EDITOR
@@ -57,8 +57,11 @@ public class GestureManager : MonoBehaviour {
                 if (cc != null) { cc.OnSelect(); }
             }
         }
-        
-        
+
+        if (Input.GetKeyDown("space")) {
+            OnAirTap(InteractionSourceKind.Controller, 1, new Ray());
+        }
+
 #else
         cameraPos = Camera.main.transform.position;
         gazeDirection = Camera.main.transform.forward;
@@ -83,7 +86,7 @@ public class GestureManager : MonoBehaviour {
 
     }
 
-    private void OnAirTap(UnityEngine.XR.WSA.Input.InteractionSourceKind source, int tapCount, Ray headRay) {
+    private void OnAirTap(InteractionSourceKind source, int tapCount, Ray headRay) {
         // air tap focused object to call its OnSelect()
         //if (FocusedObject != null) {
         //    CubeCommands cc = FocusedObject.GetComponentInParent<CubeCommands>();
