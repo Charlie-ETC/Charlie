@@ -7,6 +7,7 @@ public class FsmEventGenerator : MonoBehaviour {
     PlayMakerFSM[] FSMArray;
     public string LastHypothesis;
     public string LastSpeech;
+    public string LastCompleteMessage;
     public Response LastResponse;
     //public Dictionary<string, string> LastParam;
 
@@ -30,6 +31,8 @@ public class FsmEventGenerator : MonoBehaviour {
     {
         if (isActiveAndEnabled == false)
             return;
+
+        LastCompleteMessage = text;
 
         foreach (var fsm in FSMArray)
         {

@@ -52,7 +52,9 @@ public class ActionHandleHypothesis : FsmStateAction
                 Finish();
             }
         }
-        else if (fsmEvent.Name == "Dictation:Error" || (!waitingForSpeech && fsmEvent.Name == "Apiai:Response"))
+        else if ((fsmEvent.Name == "Complete" && go.GetComponent<FsmEventGenerator>().LastCompleteMessage != "Complete")
+            || fsmEvent.Name == "Dictation:Error"
+            || (!waitingForSpeech && fsmEvent.Name == "Apiai:Response"))
         {
             await new WaitForNextFrame();
             if (Enabled) { 
