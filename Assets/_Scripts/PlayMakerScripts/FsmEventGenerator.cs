@@ -5,12 +5,47 @@ using UnityEngine;
 public class FsmEventGenerator : MonoBehaviour {
 
     PlayMakerFSM[] FSMArray;
+    public string LastHypothesis;
     public string LastSpeech;
-    public Dictionary<string, string> LastParam;
+    public Response LastResponse;
+    //public Dictionary<string, string> LastParam;
 
     void Start()
     {
         FSMArray = gameObject.GetComponents<PlayMakerFSM>();
+    }
+
+    public void HandleDictationHypothesis(string text)
+    {
+        if (isActiveAndEnabled == false)
+            return;
+        LastHypothesis = text;
+        foreach (var fsm in FSMArray)
+        {
+            fsm.SendEvent("Dictation:Hypothesis");
+        }
+    }
+
+    public void HandleDictationComplete(string text)
+    {
+        if (isActiveAndEnabled == false)
+            return;
+
+        foreach (var fsm in FSMArray)
+        {
+            fsm.SendEvent("Dictation:Complete");
+        }
+    }
+
+    public void HandleDictationError(string text)
+    {
+        if (isActiveAndEnabled == false)
+            return;
+
+        foreach (var fsm in FSMArray)
+        {
+            fsm.SendEvent("Dictation:Error");
+        }
     }
 
     public void HandleDictationResult(string text)
@@ -20,14 +55,14 @@ public class FsmEventGenerator : MonoBehaviour {
         LastSpeech = text;
         foreach (var fsm in FSMArray)
         {
-            fsm.SendEvent("SpeechFinish");
+            fsm.SendEvent("Dictation:Finish");
         }
     }
 
     public void HandleResponse(Response resp)
     {
         //var intentName = resp?.result?.metadata?.intentName ?? "hello";
-        LastParam = resp.result.parameters;
+        LastResponse = resp;
         if (!string.IsNullOrEmpty(resp.result.metadata.intentName))
         {
             foreach (var fsm in FSMArray)
@@ -35,12 +70,26 @@ public class FsmEventGenerator : MonoBehaviour {
                 fsm.SendEvent("Intent:" + resp.result.metadata.intentName);
             }
         }
-        else if (!string.IsNullOrEmpty(resp.result.action))
+
+        if (!string.IsNullOrEmpty(resp.result.action))
         {
             foreach (var fsm in FSMArray)
             {
                 fsm.SendEvent("Action:" + resp.result.action);
             }
+        }
+
+        if (resp.result.speech.Length != 0)
+        {
+            foreach (var fsm in FSMArray)
+            {
+                fsm.SendEvent("Apiai:Speech");
+            }
+        }
+
+        foreach (var fsm in FSMArray)
+        {
+            fsm.SendEvent("Apiai:Response");
         }
     }
 }

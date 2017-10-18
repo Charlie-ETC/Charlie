@@ -15,7 +15,7 @@ public class ActionGetIntentParam : FsmStateAction
 
     public override void OnEnter()
     {
-        string text = Fsm.GetOwnerDefaultTarget(owner).GetComponent<FsmEventGenerator>().LastParam[intentParamKey];
+        string text = Fsm.GetOwnerDefaultTarget(owner).GetComponent<FsmEventGenerator>().LastResponse.result.parameters[intentParamKey];
         Debug.Log($"Action Get Intent Param: {intentParamKey}, value: {text}");
         textVar.SetValue(text);
         Finish();

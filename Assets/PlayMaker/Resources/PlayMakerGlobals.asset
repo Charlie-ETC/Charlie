@@ -59,3 +59,8 @@ MonoBehaviour:
   - Intent:name
   - Intent:guess.name
   - Intent:guest.name
+  - Dictation:Complete
+  - Dictation:Error
+  - Dictation:Finish
+  - Action:input.unknown
+  - Dictation:Hypothesis

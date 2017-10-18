@@ -23,24 +23,16 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 50
-        y: 103.99219
-        width: 135
-        height: 48
+        x: 57
+        y: 113.99219
+        width: 117
+        height: 32
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
       transitions:
       - fsmEvent:
-          name: Intent:basic.hello
-          isSystemEvent: 0
-          isGlobal: 1
-        toState: Greeting
-        linkStyle: 0
-        linkConstraint: 0
-        colorIndex: 0
-      - fsmEvent:
-          name: PlayerTooClose
+          name: substate:finish
           isSystemEvent: 0
           isGlobal: 1
         toState: Greeting
@@ -123,7 +115,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 258.3828
+        x: 242.38281
         y: 163.94531
         width: 117
         height: 32
@@ -215,7 +207,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 558
+        x: 542
         y: 297
         width: 117
         height: 32
@@ -307,7 +299,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 406
+        x: 390
         y: 235
         width: 117
         height: 32
@@ -399,7 +391,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 544
+        x: 528
         y: 420
         width: 117
         height: 32
@@ -491,14 +483,22 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 523.0156
-        y: 538
-        width: 100
-        height: 16
+        x: 234.01562
+        y: 548
+        width: 117
+        height: 32
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
-      transitions: []
+      transitions:
+      - fsmEvent:
+          name: substate:finish
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: EnterRoom
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.EnableFSM

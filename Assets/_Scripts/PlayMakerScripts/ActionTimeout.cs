@@ -11,10 +11,19 @@ public class ActionTimeout : FsmStateAction
 {
     public float secs;
 
+    float timer;
+
     public override async void OnEnter()
     {
+        timer = secs;
+    }
 
-        await new WaitForSeconds(secs);
-        Finish();
+    public override void OnUpdate()
+    {
+        if (!Enabled)
+            return;
+        timer -= Time.deltaTime;
+        if (timer < 0)
+            Finish();
     }
 }

@@ -16,34 +16,26 @@ MonoBehaviour:
     dataVersion: 2
     usedInTemplate: {fileID: 11400000}
     name: AskJoinParty
-    startState: State 3
+    startState: WalkToCube
     states:
     - name: WalkToCube
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 62
-        y: 198
-        width: 240
-        height: 48
+        x: 248
+        y: 108
+        width: 157
+        height: 32
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
       transitions:
       - fsmEvent:
-          name: Action:smalltalk.confirmation.yes
+          name: Dictation:Hypothesis
           isSystemEvent: 0
           isGlobal: 1
-        toState: State 1
-        linkStyle: 0
-        linkConstraint: 0
-        colorIndex: 0
-      - fsmEvent:
-          name: Action:smalltalk.confirmation.no
-          isSystemEvent: 0
-          isGlobal: 1
-        toState: Please
+        toState: Hypo
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -114,8 +106,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 363
-        y: 119
+        x: 589
+        y: 208
         width: 100
         height: 32
       isBreakpoint: 0
@@ -193,8 +185,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 105
-        y: 327
+        x: 61
+        y: 182
         width: 100
         height: 32
       isBreakpoint: 0
@@ -272,8 +264,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 582
-        y: 156
+        x: 839
+        y: 204
         width: 100
         height: 16
       isBreakpoint: 0
@@ -364,15 +356,15 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 00000000000000000000000000000000
         paramByteDataSize: 00000000000000000000000001000000
-    - name: State 3
+    - name: Hypo
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 105
-        y: 113
-        width: 100
-        height: 32
+        x: 253
+        y: 182
+        width: 240
+        height: 64
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -385,16 +377,42 @@ MonoBehaviour:
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
+      - fsmEvent:
+          name: Action:smalltalk.confirmation.yes
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: State 1
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Action:smalltalk.confirmation.no
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Please
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
       actionData:
-        actionNames: []
-        customNames: []
-        actionEnabled: 
-        actionIsOpen: 
-        actionStartIndex: 
-        actionHashCodes: 
+        actionNames:
+        - ActionHandleHypothesis
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 8d4bb503
         unityObjectParams: []
         fsmGameObjectParams: []
-        fsmOwnerDefaultParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []
@@ -420,10 +438,11 @@ MonoBehaviour:
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 
-        paramName: []
-        paramDataPos: 
-        paramByteDataSize: 
+        paramDataType: 14000000
+        paramName:
+        - owner
+        paramDataPos: 00000000
+        paramByteDataSize: 00000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -434,6 +453,9 @@ MonoBehaviour:
     - name: Action:smalltalk.confirmation.yes
       isSystemEvent: 0
       isGlobal: 0
+    - name: Dictation:Hypothesis
+      isSystemEvent: 0
+      isGlobal: 1
     globalTransitions: []
     variables:
       floatVariables: []

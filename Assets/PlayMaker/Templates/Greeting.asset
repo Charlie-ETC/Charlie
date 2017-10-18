@@ -23,8 +23,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 50
-        y: 105
+        x: 52
+        y: 326
         width: 100
         height: 32
       isBreakpoint: 0
@@ -114,8 +114,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 228.4375
-        y: 111.41406
+        x: 226.4375
+        y: 331.41406
         width: 101
         height: 32
       isBreakpoint: 0
@@ -193,10 +193,10 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 423.4375
-        y: 121.41406
-        width: 100
-        height: 32
+        x: 393.4375
+        y: 337.41406
+        width: 157
+        height: 48
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -206,6 +206,14 @@ MonoBehaviour:
           isSystemEvent: 1
           isGlobal: 0
         toState: WaitForName
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Dictation:Hypothesis
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: Hypo
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -272,22 +280,14 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 637
-        y: 101
-        width: 240
-        height: 80
+        x: 707
+        y: 333
+        width: 157
+        height: 48
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
       transitions:
-      - fsmEvent:
-          name: Action:smalltalk.confirmation.yes
-          isSystemEvent: 0
-          isGlobal: 1
-        toState: SetName
-        linkStyle: 0
-        linkConstraint: 0
-        colorIndex: 0
       - fsmEvent:
           name: FINISHED
           isSystemEvent: 1
@@ -297,18 +297,10 @@ MonoBehaviour:
         linkConstraint: 0
         colorIndex: 0
       - fsmEvent:
-          name: Action:smalltalk.confirmation.no
+          name: Dictation:Hypothesis
           isSystemEvent: 0
           isGlobal: 1
-        toState: SoWhatsYourName
-        linkStyle: 0
-        linkConstraint: 0
-        colorIndex: 0
-      - fsmEvent:
-          name: Intent:guest.name
-          isSystemEvent: 0
-          isGlobal: 1
-        toState: GetParam
+        toState: Hypo 5
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -359,10 +351,10 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 351
-        y: 203
-        width: 149
-        height: 32
+        x: 712
+        y: 111.97656
+        width: 157
+        height: 48
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -372,6 +364,14 @@ MonoBehaviour:
           isSystemEvent: 1
           isGlobal: 0
         toState: WaitForName
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Dictation:Hypothesis
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: Hypo 5
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -407,7 +407,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: So what's your name?
+          value: Could you please tell me what's your name?
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -438,10 +438,10 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1026
-        y: 239
-        width: 100
-        height: 32
+        x: 996
+        y: 561
+        width: 157
+        height: 48
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -451,6 +451,14 @@ MonoBehaviour:
           isSystemEvent: 1
           isGlobal: 0
         toState: State 1
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Dictation:Hypothesis
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: Hypo 2
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -512,110 +520,13 @@ MonoBehaviour:
         - audioSourceObj
         paramDataPos: 000000000000000000000000
         paramByteDataSize: 000000000100000000000000
-    - name: YouArePineapple
-      description: 
-      colorIndex: 0
-      position:
-        serializedVersion: 2
-        x: 715.5
-        y: 238
-        width: 134
-        height: 32
-      isBreakpoint: 0
-      isSequence: 0
-      hideUnused: 0
-      transitions:
-      - fsmEvent:
-          name: FINISHED
-          isSystemEvent: 1
-          isGlobal: 0
-        toState: Great
-        linkStyle: 0
-        linkConstraint: 0
-        colorIndex: 0
-      actionData:
-        actionNames:
-        - ActionModifyUserProfile
-        - ActionSpeak
-        customNames:
-        - 
-        - 
-        actionEnabled: 0101
-        actionIsOpen: 0101
-        actionStartIndex: 0000000002000000
-        actionHashCodes: a4b08a0116192d01
-        unityObjectParams: []
-        fsmGameObjectParams: []
-        fsmOwnerDefaultParams:
-        - ownerOption: 0
-          gameObject:
-            useVariable: 0
-            name: 
-            tooltip: 
-            showInInspector: 0
-            networkSync: 0
-            value: {fileID: 0}
-        animationCurveParams: []
-        functionCallParams: []
-        fsmTemplateControlParams: []
-        fsmEventTargetParams: []
-        fsmPropertyParams: []
-        layoutOptionParams: []
-        fsmStringParams:
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: PlayerName
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: Pineapple
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 'Your are not Pumpkin? Then you must be Pineapple
-
-'
-        fsmObjectParams: []
-        fsmVarParams: []
-        fsmArrayParams: []
-        fsmEnumParams: []
-        fsmFloatParams: []
-        fsmIntParams: []
-        fsmBoolParams: []
-        fsmVector2Params: []
-        fsmVector3Params: []
-        fsmColorParams: []
-        fsmRectParams: []
-        fsmQuaternionParams: []
-        stringParams: []
-        byteData: 00
-        arrayParamSizes: 
-        arrayParamTypes: []
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 1200000012000000120000000100000014000000
-        paramName:
-        - key
-        - value
-        - speech
-        - ignoredApiResponse
-        - audioSourceObj
-        paramDataPos: 0000000001000000020000000000000000000000
-        paramByteDataSize: 0000000000000000000000000100000000000000
     - name: SetName
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1009
-        y: 128
+        x: 1088
+        y: 413
         width: 100
         height: 32
       isBreakpoint: 0
@@ -691,7 +602,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 1253
-        y: 269.97656
+        y: 489.97656
         width: 100
         height: 16
       isBreakpoint: 0
@@ -787,8 +698,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 806
-        y: 339
+        x: 779
+        y: 694
         width: 100
         height: 32
       isBreakpoint: 0
@@ -863,8 +774,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 610
-        y: 321
+        x: 583
+        y: 676
         width: 100
         height: 32
       isBreakpoint: 0
@@ -956,6 +867,243 @@ MonoBehaviour:
         - owner
         paramDataPos: 000000000000000000000000
         paramByteDataSize: 000000000000000000000000
+    - name: Hypo
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 412
+        y: 286
+        width: 100
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: YouMustBe
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionHandleHypothesis
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 8d4bb503
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 14000000
+        paramName:
+        - owner
+        paramDataPos: 00000000
+        paramByteDataSize: 00000000
+    - name: Hypo 2
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 1027
+        y: 643.2656
+        width: 100
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Great
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionHandleHypothesis
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 8d4bb503
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 14000000
+        paramName:
+        - owner
+        paramDataPos: 00000000
+        paramByteDataSize: 00000000
+    - name: Hypo 5
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 675
+        y: 419.1172
+        width: 240
+        height: 80
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: SoWhatsYourName
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Action:smalltalk.confirmation.yes
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: SetName
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Action:smalltalk.confirmation.no
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: SoWhatsYourName
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Intent:guest.name
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: GetParam
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionHandleHypothesis
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 8d4bb503
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 14000000
+        paramName:
+        - owner
+        paramDataPos: 00000000
+        paramByteDataSize: 00000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -964,6 +1112,18 @@ MonoBehaviour:
       isSystemEvent: 0
       isGlobal: 1
     - name: Action:smalltalk.confirmation.yes
+      isSystemEvent: 0
+      isGlobal: 1
+    - name: Dictation:Complete
+      isSystemEvent: 0
+      isGlobal: 1
+    - name: Dictation:Error
+      isSystemEvent: 0
+      isGlobal: 1
+    - name: Dictation:Finish
+      isSystemEvent: 0
+      isGlobal: 1
+    - name: Dictation:Hypothesis
       isSystemEvent: 0
       isGlobal: 1
     - name: Intent:guest.name

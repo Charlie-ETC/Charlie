@@ -66,17 +66,20 @@ public class DictationMonitor : MonoBehaviour {
     public void HandleDictationHypothesis(string text)
     {
         transform.Find("Hypothesis").GetComponent<TextMesh>().text = $"({Time.time.ToString("0.00")})   :   [{text}]";
+        fsmEvent.HandleDictationHypothesis(text);
         //textMesh.text = $"Request: {text}\nResponse: {lastResponse}";
     }
 
     public void HandleDictationComplete(string text)
     {
         transform.Find("Complete").GetComponent<TextMesh>().text =   $"({Time.time.ToString("0.00")})   :   [{text}]";
+        fsmEvent.HandleDictationComplete(text);
     }
 
     public void HandleDictationError(string text, int i)
     {
         transform.Find("Error").GetComponent<TextMesh>().text =      $"({Time.time.ToString("0.00")})   :   [{text}]   code:{i}";
+        fsmEvent.HandleDictationError(text);
     }
 
     public async void HandleDictationResult(string text, string confidenceLevel)
@@ -97,19 +100,19 @@ public class DictationMonitor : MonoBehaviour {
         if (response != null) fsmEvent.HandleResponse(response);
         
         // We managed to get an intent, dispatch it.
-        if (response.result.metadata.intentName != null)
-        {
-            stopwatch.Start();
-            DispatchIntent(response.result.metadata.intentName, response);
-            Debug.Log($"[DictationMonitor] intentName:{response.result.metadata.intentName}, perf: DispatchIntent took {stopwatch.ElapsedMilliseconds}ms");
-            foreach (var kv in response.result.parameters)
-            {
-                Debug.Log($"{kv.Key}={kv.Value}");
-            }
-            stopwatch.Reset();
-        }
+        //if (response.result.metadata.intentName != null)
+        //{
+        //    stopwatch.Start();
+        //    DispatchIntent(response.result.metadata.intentName, response);
+        //    Debug.Log($"[DictationMonitor] intentName:{response.result.metadata.intentName}, perf: DispatchIntent took {stopwatch.ElapsedMilliseconds}ms");
+        //    foreach (var kv in response.result.parameters)
+        //    {
+        //        Debug.Log($"{kv.Key}={kv.Value}");
+        //    }
+        //    stopwatch.Reset();
+        //}
 
-        await SpeakApiaiResponse(response);
+        //await SpeakApiaiResponse(response);
     }
 
     /**
@@ -121,7 +124,7 @@ public class DictationMonitor : MonoBehaviour {
      *      downloaded from Watson and a play request was sent to Unity.
      *      The boolean is false if the response doesn't contain any speech.
      */
-    private async Task<bool> SpeakApiaiResponse(Response response)
+    public async Task<bool> SpeakApiaiResponse(Response response)
     {
         System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
         

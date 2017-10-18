@@ -59,6 +59,11 @@ public class DictationRecognizer : MonoBehaviour {
             TriggerFakeDictationResult = false;
             FakeDictationResult = "";
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetDictationRecognizer();
+        }
     }
 
     private void OnDictationError(string error, int hresult)
@@ -99,5 +104,11 @@ public class DictationRecognizer : MonoBehaviour {
             isDestroying = true;
             dictationRecognizer.Stop();
         }
+    }
+
+    public void ResetDictationRecognizer()
+    {
+        dictationRecognizer.Stop();
+        dictationRecognizer.Start();
     }
 }

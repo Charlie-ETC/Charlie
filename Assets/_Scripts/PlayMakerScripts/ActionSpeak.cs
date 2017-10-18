@@ -93,8 +93,13 @@ public class ActionSpeak : FsmStateAction
         Finish();
     }
 
+    public override void OnExit()
+    {
+        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>().Stop();
+    }
+
     //public override void OnExit()
     //{
-        
+
     //}
 }
