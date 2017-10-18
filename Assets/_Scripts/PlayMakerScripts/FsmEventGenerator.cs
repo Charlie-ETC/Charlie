@@ -15,6 +15,8 @@ public class FsmEventGenerator : MonoBehaviour {
 
     public void HandleDictationResult(string text)
     {
+        if (isActiveAndEnabled == false)
+            return;
         LastSpeech = text;
         foreach (var fsm in FSMArray)
         {

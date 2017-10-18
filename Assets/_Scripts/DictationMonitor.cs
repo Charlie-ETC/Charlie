@@ -65,11 +65,23 @@ public class DictationMonitor : MonoBehaviour {
 
     public void HandleDictationHypothesis(string text)
     {
-        textMesh.text = $"Request: {text}\nResponse: {lastResponse}";
+        transform.Find("Hypothesis").GetComponent<TextMesh>().text = $"({Time.time.ToString("0.00")})   :   [{text}]";
+        //textMesh.text = $"Request: {text}\nResponse: {lastResponse}";
+    }
+
+    public void HandleDictationComplete(string text)
+    {
+        transform.Find("Complete").GetComponent<TextMesh>().text =   $"({Time.time.ToString("0.00")})   :   [{text}]";
+    }
+
+    public void HandleDictationError(string text, int i)
+    {
+        transform.Find("Error").GetComponent<TextMesh>().text =      $"({Time.time.ToString("0.00")})   :   [{text}]   code:{i}";
     }
 
     public async void HandleDictationResult(string text, string confidenceLevel)
     {
+        transform.Find("Result").GetComponent<TextMesh>().text =     $"({Time.time.ToString("0.00")})   :   [{text}]   confidence:{confidenceLevel}";
         Debug.Log(text + " " + MissedQ);
         fsmEvent.HandleDictationResult(text);
 
