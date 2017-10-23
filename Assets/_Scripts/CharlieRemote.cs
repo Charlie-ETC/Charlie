@@ -25,11 +25,12 @@ namespace Charlie
             [WebApiHandler(HttpVerbs.Get, "/api/reloadScene")]
             public bool GetReloadScene(WebServer server, HttpListenerContext context)
             {
+                Unosquare.Labs.EmbedIO.Extensions.JsonResponse(context, "{}");
                 MainThreadDispatcher.Instance.Dispatch(() =>
                 {
                     SceneManager.LoadScene("Main");
                 });
-                return Unosquare.Labs.EmbedIO.Extensions.JsonResponse(context, "{}");
+                return true;
             }
         }
 
