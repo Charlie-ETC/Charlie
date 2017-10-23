@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+#if UNITY_WSA
 using UnityEngine.XR.WSA.WebCam;
+#endif
 using Asyncoroutine;
 using HoloToolkit.Unity.SpatialMapping;
 using System.Threading.Tasks;
@@ -216,6 +218,7 @@ public class DictationMonitor : MonoBehaviour {
 
     public void HandleTakePicture()
     {
+        #if UNITY_WSA
         Debug.Log("[DictationMonitor] Taking a picture!");
         Resolution resolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
         Texture2D texture = new Texture2D(resolution.width, resolution.height);
@@ -250,5 +253,6 @@ public class DictationMonitor : MonoBehaviour {
                 });
             });
         });
+        #endif
     }
 }

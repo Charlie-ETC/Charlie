@@ -13,6 +13,7 @@ public class ActionTakePicture : FsmStateAction
 
     public override void OnEnter()
     {
+#if UNITY_WSA
         Debug.Log("[DictationMonitor] Taking a picture!");
         Resolution resolution = UnityEngine.XR.WSA.WebCam.PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
         Texture2D texture = new Texture2D(resolution.width, resolution.height);
@@ -44,6 +45,7 @@ public class ActionTakePicture : FsmStateAction
                 });
             });
         });
+#endif
     }
 }
 

@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+#if UNITY_WSA
 using UnityEngine.XR.WSA.Input;
+#endif
 
 public class GestureManager : MonoBehaviour {
 
@@ -12,7 +14,9 @@ public class GestureManager : MonoBehaviour {
     public GameObject FocusedObject { get; private set; }
     public GameObject OldFocusedObject { get; private set; }
 
+#if UNITY_WSA
     private GestureRecognizer gestureRecognizer;
+#endif
 
     private Vector3 cameraPos;
     private Vector3 gazeDirection;
@@ -34,9 +38,11 @@ public class GestureManager : MonoBehaviour {
     // initialize gesture events
     private void Start()
     {
+        #if UNITY_WSA
         gestureRecognizer = new GestureRecognizer();
         gestureRecognizer.TappedEvent += OnAirTap;
         gestureRecognizer.StartCapturingGestures();
+        #endif
     }
 
     // Update is called once per frame
@@ -58,9 +64,11 @@ public class GestureManager : MonoBehaviour {
             }
         }
 
+#if UNITY_WSA
         if (Input.GetKeyDown("space")) {
             OnAirTap(InteractionSourceKind.Controller, 1, new Ray());
         }
+#endif
 
 #else
         cameraPos = Camera.main.transform.position;
@@ -77,15 +85,18 @@ public class GestureManager : MonoBehaviour {
         }
 
         // if focusedObject changes?
+#if UNITY_WSA
         if (FocusedObject != OldFocusedObject) {
             gestureRecognizer.CancelGestures();
             gestureRecognizer.StartCapturingGestures();
         }
+#endif
 
 #endif
 
     }
 
+#if UNITY_WSA
     private void OnAirTap(InteractionSourceKind source, int tapCount, Ray headRay) {
         // air tap focused object to call its OnSelect()
         //if (FocusedObject != null) {
@@ -97,5 +108,6 @@ public class GestureManager : MonoBehaviour {
 
         SceneManager.LoadScene("Main");
     }
+#endif
 
 }
