@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,26 +7,28 @@ namespace Charlie
 {
     class MainThreadDispatcher : Singleton<MainThreadDispatcher>
     {
-        private Queue<Action> mainThreadQueue = new Queue<Action>();
+        private Queue<Task> mainThreadQueue = new Queue<Task>();
 
         void Update()
         {
             lock (mainThreadQueue)
             {
-                foreach (Action action in mainThreadQueue)
+                foreach (Task task in mainThreadQueue)
                 {
-                    action();
+                    task.RunSynchronously();
                 }
 
                 mainThreadQueue.Clear();
             }
         }
 
-        public void Dispatch(Action action)
+        public Task Dispatch(Action action)
         {
             lock (mainThreadQueue)
             {
-                mainThreadQueue.Enqueue(action);
+                Task task = new Task(action);
+                mainThreadQueue.Enqueue(task);
+                return task;
             }
         }
     }

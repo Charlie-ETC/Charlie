@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -8,10 +6,11 @@ using Unosquare.Net;
 using Unosquare.Labs.EmbedIO;
 using Unosquare.Labs.EmbedIO.Modules;
 using Unosquare.Labs.EmbedIO.Constants;
+using Unosquare.Swan;
 
 namespace Charlie
 {
-    class CharlieRemote : MonoBehaviour
+    class CharlieRemote : Singleton<CharlieRemote>
     {
         public int port = 24275;
 
@@ -30,12 +29,16 @@ namespace Charlie
                 {
                     SceneManager.LoadScene("Main");
                 });
-                return Extensions.JsonResponse(context, "{}");
+                return Unosquare.Labs.EmbedIO.Extensions.JsonResponse(context, "{}");
             }
         }
 
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            Terminal.OnLogMessageReceived += HandleLogMessageReceived;
+
+            Debug.Log($"[CharlieRemote] new WebServer {port}");
             server = new WebServer(port);
             server.RegisterModule(new WebApiModule());
             server.Module<WebApiModule>().RegisterController<RootController>();
@@ -45,10 +48,31 @@ namespace Charlie
             Debug.Log($"[CharlieRemote] Running on port {port}");
         }
 
-        void OnDestroy()
+        protected override void OnDestroy()
         {
             Debug.Log("[CharlieRemote] Shutting down HTTP server");
             cts.Cancel();
+            server.Dispose();
+            server = null;
+            Terminal.OnLogMessageReceived -= HandleLogMessageReceived;
+            base.OnDestroy();
+        }
+
+        void HandleLogMessageReceived(object source, LogMessageReceivedEventArgs e) {
+            switch (e.MessageType)
+            {
+                case LogMessageType.Debug:
+                case LogMessageType.Info:
+                case LogMessageType.Trace:
+                    Debug.Log(e.Source.Length == 0 ? e.Message : $"[{e.Source}] {e.Message}");
+                    break;
+                case LogMessageType.Warning:
+                    Debug.LogWarning(e.Source.Length == 0 ? e.Message : $"[{e.Source}] {e.Message}");
+                    break;
+                case LogMessageType.Error:
+                    Debug.LogError(e.Source.Length == 0 ? e.Message : $"[{e.Source}] {e.Message}");
+                    break;
+            }
         }
     }
 }
