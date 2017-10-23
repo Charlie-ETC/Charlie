@@ -32,18 +32,53 @@ pipeline {
             }
         }
 
-        stage('Build UWP') {
+        stage('Nuget Restore') {
             steps {
-                powershell '''$projectPath = (Resolve-Path .\\).path
+                powershell '''
+                    $projectPath = (Resolve-Path .\\).path
                     $uwpProjectPath = Join-Path $projectPath UWP
                     $uwpSolutionPath = Join-Path $uwpProjectPath Charlie.sln
 
                     cd $uwpProjectPath
                     nuget restore .\\Charlie.sln
-                    Import-Module Invoke-MsBuild
-                    $msBuildProcess = Invoke-MsBuild -Path $uwpSolutionPath -MsBuildParameters "/property:Configuration=Debug;Platform=x86" -ShowBuildOutputInCurrentWindow -PassThru
-                    $msBuildProcess.WaitForExit()
-                    '''
+                '''
+            }
+        }
+
+        stage('Build UWP') {
+            parallel {
+                stage('Debug') {
+                    steps {
+                        powershell '''$projectPath = (Resolve-Path .\\).path
+                            $uwpProjectPath = Join-Path $projectPath UWP
+                            $uwpSolutionPath = Join-Path $uwpProjectPath Charlie.sln
+
+                            cd $uwpProjectPath
+                            Import-Module Invoke-MsBuild
+                            $msBuildProcess = Invoke-MsBuild -Path $uwpSolutionPath -MsBuildParameters "/property:Configuration=Debug;Platform=x86" -ShowBuildOutputInCurrentWindow -PassThru
+                            $msBuildProcess.WaitForExit()
+                        '''
+                    }
+                }
+
+                stage('Release') {
+                    steps {
+                        powershell '''$projectPath = (Resolve-Path .\\).path
+                            $uwpProjectPath = Join-Path $projectPath UWP
+                            $uwpSolutionPath = Join-Path $uwpProjectPath Charlie.sln
+
+                            cd $uwpProjectPath
+                            Import-Module Invoke-MsBuild
+                            $msBuildProcess = Invoke-MsBuild -Path $uwpSolutionPath -MsBuildParameters "/property:Configuration=Release;Platform=x86" -ShowBuildOutputInCurrentWindow -PassThru
+                            $msBuildProcess.WaitForExit()
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
                 archiveArtifacts artifacts: 'UWP/Charlie/AppPackages/**', onlyIfSuccessful: true
             }
         }
