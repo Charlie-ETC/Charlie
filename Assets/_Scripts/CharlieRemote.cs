@@ -32,6 +32,25 @@ namespace Charlie
                 });
                 return true;
             }
+
+            [WebApiHandler(HttpVerbs.Get, "/api/finishMapping")]
+            public bool GetFinishMapping(WebServer server, HttpListenerContext context)
+            {
+                Unosquare.Labs.EmbedIO.Extensions.JsonResponse(context, "{}");
+                MainThreadDispatcher.Instance.Dispatch(() =>
+                {
+                    SpatialMapper mapper = FindObjectOfType<SpatialMapper>();
+                    if (mapper != null && mapper.CanFinishMapping())
+                    {
+                        mapper.FinishMapping();
+                    }
+                    else
+                    {
+                        Debug.Log("[CharlieRemote] Cannot finish spatial mapping");
+                    }
+                });
+                return true;
+            }
         }
 
         protected override void Awake()
