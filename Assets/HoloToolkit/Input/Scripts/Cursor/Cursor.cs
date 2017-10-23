@@ -10,54 +10,12 @@ namespace HoloToolkit.Unity.InputModule
     /// </summary>
     public abstract class Cursor : MonoBehaviour, ICursor
     {
-        /// <summary>
-        /// Enum for current cursor state
-        /// </summary>
-        public enum CursorStateEnum
-        {
-            /// <summary>
-            /// Useful for releasing external override.
-            /// See <c>CursorStateEnum.Contextual</c>
-            /// </summary>
-            None = -1,
-            /// <summary>
-            /// Not IsHandVisible
-            /// </summary>
-            Observe,
-            /// <summary>
-            /// Not IsHandVisible AND not IsInputSourceDown AND TargetedObject exists
-            /// </summary>
-            ObserveHover,
-            /// <summary>
-            /// IsHandVisible AND not IsInputSourceDown AND TargetedObject is NULL
-            /// </summary>
-            Interact,
-            /// <summary>
-            /// IsHandVisible AND not IsInputSourceDown AND TargetedObject exists
-            /// </summary>
-            InteractHover,
-            /// <summary>
-            /// IsHandVisible AND IsInputSourceDown
-            /// </summary>
-            Select,
-            /// <summary>
-            /// Available for use by classes that extend Cursor.
-            /// No logic for setting Release state exists in the base Cursor class.
-            /// </summary>
-            Release,
-            /// <summary>
-            /// Allows for external override
-            /// </summary>
-            Contextual
-        }
-
         public CursorStateEnum CursorState { get { return cursorState; } }
         private CursorStateEnum cursorState = CursorStateEnum.None;
 
-        [Tooltip("Set this in the editor to an object with a component that implements IPointerSource to tell this"
-            + " cursor which pointer to follow. To set the pointer programmatically, set Pointer directly.")]
         [SerializeField]
-        protected GameObject loadPointer;
+        [Tooltip("Set this in the editor to an object with a component that implements IPointerSource to tell this cursor which pointer to follow. To set the pointer programmatically, set Pointer directly.")]
+        protected GameObject LoadPointer;
 
         /// <summary>
         /// The pointer that this cursor should follow and process input from.
@@ -67,7 +25,7 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Minimum distance for cursor if nothing is hit
         /// </summary>
-        [Header("Cusor Distance")]
+        [Header("Cursor Distance")]
         [Tooltip("The minimum distance the cursor can be with nothing hit")]
         public float MinCursorDistance = 1.0f;
 
@@ -83,8 +41,8 @@ namespace HoloToolkit.Unity.InputModule
         [Tooltip("The distance from the hit surface to place the cursor")]
         public float SurfaceCursorDistance = 0.02f;
 
-        [Header("Motion")] 
-        [Tooltip("When lerping, use unscaled time. This is useful for games that have a pause mechanism or otherwise adjust the game timescale.")] 
+        [Header("Motion")]
+        [Tooltip("When lerping, use unscaled time. This is useful for games that have a pause mechanism or otherwise adjust the game timescale.")]
         public bool UseUnscaledTime = true;
 
         /// <summary>
@@ -111,7 +69,7 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Visual that is displayed when cursor is active normally
         /// </summary>
-        [Header("Tranform References")]
+        [Header("Transform References")]
         public Transform PrimaryCursorVisual;
 
         public Vector3 Position
@@ -160,7 +118,7 @@ namespace HoloToolkit.Unity.InputModule
             set
             {
                 isVisible = value;
-                SetVisiblity(isVisible);
+                SetVisibility(isVisible);
             }
         }
 
@@ -170,7 +128,7 @@ namespace HoloToolkit.Unity.InputModule
         {
             // Use the setter to update visibility of the cursor at startup based on user preferences
             IsVisible = isVisible;
-            SetVisiblity(isVisible);
+            SetVisibility(isVisible);
         }
 
         private void Start()
@@ -188,7 +146,14 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Override for enable functions
         /// </summary>
-        protected virtual void OnEnable() { }
+        protected virtual void OnEnable()
+        {
+            if (FocusManager.IsInitialized && Pointer != null)
+            {
+                OnPointerSpecificFocusChanged(Pointer, null, FocusManager.Instance.GetFocusedObject(Pointer));
+            }
+            OnCursorStateChange(CursorStateEnum.None);
+        }
 
         /// <summary>
         /// Override for disable functions
@@ -198,6 +163,8 @@ namespace HoloToolkit.Unity.InputModule
             TargetedObject = null;
             TargetedCursorModifier = null;
             visibleHandsCount = 0;
+            IsHandVisible = false;
+            OnCursorStateChange(CursorStateEnum.Contextual);
         }
 
         private void OnDestroy()
@@ -255,14 +222,15 @@ namespace HoloToolkit.Unity.InputModule
             {
                 // Nothing to do. Keep the pointer that must have been set programmatically.
             }
-            else if (loadPointer != null)
+
+            else if (LoadPointer != null)
             {
-                Pointer = loadPointer.GetComponent<IPointingSource>();
+                Pointer = LoadPointer.GetComponent<IPointingSource>();
 
                 if (Pointer == null)
                 {
                     Debug.LogErrorFormat("Load pointer object \"{0}\" is missing its {1} component.",
-                        loadPointer.name,
+                        LoadPointer.name,
                         typeof(IPointingSource).Name
                         );
                 }
@@ -319,6 +287,7 @@ namespace HoloToolkit.Unity.InputModule
         protected virtual void UpdateCursorTransform()
         {
             FocusDetails focusDetails = FocusManager.Instance.GetFocusDetails(Pointer);
+            GameObject newTargetedObject = focusDetails.Object;
 
             // Get the forward vector looking back along the pointing ray.
             Vector3 lookForward = -Pointer.Ray.direction;
@@ -327,15 +296,17 @@ namespace HoloToolkit.Unity.InputModule
             targetScale = Vector3.one;
 
             // If no game object is hit, put the cursor at the default distance
-            if (TargetedObject == null)
+            if (newTargetedObject == null)
             {
+                TargetedObject = null;
+                TargetedCursorModifier = null;
                 targetPosition = Pointer.Ray.origin + Pointer.Ray.direction * DefaultCursorDistance;
                 targetRotation = lookForward.magnitude > 0 ? Quaternion.LookRotation(lookForward, Vector3.up) : transform.rotation;
             }
             else
             {
                 // Update currently targeted object
-                TargetedObject = focusDetails.Object;
+                TargetedObject = newTargetedObject;
 
                 if (TargetedCursorModifier != null)
                 {
@@ -345,11 +316,12 @@ namespace HoloToolkit.Unity.InputModule
                 {
                     // If no modifier is on the target, just use the hit result to set cursor position
                     targetPosition = focusDetails.Point + (lookForward * SurfaceCursorDistance);
-                    targetRotation = Quaternion.LookRotation(Vector3.Lerp(focusDetails.Normal, lookForward, LookRotationBlend), Vector3.up);
+                    Vector3 lookRotation = Vector3.Slerp(focusDetails.Normal, lookForward, LookRotationBlend);
+                    targetRotation = Quaternion.LookRotation(lookRotation == Vector3.zero ? lookForward : lookRotation, Vector3.up);
                 }
             }
 
-            var deltaTime = UseUnscaledTime
+            float deltaTime = UseUnscaledTime
                 ? Time.unscaledDeltaTime
                 : Time.deltaTime;
 
@@ -362,7 +334,7 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Updates the visual representation of the cursor.
         /// </summary>
-        public void SetVisiblity(bool visible)
+        public virtual void SetVisibility(bool visible)
         {
             if (PrimaryCursorVisual != null)
             {
