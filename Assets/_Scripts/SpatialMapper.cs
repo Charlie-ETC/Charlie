@@ -81,11 +81,11 @@ namespace Charlie
 
             // TODO: Separation of concerns, this part should ideally be in the TargetRoot.
             Debug.Log("[SpatialMapper]: Setting TargetRoot to correct y position");
-            GameObject targetRoot = GameObject.FindGameObjectWithTag("TargetRoot");
-            targetRoot.transform.position = new Vector3(
-                targetRoot.transform.position.x,
-                result[0].position.y,
-                targetRoot.transform.position.z
+            GameObject cameraParent = GameObject.FindGameObjectWithTag("CameraParent");
+            cameraParent.transform.position = new Vector3(
+                cameraParent.transform.position.x,
+                -result[0].position.y,
+                cameraParent.transform.position.z
             );
         }
     }
