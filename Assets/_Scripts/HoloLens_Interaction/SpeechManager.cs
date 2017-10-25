@@ -3,51 +3,59 @@ using UnityEngine;
 using UnityEngine.Windows.Speech;
 
 // for keyword commands
-public class SpeechManager : MonoBehaviour {
+namespace Charlie
+{
 
-    private KeywordRecognizer keywordRecognizer;
-
-    private Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
-
-    private void Start()
+    public class SpeechManager : MonoBehaviour
     {
-        // add a bunch of keywords
-        keywords.Add("tap it", OnTapIt);
 
-        // store keywords string in an array for constructor
-        string[] keywordsArray = new string[keywords.Keys.Count];
-        keywords.Keys.CopyTo(keywordsArray, 0);
+        private KeywordRecognizer keywordRecognizer;
 
-        // initialize keywordRecognizer, register callback func
-        keywordRecognizer = new KeywordRecognizer(keywordsArray);
-        keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
-        keywordRecognizer.Start();
-    }
+        private Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
-
-    private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args) {
-        System.Action callBack;
-
-        if (keywords.TryGetValue(args.text, out callBack)){
-            Debug.Log("speech call back");
-            callBack.Invoke();
-        }      
-    }
-
-
-    // on "tap it" is recognized
-    private void OnTapIt() {
-
-        if (GestureManager.Instance.FocusedObject != null)
+        private void Start()
         {
-            CubeCommands cc = GestureManager.Instance.FocusedObject.GetComponentInParent<CubeCommands>();
+            // add a bunch of keywords
+            keywords.Add("tap it", OnTapIt);
 
-            if (cc != null)
+            // store keywords string in an array for constructor
+            string[] keywordsArray = new string[keywords.Keys.Count];
+            keywords.Keys.CopyTo(keywordsArray, 0);
+
+            // initialize keywordRecognizer, register callback func
+            keywordRecognizer = new KeywordRecognizer(keywordsArray);
+            keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+            keywordRecognizer.Start();
+        }
+
+
+        private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+        {
+            System.Action callBack;
+
+            if (keywords.TryGetValue(args.text, out callBack))
             {
-                cc.OnSelect();
+                Debug.Log("speech call back");
+                callBack.Invoke();
             }
         }
+
+
+        // on "tap it" is recognized
+        private void OnTapIt()
+        {
+
+            if (GestureManager.Instance.FocusedObject != null)
+            {
+                CubeCommands cc = GestureManager.Instance.FocusedObject.GetComponentInParent<CubeCommands>();
+
+                if (cc != null)
+                {
+                    cc.OnSelect();
+                }
+            }
+        }
+
+
     }
-
-
 }

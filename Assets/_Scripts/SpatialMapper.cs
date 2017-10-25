@@ -70,23 +70,38 @@ namespace Charlie
             SpatialUnderstandingDllTopology.TopologyResult[] result = {
                 new SpatialUnderstandingDllTopology.TopologyResult()
             };
-
-            var resultPtr = SpatialUnderstanding.Instance.UnderstandingDLL.PinObject(result);
-            SpatialUnderstandingDllTopology.QueryTopology_FindLargestPositionsOnFloor(1, resultPtr);
-            Debug.Log($"[SpatialMapper]: Found area on floor: {result[0].position}");
-
+            
             // TODO: Not sure how to unpin this particular object, because there
             // is only UnpinAllObjects() which might cause trouble with other
             // scripts.
+            var resultPtr = SpatialUnderstanding.Instance.UnderstandingDLL.PinObject(result);
 
-            // TODO: Separation of concerns, this part should ideally be in the TargetRoot.
-            Debug.Log("[SpatialMapper]: Setting TargetRoot to correct y position");
+            // Try looking for tables. If we can't find a table, then the floor it is.
+            var placesFound = SpatialUnderstandingDllTopology.QueryTopology_FindPositionsSittable(0.5f, 1.5f, 0.5f, 1, resultPtr);
             GameObject cameraParent = GameObject.FindGameObjectWithTag("CameraParent");
-            cameraParent.transform.position = new Vector3(
-                cameraParent.transform.position.x,
-                -result[0].position.y,
-                cameraParent.transform.position.z
-            );
+            if (placesFound > 0)
+            {
+                Debug.Log($"[SpatialMapper]: Found area on table: {result[0].position}");
+                cameraParent.transform.position = new Vector3(
+                    -result[0].position.x,
+                    -result[0].position.y,
+                    -result[0].position.z
+                );
+            }
+            else
+            {
+                SpatialUnderstandingDllTopology.QueryTopology_FindLargestPositionsOnFloor(1, resultPtr);
+                Debug.Log($"[SpatialMapper]: Found area on floor: {result[0].position}");
+
+                // TODO: Separation of concerns, this part should ideally be in the TargetRoot.
+                // For the floor, it doesn't matter where the x and z positions are.
+                Debug.Log("[SpatialMapper]: Setting TargetRoot to correct y position");
+                cameraParent.transform.position = new Vector3(
+                    cameraParent.transform.position.x,
+                    -result[0].position.y,
+                    cameraParent.transform.position.z
+                );
+            }
         }
     }
 }
