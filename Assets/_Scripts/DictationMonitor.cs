@@ -206,16 +206,6 @@ public class DictationMonitor : MonoBehaviour {
         Debug.Log("[DictationMonitor] DragHandler invoked!");
     }
 
-    async public void HandleDebugGetContexts()
-    {
-        List<Context> contexts = await apiaiService.GetContexts(apiaiSessionId);
-        foreach (Context context in contexts)
-        {
-            Debug.Log($"[DictationMonitor] context name={context.name}, " +
-                $"lifespan={context.lifespan}, parameters={context.parameters}");
-        }
-    }
-
     public void HandleTakePicture()
     {
         #if UNITY_WSA

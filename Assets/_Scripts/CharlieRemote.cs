@@ -51,6 +51,32 @@ namespace Charlie
                 });
                 return true;
             }
+
+            [WebApiHandler(HttpVerbs.Get, "/api/testCharliePosition")]
+            public async Task<bool> GetTestCharliePosition(WebServer server, HttpListenerContext context)
+            {
+                Vector3 position = await MainThreadDispatcher.Instance.DispatchWithResult(() =>
+                {
+                    Debug.Log("[CharlieRemote] Getting GameObject and transform position");
+                    GameObject charlie = GameObject.Find("Charlie");
+                    Debug.Log($"[CharlieRemote] Position: {charlie.transform.position}");
+                    return charlie.transform.position;
+                });
+                Unosquare.Labs.EmbedIO.Extensions.JsonResponse(context, position);
+                return true;
+            }
+
+            [WebApiHandler(HttpVerbs.Get, "/api/debug/on")]
+            public bool GetDebugOn(WebServer server, HttpListenerContext context)
+            {
+                Unosquare.Labs.EmbedIO.Extensions.JsonResponse(context, "{}");
+                MainThreadDispatcher.Instance.Dispatch(() =>
+                {
+                    DebugManager manager = FindObjectOfType<DebugManager>();
+                    manager.Activate();
+                });
+                return true;
+            }
         }
 
         protected override void Awake()

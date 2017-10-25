@@ -23,7 +23,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 63
+        x: 57
         y: 111
         width: 180
         height: 48
@@ -35,7 +35,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: State 2
+        toState: Blank 7Sec
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -50,14 +50,12 @@ MonoBehaviour:
       actionData:
         actionNames:
         - ActionSpeak
-        - ActionTimeout
         customNames:
         - 
-        - 
-        actionEnabled: 0101
-        actionIsOpen: 0101
-        actionStartIndex: 0000000003000000
-        actionHashCodes: 16192d01deb16303
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 16192d01
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -95,26 +93,25 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 010000f041
+        byteData: 01
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 12000000010000001400000002000000
+        paramDataType: 120000000100000014000000
         paramName:
         - speech
         - ignoredApiResponse
         - audioSourceObj
-        - secs
-        paramDataPos: 00000000000000000000000001000000
-        paramByteDataSize: 00000000010000000000000004000000
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
     - name: State 1
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 911
-        y: 125
+        x: 1018
+        y: 126
         width: 100
         height: 16
       isBreakpoint: 0
@@ -210,8 +207,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 425
-        y: 119
+        x: 603
+        y: 109
         width: 157
         height: 48
       isBreakpoint: 0
@@ -222,7 +219,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: State 1
+        toState: Blank 7Sec 2
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -237,14 +234,12 @@ MonoBehaviour:
       actionData:
         actionNames:
         - ActionSpeak
-        - ActionTimeout
         customNames:
         - 
-        - 
-        actionEnabled: 0101
-        actionIsOpen: 0101
-        actionStartIndex: 0000000003000000
-        actionHashCodes: 16192d01deb16303
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 16192d01
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -283,26 +278,25 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 010000f041
+        byteData: 01
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 12000000010000001400000002000000
+        paramDataType: 120000000100000014000000
         paramName:
         - speech
         - ignoredApiResponse
         - audioSourceObj
-        - secs
-        paramDataPos: 00000000000000000000000001000000
-        paramByteDataSize: 00000000010000000000000004000000
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
     - name: Hypo
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 103
-        y: 194.5
+        x: 250
+        y: 247.5
         width: 100
         height: 32
       isBreakpoint: 0
@@ -313,7 +307,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: State 2
+        toState: Blank 7Sec
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -372,8 +366,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 458
-        y: 196.5
+        x: 795
+        y: 234.5
         width: 100
         height: 32
       isBreakpoint: 0
@@ -384,7 +378,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: State 1
+        toState: Blank 7Sec 2
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -438,6 +432,148 @@ MonoBehaviour:
         - owner
         paramDataPos: 00000000
         paramByteDataSize: 00000000
+    - name: Blank 7Sec
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 348
+        y: 109
+        width: 157
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: Dictation:Hypothesis
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: Hypo
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: State 2
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionTimeout
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: deb16303
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 0000e040
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 02000000
+        paramName:
+        - secs
+        paramDataPos: 00000000
+        paramByteDataSize: 04000000
+    - name: Blank 7Sec 2
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 832.1875
+        y: 106
+        width: 157
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: Dictation:Hypothesis
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: Hypo 2
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: State 1
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionTimeout
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: deb16303
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 0000e040
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 02000000
+        paramName:
+        - secs
+        paramDataPos: 00000000
+        paramByteDataSize: 04000000
     events:
     - name: FINISHED
       isSystemEvent: 1
