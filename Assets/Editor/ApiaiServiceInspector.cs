@@ -4,6 +4,8 @@ using UnityEditor;
 using UnityEngine;
 using Newtonsoft.Json;
 
+using Charlie.Apiai;
+
 [CustomEditor(typeof(ApiaiService))]
 class ApiaiServiceInspector : Editor
 {

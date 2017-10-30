@@ -3,41 +3,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConfigService : MonoBehaviour {
-    private Config selectedConfig;
+namespace Charlie
+{
+    public class ConfigService : Singleton<ConfigService>
+    {
+        private Config selectedConfig;
 
-    void Awake () {
-        Config[] configs = Resources.LoadAll<Config>("Config");
-        if (configs.Length == 0)
+        protected override void Awake()
         {
-            Debug.LogError("[ConfigService] Unable to locate any configurations! You must " +
-                "create one in Resources/Config");
-            return;
-        }
+            base.Awake();
 
-        // Determine the appropriate config.
-        Config localConfig = Array.Find(configs, item => item.name == "local");
-        Config defaultConfig = Array.Find(configs, item => item.name == "default");
-
-        if (!localConfig)
-        {
-            if (!defaultConfig)
+            Config[] configs = Resources.LoadAll<Config>("Config");
+            if (configs.Length == 0)
             {
-                Debug.LogError("[ConfigService] Unable to locate default configuration. You " +
-                    "must create one in Resources/Config");
+                Debug.LogError("[ConfigService] Unable to locate any configurations! You must " +
+                    "create one in Resources/Config");
                 return;
             }
 
-            Debug.Log("[ConfigService] Selecting default config", this);
-            selectedConfig = defaultConfig;
+            // Determine the appropriate config.
+            Config localConfig = Array.Find(configs, item => item.name == "local");
+            Config defaultConfig = Array.Find(configs, item => item.name == "default");
+
+            if (!localConfig)
+            {
+                if (!defaultConfig)
+                {
+                    Debug.LogError("[ConfigService] Unable to locate default configuration. You " +
+                        "must create one in Resources/Config");
+                    return;
+                }
+
+                Debug.Log("[ConfigService] Selecting default config", this);
+                selectedConfig = defaultConfig;
+            }
+
+            Debug.Log("[ConfigService] Selecting local config", this);
+            selectedConfig = localConfig;
         }
 
-        Debug.Log("[ConfigService] Selecting local config", this);
-        selectedConfig = localConfig;
-    }
-
-    public Config SelectedConfig()
-    {
-        return selectedConfig;
+        public Config SelectedConfig()
+        {
+            return selectedConfig;
+        }
     }
 }

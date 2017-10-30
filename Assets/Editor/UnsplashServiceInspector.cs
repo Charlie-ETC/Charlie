@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Unsplash
+namespace Charlie.Unsplash
 {
     [CustomEditor(typeof(UnsplashService))]
     class UnsplashServiceInspector : Editor

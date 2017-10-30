@@ -11,6 +11,7 @@ public class ConfigInspector : Editor {
     private static bool showTwitter;
     private static bool showUnsplash;
     private static bool showSlack;
+    private static bool showGiphy;
 
     SerializedProperty apiaiClientAccessTokenProp;
     SerializedProperty ibmWatsonTtsUrlProp;
@@ -26,7 +27,7 @@ public class ConfigInspector : Editor {
     SerializedProperty slackCharlieIconProp;
     SerializedProperty slackUserIconProp;
     SerializedProperty slackChannelProp;
-
+    SerializedProperty giphyApiKeyProp;
 
     void OnEnable()
     {
@@ -44,6 +45,7 @@ public class ConfigInspector : Editor {
         slackCharlieIconProp = serializedObject.FindProperty("slackCharlieIcon");
         slackUserIconProp = serializedObject.FindProperty("slackUserIcon");
         slackChannelProp = serializedObject.FindProperty("slackChannel");
+        giphyApiKeyProp = serializedObject.FindProperty("giphyApiKey");
     }
 
     public override void OnInspectorGUI()
@@ -93,6 +95,13 @@ public class ConfigInspector : Editor {
             EditorGUILayout.PropertyField(slackUserIconProp, new GUIContent("User Icon"));
             EditorGUILayout.PropertyField(slackChannelProp, new GUIContent("Channel"));
             EditorGUILayout.HelpBox("These parameters can be found on Slack: https://cmuetcsv.slack.com/services/B7UFMTLT0", MessageType.Info);
+        }
+
+        showGiphy = EditorGUILayout.Foldout(showGiphy, new GUIContent("Giphy"));
+        if (showGiphy)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(giphyApiKeyProp, new GUIContent("API Key"));
             EditorGUI.indentLevel--;
         }
 

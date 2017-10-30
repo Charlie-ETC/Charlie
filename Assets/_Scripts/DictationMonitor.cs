@@ -1,12 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+
 using UnityEngine;
 #if UNITY_WSA
 using UnityEngine.XR.WSA.WebCam;
 #endif
 using Asyncoroutine;
 using HoloToolkit.Unity.SpatialMapping;
-using System.Threading.Tasks;
+
+using Charlie.Apiai;
+using Charlie.WatsonTTS;
+using Charlie.Twitter;
 
 public class DictationMonitor : MonoBehaviour {
 
@@ -45,9 +50,9 @@ public class DictationMonitor : MonoBehaviour {
     void Start() {
         textMesh = GetComponent<TextMesh>();
         //audioSource = GetComponent<AudioSource>();
-        apiaiService = GetComponent<ApiaiService>();
-        watsonTTSService = GetComponent<WatsonTTSService>();
-        twitterService = GetComponent<TwitterService>();
+        apiaiService = ApiaiService.Instance;
+        watsonTTSService = WatsonTTSService.Instance;
+        twitterService = TwitterService.Instance;
         apiaiSessionId = apiaiService.CreateSession();
         charlieSlackLog.SetAPISessionID(apiaiSessionId);
         MissedQ = false;

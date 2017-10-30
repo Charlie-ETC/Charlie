@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Unsplash
+namespace Charlie.Unsplash
 {
     public class Response
     {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Asyncoroutine;
 
+using Charlie.Unsplash;
+
 public class WindowAnimControl : MonoBehaviour {
 
     public string keyword;
@@ -25,7 +27,7 @@ public class WindowAnimControl : MonoBehaviour {
     public async void ChangeBG(string content)
     {
         await new WaitForNextFrame();
-        Texture x = await GetComponent<Unsplash.UnsplashService>().GetRandomPhoto(content);
+        Texture x = await UnsplashService.Instance.GetRandomPhoto(content);
         transform.Find("Quad").GetComponent<MeshRenderer>().material.SetTexture("_MainTex", x);
     }
 }

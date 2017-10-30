@@ -18,4 +18,5 @@ public class Config : ScriptableObject {
     public string slackCharlieIcon = ":girl:";
     public string slackUserIcon = ":dark_sunglasses:";
     public string slackChannel = "#charlie_history";
+    public string giphyApiKey;
 }

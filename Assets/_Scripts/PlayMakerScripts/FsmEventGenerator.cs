@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Charlie.Apiai;
+
 public class FsmEventGenerator : MonoBehaviour {
 
     PlayMakerFSM[] FSMArray;

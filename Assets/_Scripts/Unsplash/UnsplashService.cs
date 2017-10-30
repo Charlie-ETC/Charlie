@@ -4,11 +4,11 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;
 using Asyncoroutine;
 
-namespace Unsplash
+namespace Charlie.Unsplash
 {
 
     [RequireComponent(typeof(ConfigService))]
-    public class UnsplashService : MonoBehaviour
+    public class UnsplashService : Singleton<UnsplashService>
     {
         private string unsplashAppId;
         private string unsplashImageSize;
