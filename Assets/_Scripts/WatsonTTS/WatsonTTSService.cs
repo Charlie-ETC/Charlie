@@ -19,13 +19,9 @@ namespace Charlie.WatsonTTS
 
         private string ibmWatsonToken;
 
-        public static WatsonTTSService Instance;
-
         private void Start()
         {
-            Instance = this;
-
-            ConfigService service = GetComponent<ConfigService>();
+            ConfigService service = ConfigService.Instance;
             ibmWatsonTtsUrl = service.SelectedConfig().ibmWatsonTtsUrl;
             ibmWatsonUsername = service.SelectedConfig().ibmWatsonUsername;
             ibmWatsonPassword = service.SelectedConfig().ibmWatsonPassword;
