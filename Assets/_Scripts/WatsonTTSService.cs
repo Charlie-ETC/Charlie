@@ -17,8 +17,12 @@ public class WatsonTTSService : MonoBehaviour
 
     private string ibmWatsonToken;
 
+    public static WatsonTTSService Instance;
+
     private void Start()
     {
+        Instance = this;
+
         ConfigService service = GetComponent<ConfigService>();
         ibmWatsonTtsUrl = service.SelectedConfig().ibmWatsonTtsUrl;
         ibmWatsonUsername = service.SelectedConfig().ibmWatsonUsername;
@@ -44,6 +48,10 @@ public class WatsonTTSService : MonoBehaviour
 
     public async Task<AudioClip> Synthesize(string text)
     {
+        // Define a default voice transformation.
+        // TODO: Turn this into a custom voice instead.
+        text = WWW.EscapeURL($"<voice-transformation type=\"Young\" strength=\"80%\">{text}</voice-transformation>", Encoding.UTF8);
+
         UnityWebRequest request = UnityWebRequest.Get(
             $"{ibmWatsonTtsUrl}/v1/synthesize?text={text}&voice={voice}");
         request.SetRequestHeader("X-Watson-Authorization-Token", ibmWatsonToken);

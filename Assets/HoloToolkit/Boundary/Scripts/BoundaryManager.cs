@@ -1,10 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
+
+#if UNITY_WSA && UNITY_2017_2_OR_NEWER
+using System.Collections.Generic;
 using UnityEngine.XR.WSA;
+using UnityEngine.XR;
+#endif
 
 namespace HoloToolkit.Unity.Boundary
 {
@@ -12,16 +15,18 @@ namespace HoloToolkit.Unity.Boundary
     /// Places a floor quad to ground the scene.
     /// Allows you to check if your GameObject is within setup boundary on the immersive headset.
     /// </summary>
-    public class BoundaryManager : SingleInstance<BoundaryManager>
+    public class BoundaryManager : Singleton<BoundaryManager>
     {
         [Tooltip("Quad prefab to display as the floor.")]
         public GameObject FloorQuad;
         private GameObject floorQuadInstance;
 
+#if UNITY_WSA && UNITY_2017_2_OR_NEWER
         [SerializeField]
         [Tooltip("Approximate max Y height of your space.")]
         private float boundaryHeight = 10f;
         private Bounds boundaryBounds;
+#endif
 
         private bool renderFloor = true;
         public bool RenderFloor
@@ -67,15 +72,20 @@ namespace HoloToolkit.Unity.Boundary
 
         private void SetBoundaryRendering()
         {
+#if UNITY_2017_2_OR_NEWER
             // TODO: BUG: Unity: configured bool always returns false.
             if (UnityEngine.Experimental.XR.Boundary.configured)
             {
                 UnityEngine.Experimental.XR.Boundary.visible = renderBoundary;
             }
+#endif
         }
 
-        private void Awake()
+#if UNITY_WSA && UNITY_2017_2_OR_NEWER
+        protected override void Awake()
         {
+            base.Awake();
+
             // Render the floor based on if you are in editor or immersive device.
             RenderFloorQuad();
 
@@ -120,18 +130,12 @@ namespace HoloToolkit.Unity.Boundary
                     if (UnityEngine.Experimental.XR.Boundary.TryGetDimensions(out dimensions,
                         UnityEngine.Experimental.XR.Boundary.Type.TrackedArea))
                     {
-                        Debug.Log("Got dimensions of tracked area.");
-                        if (dimensions != null)
-                        {
-                            Debug.Log("Drawing floor at dimensions Y.");
-                            // Draw the floor at boundary Y.
-                            floorQuadInstance.transform.localPosition = new Vector3(0, dimensions.y, 0);
-                        }
+                        Debug.Log("Got dimensions of tracked area.  Drawing floor at height offset: " + dimensions.y);
+                        floorQuadInstance.transform.localPosition = new Vector3(0, dimensions.y, 0);
                     }
                     else
                     {
                         Debug.Log("Drawing floor at 0,0,0.");
-                        // Draw the floor at 0,0,0.
                         floorQuadInstance.transform.localPosition = Vector3.zero;
                     }
                 }
@@ -193,5 +197,6 @@ namespace HoloToolkit.Unity.Boundary
             // Ensuring that we set height of the bounds volume to be say 10 feet tall.
             boundaryBounds.Encapsulate(new Vector3(0, boundaryHeight, 0));
         }
+#endif
     }
 }
