@@ -42,16 +42,16 @@ namespace Charlie.Giphy
                     if (showTestConsoleSearch)
                     {
                         EditorGUI.indentLevel++;
-                        testConsoleSearchQuery = EditorGUILayout.TextField(new GUIContent("Query"), testConsoleSearchQuery);
-                        testConsoleSearchLimit = EditorGUILayout.IntField(new GUIContent("Limit"), testConsoleSearchLimit);
-                        testConsoleSearchOffset = EditorGUILayout.IntField(new GUIContent("Offset"), testConsoleSearchOffset);
-                        testConsoleSearchRating = EditorGUILayout.TextField(new GUIContent("Rating"), testConsoleSearchRating);
-                        testConsoleSearchLang = EditorGUILayout.TextField(new GUIContent("Language"), testConsoleSearchLang);
+                        testConsoleSearchQuery = EditorGUILayout.TextField(new GUIContent("Query", "Search query term or phrase"), testConsoleSearchQuery);
+                        testConsoleSearchLimit = EditorGUILayout.IntField(new GUIContent("Limit", "The maximum number of records to return"), testConsoleSearchLimit);
+                        testConsoleSearchOffset = EditorGUILayout.IntField(new GUIContent("Offset", "An optional results offset"), testConsoleSearchOffset);
+                        testConsoleSearchRating = EditorGUILayout.TextField(new GUIContent("Rating", "Filters results by rating"), testConsoleSearchRating);
+                        testConsoleSearchLang = EditorGUILayout.TextField(new GUIContent("Language", "Specify default country for regional content"), testConsoleSearchLang);
 
                         GUILayout.BeginHorizontal();
                         GUILayout.Space(EditorGUI.indentLevel * 16.0f);
                         GUI.enabled = !searching;
-                        bool searchClicked = GUILayout.Button(new GUIContent(searching ? "Querying" : "Search"));
+                        bool searchClicked = GUILayout.Button(new GUIContent(searching ? "Searching" : "Search"));
                         GUI.enabled = true;
                         GUILayout.EndHorizontal();
 
