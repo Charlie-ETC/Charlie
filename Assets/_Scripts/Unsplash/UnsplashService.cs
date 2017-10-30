@@ -15,7 +15,7 @@ namespace Charlie.Unsplash
 
         private void Start()
         {
-            ConfigService service = GetComponent<ConfigService>();
+            ConfigService service = ConfigService.Instance;
             unsplashAppId = service.SelectedConfig().unsplashAppId;
             unsplashImageSize = service.SelectedConfig().unsplashImageSize;
         }

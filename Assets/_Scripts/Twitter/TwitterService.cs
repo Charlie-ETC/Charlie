@@ -28,7 +28,7 @@ namespace Charlie.Twitter
 
         void Start()
         {
-            ConfigService service = GetComponent<ConfigService>();
+            ConfigService service = ConfigService.Instance;
             Config config = service.SelectedConfig();
             consumerKey = config.twitterConsumerKey;
             consumerSecret = config.twitterConsumerSecret;
