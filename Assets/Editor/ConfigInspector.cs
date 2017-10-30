@@ -27,6 +27,7 @@ public class ConfigInspector : Editor {
     SerializedProperty slackCharlieIconProp;
     SerializedProperty slackUserIconProp;
     SerializedProperty slackChannelProp;
+    SerializedProperty giphyDebugProp;
     SerializedProperty giphyApiKeyProp;
 
     void OnEnable()
@@ -45,6 +46,7 @@ public class ConfigInspector : Editor {
         slackCharlieIconProp = serializedObject.FindProperty("slackCharlieIcon");
         slackUserIconProp = serializedObject.FindProperty("slackUserIcon");
         slackChannelProp = serializedObject.FindProperty("slackChannel");
+        giphyDebugProp = serializedObject.FindProperty("giphyDebug");
         giphyApiKeyProp = serializedObject.FindProperty("giphyApiKey");
     }
 
@@ -101,6 +103,7 @@ public class ConfigInspector : Editor {
         if (showGiphy)
         {
             EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(giphyDebugProp, new GUIContent("Debug"));
             EditorGUILayout.PropertyField(giphyApiKeyProp, new GUIContent("API Key"));
             EditorGUI.indentLevel--;
         }
