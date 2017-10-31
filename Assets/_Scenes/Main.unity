@@ -3615,6 +3615,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114623084030483220, guid: 3161153993fbe1647ae4ab2bdd847ed6,
+        type: 2}
+      propertyPath: drawVisualMeshes
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3161153993fbe1647ae4ab2bdd847ed6, type: 2}
   m_IsPrefabParent: 0
