@@ -11,6 +11,15 @@ namespace Charlie
         public UnityEvent finishingEvent;
         public UnityEvent doneEvent;
 
+        public enum AdjustmentMode
+        {
+            CAMERA_PARENT,
+            TARGET_ROOT
+        }
+
+        [Tooltip("Method to adjust the scene position")]
+        public AdjustmentMode adjustmentMode = AdjustmentMode.TARGET_ROOT;
+
         void Start()
         {
             SpatialUnderstanding.Instance.ScanStateChanged += HandleScanStateChanged;
@@ -76,13 +85,27 @@ namespace Charlie
             // scripts.
             var resultPtr = SpatialUnderstanding.Instance.UnderstandingDLL.PinObject(result);
 
+            // Get the adjustment target.
+            GameObject adjustmentTarget;
+            switch (adjustmentMode)
+            {
+                case AdjustmentMode.CAMERA_PARENT:
+                    Debug.Log($"[SpatialMapper]: Adjusting using CameraParent");
+                    adjustmentTarget = GameObject.FindGameObjectWithTag("CameraParent");
+                    break;
+                case AdjustmentMode.TARGET_ROOT:
+                default:
+                    Debug.Log($"[SpatialMapper]: Adjusting using TargetRoot");
+                    adjustmentTarget = GameObject.FindGameObjectWithTag("TargetRoot");
+                    break;
+            }
+
             // Try looking for tables. If we can't find a table, then the floor it is.
             var placesFound = SpatialUnderstandingDllTopology.QueryTopology_FindPositionsSittable(0.5f, 1.5f, 0.5f, 1, resultPtr);
-            GameObject cameraParent = GameObject.FindGameObjectWithTag("CameraParent");
             if (placesFound > 0)
             {
                 Debug.Log($"[SpatialMapper]: Found area on table: {result[0].position}");
-                cameraParent.transform.position = new Vector3(
+                adjustmentTarget.transform.position = new Vector3(
                     -result[0].position.x,
                     -result[0].position.y,
                     -result[0].position.z
@@ -93,13 +116,12 @@ namespace Charlie
                 SpatialUnderstandingDllTopology.QueryTopology_FindLargestPositionsOnFloor(1, resultPtr);
                 Debug.Log($"[SpatialMapper]: Found area on floor: {result[0].position}");
 
-                // TODO: Separation of concerns, this part should ideally be in the TargetRoot.
+                // TODO: Separation of concerns, this part should ideally be in the TargetRoot/CameraParent.
                 // For the floor, it doesn't matter where the x and z positions are.
-                Debug.Log("[SpatialMapper]: Setting TargetRoot to correct y position");
-                cameraParent.transform.position = new Vector3(
-                    cameraParent.transform.position.x,
+                adjustmentTarget.transform.position = new Vector3(
+                    adjustmentTarget.transform.position.x,
                     -result[0].position.y,
-                    cameraParent.transform.position.z
+                    adjustmentTarget.transform.position.z
                 );
             }
         }
