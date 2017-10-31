@@ -146,5 +146,46 @@ namespace Charlie.Giphy
             return JsonConvert.DeserializeObject<Response<Sticker>>(
                 response, settings);
         }
+
+        // <summary>
+        // Gets sticker packs.
+        // </summary>
+        public async Task<Response<List<StickerPack>>> ListPacks()
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            NameValueCollection parameters = new NameValueCollection();
+            string response = await CallAPI("/stickers/packs", parameters);
+            return JsonConvert.DeserializeObject<Response<List<StickerPack>>>(
+                response, settings);
+        }
+
+        // <summary>
+        // Gets stickers in pack.
+        // </summary>
+        // <param name="id">Filters resilts by specified Sticker Pack ID.</param>
+        // <param name="limit">Maximum number of records to return.</param>
+        // <param name="offset">An optional results offset.</param>
+        public async Task<Response<List<Sticker>>> StickersInPack(int id,
+            int limit = 25, int offset = 0)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            NameValueCollection parameters = new NameValueCollection
+            {
+                { "limit", limit.ToString() },
+                { "offset", offset.ToString() }
+            };
+
+            string response = await CallAPI($"/stickers/packs/{id}/stickers", parameters);
+            return JsonConvert.DeserializeObject<Response<List<Sticker>>>(
+                response, settings);
+        }
     }
 }

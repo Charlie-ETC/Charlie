@@ -15,6 +15,8 @@ namespace Charlie.Giphy
         private static bool showTestConsoleTrending = true;
         private static bool showTestConsoleRandom = true;
         private static bool showTestConsoleGetByID = true;
+        private static bool showTestConsoleListPacks = true;
+        private static bool showTestConsoleStickersInPack = true;
 
         private static string testConsoleSearchQuery = "Cat";
         private static int testConsoleSearchLimit = 25;
@@ -30,10 +32,16 @@ namespace Charlie.Giphy
 
         private static string testConsoleGetByIDID = "";
 
+        private static int testConsoleStickersInPackID;
+        private static int testConsoleStickersInPackLimit = 25;
+        private static int testConsoleStickersInPackOffset = 0;
+
         private static bool searching = false;
         private static bool searchingTrending = false;
         private static bool gettingRandom = false;
         private static bool gettingByID = false;
+        private static bool listingPacks = false;
+        private static bool listingStickersInPack = false;
 
         public void OnEnable()
         {
@@ -88,7 +96,7 @@ namespace Charlie.Giphy
                         GUILayout.Space(EditorGUI.indentLevel * 16.0f);
                         GUI.enabled = !searchingTrending;
                         bool searchTrendingClicked = GUILayout.Button(new GUIContent(searchingTrending ? "Searching" : "Search"));
-                        GUI.enabled = false;
+                        GUI.enabled = true;
                         GUILayout.EndHorizontal();
 
                         if (searchTrendingClicked)
@@ -108,9 +116,9 @@ namespace Charlie.Giphy
 
                         GUILayout.BeginHorizontal();
                         GUILayout.Space(EditorGUI.indentLevel * 16.0f);
-                        GUI.enabled = !searchingTrending;
+                        GUI.enabled = !gettingRandom;
                         bool getRandomClicked = GUILayout.Button(new GUIContent(gettingRandom ? "Getting" : "Get"));
-                        GUI.enabled = false;
+                        GUI.enabled = true;
                         GUILayout.EndHorizontal();
 
                         if (getRandomClicked)
@@ -125,18 +133,60 @@ namespace Charlie.Giphy
                     if (showTestConsoleGetByID)
                     {
                         EditorGUI.indentLevel++;
-                        testConsoleGetByIDID = EditorGUILayout.TextField(new GUIContent("Tag", "Filters results by specified GIF ID"), testConsoleGetByIDID);
+                        testConsoleGetByIDID = EditorGUILayout.TextField(new GUIContent("ID", "Filters results by specified GIF ID"), testConsoleGetByIDID);
 
                         GUILayout.BeginHorizontal();
                         GUILayout.Space(EditorGUI.indentLevel * 16.0f);
                         GUI.enabled = !gettingByID;
                         bool getByIDClicked = GUILayout.Button(new GUIContent(gettingByID ? "Getting" : "Get"));
-                        GUI.enabled = false;
+                        GUI.enabled = true;
                         GUILayout.EndHorizontal();
 
                         if (getByIDClicked)
                         {
                             HandleGetByIDClicked();
+                        }
+
+                        EditorGUI.indentLevel--;
+                    }
+
+                    showTestConsoleListPacks = EditorGUILayout.Foldout(showTestConsoleListPacks, new GUIContent("List Packs"));
+                    if (showTestConsoleListPacks)
+                    {
+                        EditorGUI.indentLevel++;
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Space(EditorGUI.indentLevel * 16.0f);
+                        GUI.enabled = !listingPacks;
+                        bool listPacksClicked = GUILayout.Button(new GUIContent(listingPacks ? "Listing" : "List"));
+                        GUI.enabled = true;
+                        GUILayout.EndHorizontal();
+
+                        if (listPacksClicked)
+                        {
+                            HandleListPacksClicked();
+                        }
+
+                        EditorGUI.indentLevel--;
+                    }
+
+                    showTestConsoleStickersInPack = EditorGUILayout.Foldout(showTestConsoleStickersInPack, new GUIContent("Stickers In Pack"));
+                    if (showTestConsoleStickersInPack)
+                    {
+                        EditorGUI.indentLevel++;
+                        testConsoleStickersInPackID = EditorGUILayout.IntField(new GUIContent("Pack ID", "Filters results by specified Sticker Pack ID"), testConsoleStickersInPackID);
+                        testConsoleStickersInPackLimit = EditorGUILayout.IntField(new GUIContent("Limit", "The maximum number of records to return"), testConsoleStickersInPackLimit);
+                        testConsoleStickersInPackOffset = EditorGUILayout.IntField(new GUIContent("Offset", "An optional results offset"), testConsoleStickersInPackOffset);
+
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Space(EditorGUI.indentLevel * 16.0f);
+                        GUI.enabled = !listingStickersInPack;
+                        bool listStickersInPackClicked = GUILayout.Button(new GUIContent(listingStickersInPack? "Listing" : "List"));
+                        GUI.enabled = true;
+                        GUILayout.EndHorizontal();
+
+                        if (listStickersInPackClicked)
+                        {
+                            HandleListStickersInPackClicked();
                         }
 
                         EditorGUI.indentLevel--;
@@ -154,7 +204,7 @@ namespace Charlie.Giphy
             serializedObject.ApplyModifiedProperties();
         }
 
-        async public void HandleSearchClicked()
+        async private void HandleSearchClicked()
         {
             searching = true;
             Repaint();
@@ -163,7 +213,7 @@ namespace Charlie.Giphy
             Repaint();
         }
 
-        async public void HandleSearchTrendingClicked()
+        async private void HandleSearchTrendingClicked()
         {
             searchingTrending = true;
             Repaint();
@@ -172,7 +222,7 @@ namespace Charlie.Giphy
             Repaint();
         }
 
-        async public void HandleGetRandomClicked()
+        async private void HandleGetRandomClicked()
         {
             gettingRandom = true;
             Repaint();
@@ -181,12 +231,31 @@ namespace Charlie.Giphy
             Repaint();
         }
 
-        async public void HandleGetByIDClicked()
+        async private void HandleGetByIDClicked()
         {
             gettingByID = true;
             Repaint();
             await giphyService.GetByID(testConsoleGetByIDID);
             gettingByID = false;
+            Repaint();
+        }
+
+        async private void HandleListPacksClicked()
+        {
+            listingPacks = true;
+            Repaint();
+            await giphyService.ListPacks();
+            listingPacks = false;
+            Repaint();
+        }
+
+        async private void HandleListStickersInPackClicked()
+        {
+            listingStickersInPack = true;
+            Repaint();
+            await giphyService.StickersInPack(testConsoleStickersInPackID,
+                testConsoleStickersInPackLimit, testConsoleStickersInPackOffset);
+            listingStickersInPack = false;
             Repaint();
         }
     }
