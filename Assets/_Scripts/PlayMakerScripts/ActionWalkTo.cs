@@ -33,31 +33,34 @@ public class ActionWalkTo : FsmStateAction
             if ((go.transform.position - target.position).magnitude < 0.03)
                 break;
 
-            NavMeshPath path = new NavMeshPath();
-            NavMesh.CalculatePath(go.transform.position, target.position, NavMesh.AllAreas, path);
-            if (path.status == NavMeshPathStatus.PathInvalid)
-            {
-                Debug.Log("Path Invalid");
-                break;
-            }
-            var waypoints = new List<Vector3>(path.corners);
+            //NavMeshPath path = new NavMeshPath();
+            //NavMesh.CalculatePath(go.transform.position, target.position, NavMesh.AllAreas, path);
+            //if (path.status == NavMeshPathStatus.PathInvalid)
+            //{
+            //    Debug.Log("Path Invalid");
+            //    break;
+            //}
+            //var waypoints = new List<Vector3>(path.corners);
 
-            float dist = Time.deltaTime * 0.12f;
-            while (waypoints.Count > 0 && (go.transform.position - waypoints[0]).magnitude < dist)
-            {
-                dist -= (go.transform.position - waypoints[0]).magnitude;
-                go.transform.position = waypoints[0];
-                waypoints.RemoveAt(0);
-            }
+            //float dist = Time.deltaTime * 0.12f;
+            //while (waypoints.Count > 0 && (go.transform.position - waypoints[0]).magnitude < dist)
+            //{
+            //    dist -= (go.transform.position - waypoints[0]).magnitude;
+            //    go.transform.position = waypoints[0];
+            //    waypoints.RemoveAt(0);
+            //}
 
-            if (waypoints.Count == 0)
-            {
-                Debug.Log("waypoints finished");
-                break;
-            }
+            //if (waypoints.Count == 0)
+            //{
+            //    Debug.Log("waypoints finished");
+            //    break;
+            //}
 
-            go.transform.LookAt(waypoints[0]);
-            go.transform.Translate(Vector3.forward * dist, Space.Self);
+            //go.transform.LookAt(waypoints[0]);
+            //go.transform.Translate(Vector3.forward * dist, Space.Self);
+
+            go.transform.LookAt(target.position);
+            go.transform.Translate(Vector3.forward * Time.deltaTime * 0.12f, Space.Self);
 
             await new WaitForNextFrame();
         }
