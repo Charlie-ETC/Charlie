@@ -105,11 +105,22 @@ namespace Charlie
             if (placesFound > 0)
             {
                 Debug.Log($"[SpatialMapper]: Found area on table: {result[0].position}");
-                adjustmentTarget.transform.position = new Vector3(
-                    -result[0].position.x,
-                    -result[0].position.y,
-                    -result[0].position.z
-                );
+                if (adjustmentMode == AdjustmentMode.CAMERA_PARENT)
+                {
+                    adjustmentTarget.transform.position = new Vector3(
+                        -result[0].position.x,
+                        -result[0].position.y,
+                        -result[0].position.z
+                    );
+                }
+                else
+                {
+                    adjustmentTarget.transform.position = new Vector3(
+                        result[0].position.x,
+                        result[0].position.y,
+                        result[0].position.z
+                    );
+                }
             }
             else
             {
@@ -118,11 +129,22 @@ namespace Charlie
 
                 // TODO: Separation of concerns, this part should ideally be in the TargetRoot/CameraParent.
                 // For the floor, it doesn't matter where the x and z positions are.
-                adjustmentTarget.transform.position = new Vector3(
-                    adjustmentTarget.transform.position.x,
-                    -result[0].position.y,
-                    adjustmentTarget.transform.position.z
-                );
+                if (adjustmentMode == AdjustmentMode.CAMERA_PARENT)
+                {
+                    adjustmentTarget.transform.position = new Vector3(
+                        adjustmentTarget.transform.position.x,
+                        -result[0].position.y,
+                        adjustmentTarget.transform.position.z
+                    );
+                }
+                else
+                {
+                    adjustmentTarget.transform.position = new Vector3(
+                        adjustmentTarget.transform.position.x,
+                        result[0].position.y,
+                        adjustmentTarget.transform.position.z
+                    );
+                }
             }
         }
     }
