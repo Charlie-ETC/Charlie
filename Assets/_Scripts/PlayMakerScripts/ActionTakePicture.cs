@@ -7,6 +7,7 @@ using UnityEngine;
 using Asyncoroutine;
 using UnityEngine.AI;
 using System.Linq;
+using UnityEngine.UI;
 
 public class ActionTakePicture : FsmStateAction
 {
@@ -29,7 +30,11 @@ public class ActionTakePicture : FsmStateAction
 
             capture.StartPhotoModeAsync(cameraParams, delegate (UnityEngine.XR.WSA.WebCam.PhotoCapture.PhotoCaptureResult result) {
                 capture.TakePhotoAsync(async delegate (UnityEngine.XR.WSA.WebCam.PhotoCapture.PhotoCaptureResult result2, UnityEngine.XR.WSA.WebCam.PhotoCaptureFrame frame) {
+                    await new WaitForSeconds(2f);
                     frame.UploadImageDataToTexture(texture);
+
+                    // show photo here
+                    GameObject.Find("PhotoTaken").GetComponent<RawImage>().texture = texture;
                     byte[] jpegData = ImageConversion.EncodeToJPG(texture, 80);
 
                     Debug.Log("[DictationMonitor] Uploading picture to Twitter");

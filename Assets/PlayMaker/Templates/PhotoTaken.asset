@@ -146,15 +146,17 @@ MonoBehaviour:
         - HutongGames.PlayMaker.Actions.iTweenLookTo
         - ActionLookatPlayer
         - ActionSpeak
+        - ActionShowPhoto
         customNames:
         - 
         - 
         - 
         - 
-        actionEnabled: 00000101
-        actionIsOpen: 01010101
-        actionStartIndex: 00000000010000001000000012000000
-        actionHashCodes: 5c004505d1989e04ae88b90516192d01
+        - 
+        actionEnabled: 0000010101
+        actionIsOpen: 0101010101
+        actionStartIndex: 0000000001000000100000001200000015000000
+        actionHashCodes: 5c004505d1989e04ae88b90516192d0100000000
         unityObjectParams: []
         fsmGameObjectParams:
         - useVariable: 1
@@ -336,15 +338,17 @@ MonoBehaviour:
         - ActionSpeak
         - ActionTimeout
         - ActionLookatPlayer
+        - ActionHidePhoto
         customNames:
         - 
         - 
         - 
         - 
-        actionEnabled: 01010101
-        actionIsOpen: 01010101
-        actionStartIndex: 00000000010000000400000005000000
-        actionHashCodes: deb1630316192d01deb16303ae88b905
+        - 
+        actionEnabled: 0101010101
+        actionIsOpen: 0101010101
+        actionStartIndex: 0000000001000000040000000500000007000000
+        actionHashCodes: deb1630316192d01deb16303ae88b90500000000
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
