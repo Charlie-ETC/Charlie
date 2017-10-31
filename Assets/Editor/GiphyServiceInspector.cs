@@ -12,6 +12,9 @@ namespace Charlie.Giphy
 
         private static bool showTestConsole = true;
         private static bool showTestConsoleSearch = true;
+        private static bool showTestConsoleTrending = true;
+        private static bool showTestConsoleRandom = true;
+        private static bool showTestConsoleGetByID = true;
 
         private static string testConsoleSearchQuery = "Cat";
         private static int testConsoleSearchLimit = 25;
@@ -19,7 +22,18 @@ namespace Charlie.Giphy
         private static string testConsoleSearchRating = "G";
         private static string testConsoleSearchLang = "en";
 
+        private static int testConsoleTrendingLimit = 25;
+        private static string testConsoleTrendingRating = "G";
+
+        private static string testConsoleRandomTag = "Cat";
+        private static string testConsoleRandomRating = "G";
+
+        private static string testConsoleGetByIDID = "";
+
         private static bool searching = false;
+        private static bool searchingTrending = false;
+        private static bool gettingRandom = false;
+        private static bool gettingByID = false;
 
         public void OnEnable()
         {
@@ -63,6 +77,71 @@ namespace Charlie.Giphy
                         EditorGUI.indentLevel--;
                     }
 
+                    showTestConsoleTrending = EditorGUILayout.Foldout(showTestConsoleTrending, new GUIContent("Trending"));
+                    if (showTestConsoleTrending)
+                    {
+                        EditorGUI.indentLevel++;
+                        testConsoleTrendingLimit = EditorGUILayout.IntField(new GUIContent("Limit", "The maximum number of records to return"), testConsoleTrendingLimit);
+                        testConsoleTrendingRating = EditorGUILayout.TextField(new GUIContent("Rating", "Filters results by rating"), testConsoleTrendingRating);
+
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Space(EditorGUI.indentLevel * 16.0f);
+                        GUI.enabled = !searchingTrending;
+                        bool searchTrendingClicked = GUILayout.Button(new GUIContent(searchingTrending ? "Searching" : "Search"));
+                        GUI.enabled = false;
+                        GUILayout.EndHorizontal();
+
+                        if (searchTrendingClicked)
+                        {
+                            HandleSearchTrendingClicked();
+                        }
+
+                        EditorGUI.indentLevel--;
+                    }
+
+                    showTestConsoleRandom = EditorGUILayout.Foldout(showTestConsoleRandom, new GUIContent("Random"));
+                    if (showTestConsoleRandom)
+                    {
+                        EditorGUI.indentLevel++;
+                        testConsoleRandomTag = EditorGUILayout.TextField(new GUIContent("Tag", "Filters results by specified tag"), testConsoleRandomTag);
+                        testConsoleRandomRating = EditorGUILayout.TextField(new GUIContent("Rating", "Filters results by rating"), testConsoleRandomRating);
+
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Space(EditorGUI.indentLevel * 16.0f);
+                        GUI.enabled = !searchingTrending;
+                        bool getRandomClicked = GUILayout.Button(new GUIContent(gettingRandom ? "Getting" : "Get"));
+                        GUI.enabled = false;
+                        GUILayout.EndHorizontal();
+
+                        if (getRandomClicked)
+                        {
+                            HandleGetRandomClicked();
+                        }
+
+                        EditorGUI.indentLevel--;
+                    }
+
+                    showTestConsoleGetByID = EditorGUILayout.Foldout(showTestConsoleGetByID, new GUIContent("By ID"));
+                    if (showTestConsoleGetByID)
+                    {
+                        EditorGUI.indentLevel++;
+                        testConsoleGetByIDID = EditorGUILayout.TextField(new GUIContent("Tag", "Filters results by specified GIF ID"), testConsoleGetByIDID);
+
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Space(EditorGUI.indentLevel * 16.0f);
+                        GUI.enabled = !gettingByID;
+                        bool getByIDClicked = GUILayout.Button(new GUIContent(gettingByID ? "Getting" : "Get"));
+                        GUI.enabled = false;
+                        GUILayout.EndHorizontal();
+
+                        if (getByIDClicked)
+                        {
+                            HandleGetByIDClicked();
+                        }
+
+                        EditorGUI.indentLevel--;
+                    }
+
                     EditorGUI.indentLevel--;
                 }
             }
@@ -79,10 +158,35 @@ namespace Charlie.Giphy
         {
             searching = true;
             Repaint();
-
-            Response<List<Sticker>> response = await giphyService.Search(testConsoleSearchQuery);
-
+            await giphyService.Search(testConsoleSearchQuery);
             searching = false;
+            Repaint();
+        }
+
+        async public void HandleSearchTrendingClicked()
+        {
+            searchingTrending = true;
+            Repaint();
+            await giphyService.Trending(testConsoleTrendingLimit, testConsoleTrendingRating);
+            searchingTrending = false;
+            Repaint();
+        }
+
+        async public void HandleGetRandomClicked()
+        {
+            gettingRandom = true;
+            Repaint();
+            await giphyService.Random(testConsoleRandomTag, testConsoleRandomRating);
+            gettingRandom = false;
+            Repaint();
+        }
+
+        async public void HandleGetByIDClicked()
+        {
+            gettingByID = true;
+            Repaint();
+            await giphyService.GetByID(testConsoleGetByIDID);
+            gettingByID = false;
             Repaint();
         }
     }

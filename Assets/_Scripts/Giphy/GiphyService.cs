@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -35,32 +34,9 @@ namespace Charlie.Giphy
             return $"https://api.giphy.com/v1{path}?{BuildQueryString(parameters)}";
         }
 
-        // <summary>
-        // Searches the GIPHY Stickers API for stickers.
-        // </summary>
-        // <param name="q">The query string.</param>
-        // <param name="limit">Number of results to request for.</param>
-        // <param name="offset">Number of results to skip.</param>
-        // <param name="rating">Filter the search results by content rating.</param>
-        // <param name="lang">Filter the search results by language.</param>
-        public async Task<Response<List<Sticker>>> Search(string q, int limit,
-            int offset, string rating, string lang)
+        private async Task<string> CallAPI(string path, NameValueCollection parameters)
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            };
-
-            NameValueCollection parameters = new NameValueCollection
-            {
-                { "q", q },
-                { "limit", limit.ToString() },
-                { "offset", offset.ToString() },
-                { "rating", rating },
-                { "lang", lang }
-            };
-
-            string url = BuildURL("/stickers/search", parameters);
+            string url = BuildURL(path, parameters);
             UnityWebRequest request = UnityWebRequest.Get(url);
             await request.SendWebRequest();
 
@@ -75,24 +51,100 @@ namespace Charlie.Giphy
                 throw new GiphyException($"Request failed with HTTP status code {request.responseCode}");
             }
 
+            return request.downloadHandler.text;
+        }
+
+        // <summary>
+        // Searches the GIPHY Stickers API for stickers.
+        // </summary>
+        // <param name="q">Search query term or phrase.</param>
+        // <param name="limit">Maximum number of records to return.</param>
+        // <param name="offset">An optional results offset.</param>
+        // <param name="rating">Filter the search results by content rating.</param>
+        // <param name="lang">Specify default country for regional content.</param>
+        public async Task<Response<List<Sticker>>> Search(string q, int limit = 25,
+            int offset = 0, string rating = "G", string lang = "en")
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+            
+            NameValueCollection parameters = new NameValueCollection
+            {
+                { "q", q },
+                { "limit", limit.ToString() },
+                { "offset", offset.ToString() },
+                { "rating", rating },
+                { "lang", lang }
+            };
+
+            string response = await CallAPI("/stickers/search", parameters);
             return JsonConvert.DeserializeObject<Response<List<Sticker>>>(
-                request.downloadHandler.text);
+                response, settings);
         }
 
-        public Task<Response<List<Sticker>>> Search(string q)
+        // <summary>
+        // Gets the trending stickers.
+        // </summary>
+        // <param name="limit">Maximum number of records to return.</param>
+        // <param name="rating">Filter the search results by content rating.</param>
+        public async Task<Response<List<Sticker>>> Trending(int limit = 25, string rating = "G")
         {
-            return Search(q, 25, 0);
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            NameValueCollection parameters = new NameValueCollection
+            {
+                { "limit", limit.ToString() },
+                { "rating", rating }
+            };
+
+            string response = await CallAPI("/stickers/trending", parameters);
+            return JsonConvert.DeserializeObject<Response<List<Sticker>>>(
+                response, settings);
         }
 
-        public Task<Response<List<Sticker>>> Search(string q, int limit, int offset)
+        // <summary>
+        // Gets a random sticker.
+        // </summary>
+        // <param name="tag">Filter results by specified tag.</param>
+        // <param name="rating">Filter results by rating.</param>
+        public async Task<Response<Sticker>> Random(string tag, string rating = "G")
         {
-            return Search(q, limit, offset, "G");
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            NameValueCollection parameters = new NameValueCollection
+            {
+                { "tag", tag },
+                { "rating", rating }
+            };
+
+            string response = await CallAPI("/stickers/random", parameters);
+            return JsonConvert.DeserializeObject<Response<Sticker>>(
+                response, settings);
         }
 
-        public Task<Response<List<Sticker>>> Search(string q, int limit, int offset,
-            string rating)
+        // <summary>
+        // Gets a sticker by ID.
+        // </summary>
+        // <param name="id">Filter results by specified GIF ID.</param>
+        public async Task<Response<Sticker>> GetByID(string id)
         {
-            return Search(q, limit, offset, rating, "en");
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            NameValueCollection parameters = new NameValueCollection();
+            string response = await CallAPI($"/gifs/{id}", parameters);
+            return JsonConvert.DeserializeObject<Response<Sticker>>(
+                response, settings);
         }
     }
 }
