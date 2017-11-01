@@ -43,7 +43,7 @@ namespace Unsplash
         public async Task<Texture> GetRandomPhoto(string query)
         {
             Response response = await SearchPhotos(query);
-            if (response.results.Length == 0)
+            if (response?.results?.Length == 0)
             {
                 return null;
             }
