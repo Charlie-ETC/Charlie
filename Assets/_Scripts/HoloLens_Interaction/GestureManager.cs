@@ -46,23 +46,24 @@ namespace Charlie
 #if UNITY_WSA
             gestureRecognizer = new GestureRecognizer();
             gestureRecognizer.TappedEvent += OnAirTap;
-            gestureRecognizer.ManipulationUpdatedEvent += OnManipulationGesture;
+            gestureRecognizer.NavigationUpdated += OnNavigationUpdated;
+            Debug.LogError($"[OnManipulationGesture] start");
             gestureRecognizer.StartCapturingGestures();
 #endif
         }
 
-        private void OnManipulationGesture(InteractionSourceKind source, Vector3 cumulativeDelta, Ray headRay)
+        private void OnNavigationUpdated(NavigationUpdatedEventArgs obj)
         {
-            Debug.Log($"[OnManipulationGesture] {cumulativeDelta}");
+            Debug.LogError($"[OnManipulationGesture] {obj.normalizedOffset}");
 
             Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
             Transform cam = Camera.main.transform;
 
             float dist = (TargetRoot.position - cam.position).magnitude;
-            dist += cumulativeDelta.y;
-            TargetRoot.Rotate(new Vector3(0, cumulativeDelta.x, 0));
+            dist += obj.normalizedOffset.y;
+            TargetRoot.Rotate(new Vector3(0, obj.normalizedOffset.x, 0));
 
-            TargetRoot.position = headRay.GetPoint(dist);
+            TargetRoot.position = obj.headPose.position + obj.headPose.forward * dist;
         }
 
         // Update is called once per frame
