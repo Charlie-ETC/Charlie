@@ -53,6 +53,8 @@ namespace Charlie
 
         private void OnManipulationGesture(InteractionSourceKind source, Vector3 cumulativeDelta, Ray headRay)
         {
+            Debug.Log($"[OnManipulationGesture] {cumulativeDelta}");
+
             Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
             Transform cam = Camera.main.transform;
 
