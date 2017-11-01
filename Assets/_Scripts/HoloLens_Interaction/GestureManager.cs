@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,8 +46,21 @@ namespace Charlie
 #if UNITY_WSA
             gestureRecognizer = new GestureRecognizer();
             gestureRecognizer.TappedEvent += OnAirTap;
+            gestureRecognizer.ManipulationUpdatedEvent += OnManipulationGesture;
             gestureRecognizer.StartCapturingGestures();
 #endif
+        }
+
+        private void OnManipulationGesture(InteractionSourceKind source, Vector3 cumulativeDelta, Ray headRay)
+        {
+            Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
+            Transform cam = Camera.main.transform;
+
+            float dist = (TargetRoot.position - cam.position).magnitude;
+            dist += cumulativeDelta.y;
+            TargetRoot.Rotate(new Vector3(0, cumulativeDelta.x, 0));
+
+            TargetRoot.position = headRay.GetPoint(dist);
         }
 
         // Update is called once per frame
