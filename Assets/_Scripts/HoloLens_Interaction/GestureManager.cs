@@ -59,11 +59,10 @@ namespace Charlie
             Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
             Transform cam = Camera.main.transform;
 
-            float dist = (TargetRoot.position - cam.position).magnitude;
-            dist += obj.normalizedOffset.y;
-            TargetRoot.Rotate(new Vector3(0, obj.normalizedOffset.x, 0));
+            float dist = obj.normalizedOffset.y * 2f + 3f;
+            TargetRoot.eulerAngles = (new Vector3(0, obj.normalizedOffset.x * 60, 0));
 
-            TargetRoot.position = obj.headPose.position + obj.headPose.forward * dist;
+            TargetRoot.position = cam.position + cam.forward * dist;
         }
 
         // Update is called once per frame
@@ -122,17 +121,8 @@ namespace Charlie
 #if UNITY_WSA
         private void OnAirTap(InteractionSourceKind source, int tapCount, Ray headRay)
         {
-            // air tap focused object to call its OnSelect()
-            //if (FocusedObject != null) {
-            //    CubeCommands cc = FocusedObject.GetComponentInParent<CubeCommands>();
-            //    if (cc != null) {
-            //        cc.OnSelect();
-            //    }
-            //}
-
-            SpatialMapper mapper = FindObjectOfType<SpatialMapper>();
-            mapper.FinishMapping();
-            //SceneManager.LoadScene("Main");
+            //SpatialMapper mapper = FindObjectOfType<SpatialMapper>();
+            //mapper.FinishMapping();
         }
 #endif
 
