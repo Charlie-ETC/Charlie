@@ -8,12 +8,14 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Text;
 
+
 public class CharlieSlackLog : MonoBehaviour {
 
     private string url;
     private string charlieEmoji;
     private string userEmoji;
     private string channel;
+    private string apiaiSessionId;
 
     // Use this for initialization
     void Start()
@@ -27,7 +29,13 @@ public class CharlieSlackLog : MonoBehaviour {
         channel = config.slackChannel;
     }
 
-	
+
+    public void SetAPISessionID(string id) {
+        apiaiSessionId = id;
+    }
+
+    // used in ActinoSpeak and DictationMonitor scripts
+    // @username, name shown on slack, including api.ai sessionID 
     public async Task SlackLog(string username, string message)
     {
         //Debug.LogWarning(username + message);
@@ -38,15 +46,15 @@ public class CharlieSlackLog : MonoBehaviour {
         // construct JSON
         SlackMessage slackMessage = new SlackMessage();
         slackMessage.text = message;
-        slackMessage.username = username;
+        slackMessage.username = username + " " + apiaiSessionId;
         slackMessage.channel = channel;
 
-        if (username.ToLower() == "charlie")
+        if (username.ToLower().Contains("charlie"))
         {
             // Tmake it a converted json string from object?
             slackMessage.iconEmoji = charlieEmoji;
         }
-        if (username.ToLower() == "user") {
+        if (username.ToLower().Contains("user")) {
             slackMessage.iconEmoji = userEmoji;
         }
 

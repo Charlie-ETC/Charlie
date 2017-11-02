@@ -67,6 +67,7 @@ public class ActionSpeak : FsmStateAction
 
                 audioSource.clip = clip;
                 audioSource.Play();
+                // log what charlie says to Slack
                 charlieSlackLog.SlackLog("charlie", actualSpeech);
                 DictationMonitor.Instance.plotSpeaking = true;
             }

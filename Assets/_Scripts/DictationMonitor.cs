@@ -49,6 +49,7 @@ public class DictationMonitor : MonoBehaviour {
         watsonTTSService = GetComponent<WatsonTTSService>();
         twitterService = GetComponent<TwitterService>();
         apiaiSessionId = apiaiService.CreateSession();
+        charlieSlackLog.SetAPISessionID(apiaiSessionId);
         MissedQ = false;
         plotSpeaking = false;
         
