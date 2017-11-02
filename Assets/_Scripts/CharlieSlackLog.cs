@@ -9,42 +9,45 @@ using Newtonsoft.Json.Serialization;
 using System.Text;
 
 public class CharlieSlackLog : MonoBehaviour {
-    // TODO: get url from configuration
-    string url = "https://hooks.slack.com/services/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";
 
-	// Use this for initialization
-	void Start () {
-        // prepare token and connection if needed
+    private string url;
+    private string charlieEmoji;
+    private string userEmoji;
+    private string channel;
 
-
+    // Use this for initialization
+    void Start()
+    {
+        // prepare token, parameters and connection if needed. Get it from local configuration
+        ConfigService configService = GameObject.Find("DictationMonitor").GetComponent<ConfigService>();
+        Config config = configService.SelectedConfig();
+        url = config.slackWebhookUrl;
+        charlieEmoji = config.slackCharlieIcon;
+        userEmoji = config.slackUserIcon;
+        channel = config.slackChannel;
     }
 
+	
     public async Task SlackLog(string username, string message)
     {
-        Debug.LogWarning(username + message);
-        //Debug.LogWarning("[CharlieSlackLog] 1.");
+        //Debug.LogWarning(username + message);
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(message)) { return; }
-        
-        Debug.LogWarning("[CharlieSlackLog] 00 Slack Log Sent.");
+
+        //Debug.LogWarning("[CharlieSlackLog] 00 Slack Log Sent.");
 
         // construct JSON
         SlackMessage slackMessage = new SlackMessage();
+        slackMessage.text = message;
+        slackMessage.username = username;
+        slackMessage.channel = channel;
+
         if (username.ToLower() == "charlie")
         {
-            // replace with girl icon and username
-            // TODO make it a converted json string from object?
-            slackMessage.text = message;
-            slackMessage.username = username;
-            slackMessage.iconEmoji = ":girl:";
-            slackMessage.channel = "#charlie_history";
+            // Tmake it a converted json string from object?
+            slackMessage.iconEmoji = charlieEmoji;
         }
         if (username.ToLower() == "user") {
-            Debug.LogWarning("[CharlieSlackLog] 00 Slack Log Sent.");
-            // replace with girl icon and username
-            slackMessage.text = message;
-            slackMessage.username = username;
-            slackMessage.iconEmoji = ":dark_sunglasses:";
-            slackMessage.channel = "#charlie_history";
+            slackMessage.iconEmoji = userEmoji;
         }
 
 
@@ -68,11 +71,9 @@ public class CharlieSlackLog : MonoBehaviour {
 
         request.SetRequestHeader("Content-type", "application/json");
 
-        // TODO change this to await?
         await request.SendWebRequest();
-        Debug.LogWarning(request.downloadHandler.text);
-        Debug.LogWarning("[CharlieSlackLog] Slack Log Sent.");
-        
+        //Debug.LogWarning(request.downloadHandler.text);
+        //Debug.LogWarning("[CharlieSlackLog] Slack Log Sent.");       
     }
 
     class SlackMessage

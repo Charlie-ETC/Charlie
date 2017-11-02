@@ -14,4 +14,8 @@ public class Config : ScriptableObject {
     public string twitterAccessTokenSecret;
     public string unsplashAppId;
     public string unsplashImageSize = "regular";
+    public string slackWebhookUrl = "https://hooks.slack.com/services/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";
+    public string slackCharlieIcon = ":girl:";
+    public string slackUserIcon = ":dark_sunglasses:";
+    public string slackChannel = "#charlie_history";
 }

@@ -10,6 +10,7 @@ public class ConfigInspector : Editor {
     private static bool showIbmWatson;
     private static bool showTwitter;
     private static bool showUnsplash;
+    private static bool showSlack;
 
     SerializedProperty apiaiClientAccessTokenProp;
     SerializedProperty ibmWatsonTtsUrlProp;
@@ -21,6 +22,11 @@ public class ConfigInspector : Editor {
     SerializedProperty twitterAccessTokenSecretProp;
     SerializedProperty unsplashAppIdProp;
     SerializedProperty unsplashImageSizeProp;
+    SerializedProperty slackWebhookUrlProp;
+    SerializedProperty slackCharlieIconProp;
+    SerializedProperty slackUserIconProp;
+    SerializedProperty slackChannelProp;
+
 
     void OnEnable()
     {
@@ -34,6 +40,10 @@ public class ConfigInspector : Editor {
         twitterAccessTokenSecretProp = serializedObject.FindProperty("twitterAccessTokenSecret");
         unsplashAppIdProp = serializedObject.FindProperty("unsplashAppId");
         unsplashImageSizeProp = serializedObject.FindProperty("unsplashImageSize");
+        slackWebhookUrlProp = serializedObject.FindProperty("slackWebhookUrl");
+        slackCharlieIconProp = serializedObject.FindProperty("slackCharlieIcon");
+        slackUserIconProp = serializedObject.FindProperty("slackUserIcon");
+        slackChannelProp = serializedObject.FindProperty("slackChannel");
     }
 
     public override void OnInspectorGUI()
@@ -71,6 +81,18 @@ public class ConfigInspector : Editor {
             EditorGUI.indentLevel++;
             EditorGUILayout.PropertyField(unsplashAppIdProp, new GUIContent("App ID"));
             EditorGUILayout.PropertyField(unsplashImageSizeProp, new GUIContent("Image Size"));
+            EditorGUI.indentLevel--;
+        }
+
+        showSlack = EditorGUILayout.Foldout(showSlack, new GUIContent("Slack Log"));
+        if (showSlack)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(slackWebhookUrlProp, new GUIContent("Slack Webhook Url"));
+            EditorGUILayout.PropertyField(slackCharlieIconProp, new GUIContent("Charlie Icon"));
+            EditorGUILayout.PropertyField(slackUserIconProp, new GUIContent("User Icon"));
+            EditorGUILayout.PropertyField(slackChannelProp, new GUIContent("Channel"));
+            EditorGUILayout.HelpBox("These parameters can be found on Slack: https://cmuetcsv.slack.com/services/B7UFMTLT0", MessageType.Info);
             EditorGUI.indentLevel--;
         }
 

@@ -56,6 +56,8 @@ public class ActionSpeak : FsmStateAction
 
             //Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>().PlayOneShot(clip);
             AudioSource audioSource = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>();
+            CharlieSlackLog charlieSlackLog = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<CharlieSlackLog>();
+
             if (audioSource != null) // make sure only play single audioclip at one time
             {
                 if (audioSource.isPlaying)
@@ -65,6 +67,7 @@ public class ActionSpeak : FsmStateAction
 
                 audioSource.clip = clip;
                 audioSource.Play();
+                charlieSlackLog.SlackLog("charlie", actualSpeech);
                 DictationMonitor.Instance.plotSpeaking = true;
             }
             else
