@@ -17,6 +17,7 @@ public class DictationMonitor : MonoBehaviour {
 
     private ApiaiService apiaiService;
     private WatsonTTSService watsonTTSService;
+    private CharlieSlackLog charlieSlackLog;
     public TwitterService twitterService;
 
     private TextMesh textMesh;
@@ -47,6 +48,7 @@ public class DictationMonitor : MonoBehaviour {
         apiaiService = GetComponent<ApiaiService>();
         watsonTTSService = GetComponent<WatsonTTSService>();
         twitterService = GetComponent<TwitterService>();
+        charlieSlackLog = GetComponent<CharlieSlackLog>();
         apiaiSessionId = apiaiService.CreateSession();
         MissedQ = false;
         plotSpeaking = false;
@@ -89,6 +91,8 @@ public class DictationMonitor : MonoBehaviour {
         transform.Find("Result").GetComponent<TextMesh>().text =     $"({Time.time.ToString("0.00")})   :   [{text}]   confidence:{confidenceLevel}";
         Debug.Log(text + " " + MissedQ);
         fsmEvent.HandleDictationResult(text);
+        // log what user says to slack
+        if (!string.IsNullOrEmpty(text)) charlieSlackLog.SlackLog("user", text);
 
         System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 

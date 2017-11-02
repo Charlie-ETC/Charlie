@@ -48,7 +48,7 @@ namespace Unsplash
                 return null;
             }
 
-            UnityWebRequest request = new UnityWebRequest(response.results[0].urls[unsplashImageSize])
+            UnityWebRequest request = new UnityWebRequest(response?.results?[0]?.urls[unsplashImageSize])
             {
                 method = UnityWebRequest.kHttpVerbGET,
                 downloadHandler = new DownloadHandlerTexture()
