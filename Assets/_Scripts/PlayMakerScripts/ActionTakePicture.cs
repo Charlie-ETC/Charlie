@@ -2,6 +2,7 @@ using HutongGames.PlayMaker;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using Asyncoroutine;
 
 using Charlie.Twitter;
 

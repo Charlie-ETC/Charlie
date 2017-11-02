@@ -7,6 +7,7 @@ using Asyncoroutine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Text;
+using Charlie;
 
 
 public class CharlieSlackLog : MonoBehaviour {
@@ -21,7 +22,7 @@ public class CharlieSlackLog : MonoBehaviour {
     void Start()
     {
         // prepare token, parameters and connection if needed. Get it from local configuration
-        ConfigService configService = GameObject.Find("DictationMonitor").GetComponent<ConfigService>();
+        ConfigService configService = ConfigService.Instance;
         Config config = configService.SelectedConfig();
         url = config.slackWebhookUrl;
         charlieEmoji = config.slackCharlieIcon;
