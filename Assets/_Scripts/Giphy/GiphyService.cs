@@ -195,10 +195,7 @@ namespace Charlie.Giphy
         // <param name="sticker">The sticker object.</param>
         public async Task<Texture> StickerToTexture(Sticker sticker)
         {
-            UnityWebRequest request = new UnityWebRequest(sticker.images["original_still"].url)
-            {
-                downloadHandler = new DownloadHandlerTexture()
-            };
+            UnityWebRequest request = UnityWebRequest.Get (sticker.images ["original_still"].url);
             await request.SendWebRequest();
 
             if (request.isHttpError)
@@ -206,13 +203,21 @@ namespace Charlie.Giphy
                 throw new GiphyException($"Request failed with HTTP status code {request.responseCode}");
             }
         
-            await UniGif.GetTextureListCoroutine(request.downloadHandler.data, (textureList, loopCount, width, height) =>
+            List<UniGif.GifTexture> textureList = null;
+            int width = -1;
+            int height = -1;
+
+            await UniGif.GetTextureListCoroutine(request.downloadHandler.data, (pTextureList, loopCount, pWidth, pHeight) =>
             {
-                // Dothing yet.
-                Debug.Log($"[GiphyService] Got GIF {width}, {height}");
+                textureList = pTextureList;
+                width = pWidth;
+                height = pHeight;
             });
 
-            return DownloadHandlerTexture.GetContent(request);
+            // For now, obtain only the first texture in the list.
+            Debug.Log($"[GiphyService] Got GIF {width}, {height}");
+            Debug.Log($"[GiphyService] TextureFormat: {textureList[0].m_texture2d.format}");
+            return textureList[0].m_texture2d;
         }
     }
 }
