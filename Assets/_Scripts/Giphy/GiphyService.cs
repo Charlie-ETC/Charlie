@@ -69,7 +69,7 @@ namespace Charlie.Giphy
             {
                 NullValueHandling = NullValueHandling.Ignore
             };
-            
+
             NameValueCollection parameters = new NameValueCollection
             {
                 { "q", q },
@@ -193,7 +193,7 @@ namespace Charlie.Giphy
         // Returns a texture for the given Sticker object.
         // </summary>
         // <param name="sticker">The sticker object.</param>
-        public async Task<Texture> StickerToTexture(Sticker sticker)
+        public async Task<ISticker> Export(Sticker sticker)
         {
             UnityWebRequest request = UnityWebRequest.Get (sticker.images ["original_still"].url);
             await request.SendWebRequest();
@@ -202,7 +202,7 @@ namespace Charlie.Giphy
             {
                 throw new GiphyException($"Request failed with HTTP status code {request.responseCode}");
             }
-        
+
             List<UniGif.GifTexture> textureList = null;
             int width = -1;
             int height = -1;
@@ -217,7 +217,14 @@ namespace Charlie.Giphy
             // For now, obtain only the first texture in the list.
             Debug.Log($"[GiphyService] Got GIF {width}, {height}");
             Debug.Log($"[GiphyService] TextureFormat: {textureList[0].m_texture2d.format}");
-            return textureList[0].m_texture2d;
+            return new StickerImpl() {
+                Texture = textureList[0].m_texture2d
+            };
+        }
+
+        public class StickerImpl : ISticker
+        {
+            public Texture Texture { get; set; }
         }
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Charlie
 {
-    interface ISticker
+    public interface ISticker
     {
         Texture Texture
         {

@@ -10,13 +10,13 @@ namespace Charlie.Giphy
     {
         private GiphyService giphyService;
 
-        private static bool showTestConsole = true;
-        private static bool showTestConsoleSearch = true;
-        private static bool showTestConsoleTrending = true;
-        private static bool showTestConsoleRandom = true;
-        private static bool showTestConsoleGetByID = true;
-        private static bool showTestConsoleListPacks = true;
-        private static bool showTestConsoleStickersInPack = true;
+        private static bool showTestConsole = false;
+        private static bool showTestConsoleSearch = false;
+        private static bool showTestConsoleTrending = false;
+        private static bool showTestConsoleRandom = false;
+        private static bool showTestConsoleGetByID = false;
+        private static bool showTestConsoleListPacks = false;
+        private static bool showTestConsoleStickersInPack = false;
 
         private static string testConsoleSearchQuery = "Cat";
         private static int testConsoleSearchLimit = 25;
@@ -248,7 +248,7 @@ namespace Charlie.Giphy
             gettingByID = true;
             Repaint();
             Response<Sticker> response = await giphyService.GetByID(testConsoleGetByIDID);
-            testConsoleGetByIDTexture = await giphyService.StickerToTexture(response.data);
+            testConsoleGetByIDTexture = (await giphyService.Export(response.data)).Texture;
             gettingByID = false;
             Repaint();
         }
