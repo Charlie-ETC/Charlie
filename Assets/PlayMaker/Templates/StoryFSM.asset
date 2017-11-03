@@ -35,7 +35,7 @@ MonoBehaviour:
           name: substate:finish
           isSystemEvent: 0
           isGlobal: 1
-        toState: Greeting
+        toState: TakePhoto
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
