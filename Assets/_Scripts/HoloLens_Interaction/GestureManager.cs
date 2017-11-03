@@ -51,6 +51,7 @@ namespace Charlie
 #endif
         }
 
+#if UNITY_WSA
         private void OnManipulationGesture(InteractionSourceKind source, Vector3 cumulativeDelta, Ray headRay)
         {
             Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
@@ -62,6 +63,7 @@ namespace Charlie
 
             TargetRoot.position = headRay.GetPoint(dist);
         }
+#endif
 
         // Update is called once per frame
         void Update()
