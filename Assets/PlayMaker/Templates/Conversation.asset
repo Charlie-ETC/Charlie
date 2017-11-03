@@ -493,7 +493,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 0000e040
+        byteData: 00004040
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
@@ -564,7 +564,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 0000e040
+        byteData: 00004040
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 

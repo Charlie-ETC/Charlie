@@ -53,6 +53,17 @@ public class FsmEventGenerator : MonoBehaviour {
         }
     }
 
+    public void BroadcastEvent(string Event)
+    {
+        if (isActiveAndEnabled == false)
+            return;
+
+        foreach (var fsm in FSMArray)
+        {
+            fsm.SendEvent(Event);
+        }
+    }
+
     public void HandleDictationResult(string text)
     {
         if (isActiveAndEnabled == false)

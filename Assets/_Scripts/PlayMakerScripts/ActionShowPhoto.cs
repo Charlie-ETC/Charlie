@@ -12,7 +12,9 @@ public class ActionShowPhoto : FsmStateAction
 
         GameObject.Find("PhotoTaken").GetComponent<RawImage>().color = Color.white;
 
-        GameObject.Find("Sticker").gameObject.SetActive(true);
+        GameObject.Find("PhotoStage").transform.Find("Sticker").gameObject.SetActive(true);
+
+        Finish();
     }
 }
 
@@ -24,7 +26,9 @@ public class ActionHidePhoto : FsmStateAction
 
         GameObject.Find("PhotoTaken").GetComponent<RawImage>().color = Color.clear;
 
-        GameObject.Find("Sticker").gameObject.SetActive(false);
+        GameObject.Find("PhotoStage").transform.Find("Sticker").gameObject.SetActive(false);
+
+        Finish();
     }
 }
 

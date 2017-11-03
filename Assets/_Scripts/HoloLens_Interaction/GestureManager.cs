@@ -118,15 +118,40 @@ namespace Charlie
 
         }
 
+        public static StickerController SelectedObject = null;
 #if UNITY_WSA
         private void OnAirTap(InteractionSourceKind source, int tapCount, Ray headRay)
         {
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
             RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            
+            if (SelectedObject != null)
+            {
+                if (Physics.Raycast(ray, out hit, 40, LayerMask.GetMask("Photo")))
+                {
+                    //hit.collider.GetComponent
+                    SelectedObject.ChangeSelectState(false, true);
+                    Debug.LogError("hah");
+                }
+                else
+                {
+                    SelectedObject.ChangeSelectState(false, false);
+                }
+                SelectedObject = null;
+            }
+            else if (Physics.Raycast(ray, out hit, 40, LayerMask.GetMask("Sticker")))
+            {
+                var sticker = hit.collider.GetComponent<StickerController>();
+                if (sticker != null)
+                {
+                    SelectedObject = sticker;
+                    SelectedObject.ChangeSelectState(true, false);
+                }
+            }
+            else if (Physics.Raycast(ray, out hit, 40, LayerMask.GetMask("Tappable")))
             {
                 hit.collider.gameObject.SendMessage("OnAirTap");
+                Debug.LogError("Tappable");
             }
         }
 #endif

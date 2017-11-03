@@ -64,3 +64,4 @@ MonoBehaviour:
   - Dictation:Finish
   - Action:input.unknown
   - Dictation:Hypothesis
+  - StickerPlaced

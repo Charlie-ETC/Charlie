@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldCursor : MonoBehaviour {
+public class WorldCursor : Charlie.Singleton<WorldCursor> {
 
     private MeshRenderer meshRenderer;
     private Vector3 cameraPos;
@@ -11,8 +11,8 @@ public class WorldCursor : MonoBehaviour {
     public GameObject GazeHoveringObject = null;
 
 	void Start () {
-        //meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
-        //meshRenderer.enabled = false;
+        meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
+        meshRenderer.enabled = false;
     }
 	
 	// Update is called once per frame
@@ -26,20 +26,20 @@ public class WorldCursor : MonoBehaviour {
         if (Physics.Raycast(cameraPos, gazeDirection, out hit))
         {
             // move cursor to the hit point and hug the surface
-            //meshRenderer.enabled = true;
+            meshRenderer.enabled = true;
             transform.position = hit.point;
             transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 
             var sticker = hit.collider.gameObject;
             if (sticker.GetComponent<StickerController>() != null)
             {
-                //meshRenderer.enabled = false;
+                meshRenderer.enabled = false;
                 newGazeHoveringObject = sticker;
             }
         }
         else
         {
-            //meshRenderer.enabled = false;
+            meshRenderer.enabled = false;
         }
 
         if (newGazeHoveringObject != GazeHoveringObject)

@@ -22,17 +22,42 @@ public class StickerController : MonoBehaviour
         transform.Find("Rim").gameObject.SetActive(isHovering);
     }
 
-    public void ChangeSelectState(bool isSelecting)
+    GameObject ImgObj = null;
+    public void ChangeSelectState(bool isSelecting, bool isOnPhoto)
     {
-        var c = GameObject.Find("WorldCursor");
-        foreach (Transform child in c.transform)
+        if (isSelecting)
         {
-            Destroy(child.gameObject);
+            var c = GameObject.Find("WorldCursor");
+            ImgObj = Instantiate(transform.Find("Img").gameObject);
+            ImgObj.transform.SetParent(c.transform, true);
+            ImgObj.transform.localPosition = Vector3.zero;
+            ImgObj.transform.localScale = Vector3.one * 3;
+            ImgObj.transform.localEulerAngles = 90 * Vector3.right;
+            ImgObj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
         }
-        GameObject img = Instantiate(transform.Find("Img").gameObject);
-        img.transform.SetParent(c.transform);
-        img.transform.localPosition = Vector3.zero;
-        img.transform.localScale = Vector3.one;
-        img.transform.localEulerAngles = 90 * Vector3.right;
+        else
+        {
+            if (isOnPhoto)
+            {
+                if (ImgObj != null)
+                {
+                    ImgObj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                    ImgObj.transform.SetParent(GameObject.Find("Photoframe").transform, true);
+                    CharlieManager.Instance.GetComponent<FsmEventGenerator>().BroadcastEvent("StickerPlaced");
+                }
+            }
+            else
+            {
+                if (ImgObj != null)
+                {
+                    Destroy(ImgObj);
+                }
+            }
+            ImgObj = null;
+        }
+    }
+
+    public void OnAirTap()
+    {
     }
 }

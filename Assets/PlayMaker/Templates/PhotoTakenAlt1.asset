@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1219815696, guid: e743331561ef77147ae48cda9bcb8209, type: 3}
-  m_Name: PhotoTaken
+  m_Name: PhotoTakenAlt1
   m_EditorClassIdentifier: 
   category: General
   fsm:
     dataVersion: 2
     usedInTemplate: {fileID: 11400000}
-    name: PhotoTaken
+    name: PhotoTakenAlt1
     startState: MoveToTablet
     states:
     - name: MoveToTablet
@@ -24,7 +24,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 62
-        y: 257
+        y: 305
         width: 157
         height: 48
       isBreakpoint: 0
@@ -116,10 +116,10 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 331
-        y: 183
+        x: 336
+        y: 251
         width: 157
-        height: 48
+        height: 64
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Bye
+        toState: Hint 2
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -137,6 +137,14 @@ MonoBehaviour:
           isSystemEvent: 0
           isGlobal: 1
         toState: Hypo 2
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: StickerPlaced
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: State 1
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -309,7 +317,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 917
-        y: 199
+        y: 247
         width: 157
         height: 48
       isBreakpoint: 0
@@ -416,7 +424,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 1018
-        y: 305.5
+        y: 353.5
         width: 100
         height: 16
       isBreakpoint: 0
@@ -513,7 +521,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 66
-        y: 338.5
+        y: 386.5
         width: 100
         height: 32
       isBreakpoint: 0
@@ -583,10 +591,10 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 367
-        y: 129.5
-        width: 100
-        height: 32
+        x: 380
+        y: 166.5
+        width: 111
+        height: 48
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -596,6 +604,14 @@ MonoBehaviour:
           isSystemEvent: 1
           isGlobal: 0
         toState: ShowPhoto
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: StickerPlaced
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: Hypo 4
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -655,7 +671,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 959
-        y: 113.5
+        y: 161.5
         width: 100
         height: 32
       isBreakpoint: 0
@@ -720,6 +736,414 @@ MonoBehaviour:
         - owner
         paramDataPos: 00000000
         paramByteDataSize: 00000000
+    - name: State 1
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 675
+        y: 329
+        width: 111
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Bye
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: StickerPlaced
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: State 1
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionTimeout
+        - ActionSpeak
+        customNames:
+        - 
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000001000000
+        actionHashCodes: deb1630316192d01
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Awesome! I like it
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 0000204100
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 02000000120000000100000014000000
+        paramName:
+        - secs
+        - speech
+        - ignoredApiResponse
+        - audioSourceObj
+        paramDataPos: 00000000000000000400000000000000
+        paramByteDataSize: 04000000000000000100000000000000
+    - name: Hypo 4
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 397
+        y: 102.5
+        width: 100
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: State 1
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionHandleHypothesis
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 8d4bb503
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 14000000
+        paramName:
+        - owner
+        paramDataPos: 00000000
+        paramByteDataSize: 00000000
+    - name: Hint
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 395
+        y: 530
+        width: 111
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: StickerPlaced
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: State 1
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Wait
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionSpeak
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 16192d01
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Tap your finger to pick a sticker, and then tap again to put them
+            on the photo
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 120000000100000014000000
+        paramName:
+        - speech
+        - ignoredApiResponse
+        - audioSourceObj
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
+    - name: Wait
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 363
+        y: 427
+        width: 111
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Hint
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: StickerPlaced
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: State 1
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionTimeout
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: deb16303
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00009041
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 02000000
+        paramName:
+        - secs
+        paramDataPos: 00000000
+        paramByteDataSize: 04000000
+    - name: Hint 2
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 361
+        y: 344.5
+        width: 111
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: StickerPlaced
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: State 1
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Wait
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionSpeak
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 16192d01
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Tap your finger to pick a sticker, and then tap again to put them
+            on the photo
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 120000000100000014000000
+        paramName:
+        - speech
+        - ignoredApiResponse
+        - audioSourceObj
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -727,6 +1151,9 @@ MonoBehaviour:
     - name: Dictation:Hypothesis
       isSystemEvent: 0
       isGlobal: 1
+    - name: StickerPlaced
+      isSystemEvent: 0
+      isGlobal: 0
     globalTransitions: []
     variables:
       floatVariables: []

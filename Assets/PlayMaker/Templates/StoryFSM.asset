@@ -403,7 +403,7 @@ MonoBehaviour:
           name: substate:finish
           isSystemEvent: 0
           isGlobal: 1
-        toState: PhotoTaken
+        toState: GetSceneName
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -483,8 +483,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 234.01562
-        y: 548
+        x: 64.015625
+        y: 591
         width: 117
         height: 32
       isBreakpoint: 0
@@ -570,6 +570,450 @@ MonoBehaviour:
         - resetOnExit
         paramDataPos: 00000000000000000000000001000000
         paramByteDataSize: 00000000000000000000000000000000
+    - name: PhotoTakenAlt1
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 274
+        y: 393.5
+        width: 125
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: substate:finish
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: EnterRoom
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.EnableFSM
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 87aa9700
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: PhotoTakenAlt1
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 14000000120000001100000011000000
+        paramName:
+        - gameObject
+        - fsmName
+        - enable
+        - resetOnExit
+        paramDataPos: 00000000000000000000000001000000
+        paramByteDataSize: 00000000000000000000000000000000
+    - name: GetSceneName
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 441
+        y: 514
+        width: 121
+        height: 64
+      isBreakpoint: 0
+      isSequence: 1
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: alt1
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: PhotoTakenAlt1
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: alt2
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: PhotoTakenAlt1 2
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: alt3
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: PhotoTakenAlt1 3
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.GetSceneName
+        - HutongGames.PlayMaker.Actions.StringSwitch
+        customNames:
+        - 
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000009000000
+        actionHashCodes: 2cadcf0076d0e601
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 1
+          name: SceneName
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 
+        - useVariable: 1
+          name: SceneName
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Level1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Level2
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Level3
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmBoolParams:
+        - useVariable: 1
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - 
+        - 
+        - alt1
+        - alt2
+        - alt3
+        byteData: 0000000000
+        arrayParamSizes: 0300000003000000
+        arrayParamTypes:
+        - HutongGames.PlayMaker.FsmString
+        - HutongGames.PlayMaker.FsmEvent
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 120000000700000010000000120000001200000014000000110000001700000017000000120000000c0000001200000012000000120000000c00000017000000170000001700000001000000
+        paramName:
+        - name
+        - sceneReference
+        - sceneAtIndex
+        - sceneByName
+        - sceneByPath
+        - sceneByGameObject
+        - sceneFound
+        - sceneFoundEvent
+        - sceneNotFoundEvent
+        - stringVariable
+        - compareTo
+        - 
+        - 
+        - 
+        - sendEvent
+        - 
+        - 
+        - 
+        - everyFrame
+        paramDataPos: 00000000000000000000000001000000020000000000000000000000000000000100000003000000000000000400000005000000060000000100000002000000030000000400000004000000
+        paramByteDataSize: 00000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000
+    - name: PhotoTakenAlt1 2
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 225
+        y: 481.5
+        width: 138
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: substate:finish
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: EnterRoom
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.EnableFSM
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 87aa9700
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: PhotoTakenAlt2
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 14000000120000001100000011000000
+        paramName:
+        - gameObject
+        - fsmName
+        - enable
+        - resetOnExit
+        paramDataPos: 00000000000000000000000001000000
+        paramByteDataSize: 00000000000000000000000000000000
+    - name: PhotoTakenAlt1 3
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 201
+        y: 561.5
+        width: 138
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: substate:finish
+          isSystemEvent: 0
+          isGlobal: 1
+        toState: EnterRoom
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.EnableFSM
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 87aa9700
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: PhotoTakenAlt3
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 14000000120000001100000011000000
+        paramName:
+        - gameObject
+        - fsmName
+        - enable
+        - resetOnExit
+        paramDataPos: 00000000000000000000000001000000
+        paramByteDataSize: 00000000000000000000000000000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -580,6 +1024,15 @@ MonoBehaviour:
     - name: PlayerTooClose
       isSystemEvent: 0
       isGlobal: 1
+    - name: alt1
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: alt2
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: alt3
+      isSystemEvent: 0
+      isGlobal: 0
     - name: substate:finish
       isSystemEvent: 0
       isGlobal: 1
@@ -589,6 +1042,12 @@ MonoBehaviour:
       intVariables: []
       boolVariables: []
       stringVariables:
+      - useVariable: 1
+        name: SceneName
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 
       - useVariable: 1
         name: Temp
         tooltip: 
@@ -608,7 +1067,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 00000000
+      variableCategoryIDs: 0000000000000000
     description: 
     docUrl: 
     showStateLabel: 1
