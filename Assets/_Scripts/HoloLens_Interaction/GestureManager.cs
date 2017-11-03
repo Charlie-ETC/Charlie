@@ -121,8 +121,13 @@ namespace Charlie
 #if UNITY_WSA
         private void OnAirTap(InteractionSourceKind source, int tapCount, Ray headRay)
         {
-            //SpatialMapper mapper = FindObjectOfType<SpatialMapper>();
-            //mapper.FinishMapping();
+            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                hit.collider.gameObject.SendMessage("OnAirTap");
+            }
         }
 #endif
 
