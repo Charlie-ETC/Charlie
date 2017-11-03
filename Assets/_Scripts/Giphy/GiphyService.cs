@@ -187,5 +187,32 @@ namespace Charlie.Giphy
             return JsonConvert.DeserializeObject<Response<List<Sticker>>>(
                 response, settings);
         }
+
+
+        // <summary>
+        // Returns a texture for the given Sticker object.
+        // </summary>
+        // <param name="sticker">The sticker object.</param>
+        public async Task<Texture> StickerToTexture(Sticker sticker)
+        {
+            UnityWebRequest request = new UnityWebRequest(sticker.images["original_still"].url)
+            {
+                downloadHandler = new DownloadHandlerTexture()
+            };
+            await request.SendWebRequest();
+
+            if (request.isHttpError)
+            {
+                throw new GiphyException($"Request failed with HTTP status code {request.responseCode}");
+            }
+        
+            await UniGif.GetTextureListCoroutine(request.downloadHandler.data, (textureList, loopCount, width, height) =>
+            {
+                // Dothing yet.
+                Debug.Log($"[GiphyService] Got GIF {width}, {height}");
+            });
+
+            return DownloadHandlerTexture.GetContent(request);
+        }
     }
 }

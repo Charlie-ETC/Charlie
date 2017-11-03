@@ -31,6 +31,7 @@ namespace Charlie.Giphy
         private static string testConsoleRandomRating = "G";
 
         private static string testConsoleGetByIDID = "";
+        private static Texture testConsoleGetByIDTexture;
 
         private static int testConsoleStickersInPackID;
         private static int testConsoleStickersInPackLimit = 25;
@@ -142,6 +143,17 @@ namespace Charlie.Giphy
                         GUI.enabled = true;
                         GUILayout.EndHorizontal();
 
+                        if (testConsoleGetByIDTexture != null)
+                        {
+                            GUI.enabled = false;
+                            EditorGUILayout.ObjectField(
+                                testConsoleGetByIDTexture, typeof(Texture), true,
+                                GUILayout.Width(Screen.width - 40.0f),
+                                GUILayout.Height(Screen.width - 40.0f)
+                            );
+                            GUI.enabled = true;
+                        }
+
                         if (getByIDClicked)
                         {
                             HandleGetByIDClicked();
@@ -235,7 +247,8 @@ namespace Charlie.Giphy
         {
             gettingByID = true;
             Repaint();
-            await giphyService.GetByID(testConsoleGetByIDID);
+            Response<Sticker> response = await giphyService.GetByID(testConsoleGetByIDID);
+            testConsoleGetByIDTexture = await giphyService.StickerToTexture(response.data);
             gettingByID = false;
             Repaint();
         }
