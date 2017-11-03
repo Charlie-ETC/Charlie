@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 
-public class Context
+namespace Charlie.Apiai
 {
-    public string name;
-    public Dictionary<string, string> parameters;
-    public int lifespan;
+    public class Context
+    {
+        public string name;
+        public Dictionary<string, string> parameters;
+        public int lifespan;
+    }
 }

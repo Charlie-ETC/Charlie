@@ -22,10 +22,6 @@ GameObject:
   - component: {fileID: 23840060814117580}
   - component: {fileID: 102198296176273242}
   - component: {fileID: 82044599759395870}
-  - component: {fileID: 114513808649257902}
-  - component: {fileID: 114655129679286338}
-  - component: {fileID: 114446043903772982}
-  - component: {fileID: 114410405562530238}
   - component: {fileID: 114851015398798278}
   m_Layer: 0
   m_Name: DictationMonitor
@@ -526,51 +522,6 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278255615
---- !u!114 &114410405562530238
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1247174951067292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1e69a95dc005d489c759b9817dd6d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114446043903772982
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1247174951067292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b1ca7d1a162a524fb822b50361663bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  voice: en-US_AllisonVoice
---- !u!114 &114513808649257902
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1247174951067292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51e999dd612116a49a7a684947d2606b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114655129679286338
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1247174951067292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d128fb31e5c83c24091ea87e92517d99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114851015398798278
 MonoBehaviour:
   m_ObjectHideFlags: 1

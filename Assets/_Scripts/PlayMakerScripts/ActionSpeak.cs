@@ -1,11 +1,9 @@
 using HutongGames.PlayMaker;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using Asyncoroutine;
-using System.Text.RegularExpressions;
+
+using Charlie.WatsonTTS;
 
 [ActionCategory(ActionCategory.Audio)]
 public class ActionSpeak : FsmStateAction
@@ -56,6 +54,8 @@ public class ActionSpeak : FsmStateAction
 
             //Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>().PlayOneShot(clip);
             AudioSource audioSource = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>();
+            CharlieSlackLog charlieSlackLog = Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<CharlieSlackLog>();
+
             if (audioSource != null) // make sure only play single audioclip at one time
             {
                 if (audioSource.isPlaying)
@@ -65,6 +65,8 @@ public class ActionSpeak : FsmStateAction
 
                 audioSource.clip = clip;
                 audioSource.Play();
+                // log what charlie says to Slack
+                charlieSlackLog.SlackLog("charlie", actualSpeech);
                 DictationMonitor.Instance.plotSpeaking = true;
             }
             else
@@ -84,7 +86,7 @@ public class ActionSpeak : FsmStateAction
             if (DictationMonitor.Instance.MissedQ)
             {
                 if (!ignoredApiResponse) {
-                    DictationMonitor.Instance.TriggerApiaiEvent(ApiaiEventNames.INPUT_UNKNOWN);
+                    DictationMonitor.Instance.TriggerApiaiEvent(Charlie.Apiai.ApiaiEventNames.INPUT_UNKNOWN);
                 }
                 DictationMonitor.Instance.MissedQ = false;
             }

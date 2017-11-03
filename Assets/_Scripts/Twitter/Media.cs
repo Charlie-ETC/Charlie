@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 
-public class Media
+namespace Charlie.Twitter
 {
-    public long mediaId;
-    public string mediaIdString;
-    public int size;
-    public int expiresAfterSec;
-
-    public class Image
+    public class Media
     {
-        public string imageType;
-        public int w;
-        public int h;
+        public long mediaId;
+        public string mediaIdString;
+        public int size;
+        public int expiresAfterSec;
+
+        public class Image
+        {
+            public string imageType;
+            public int w;
+            public int h;
+        }
     }
 }

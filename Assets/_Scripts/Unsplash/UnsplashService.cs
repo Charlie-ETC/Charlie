@@ -4,18 +4,18 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;
 using Asyncoroutine;
 
-namespace Unsplash
+namespace Charlie.Unsplash
 {
 
     [RequireComponent(typeof(ConfigService))]
-    public class UnsplashService : MonoBehaviour
+    public class UnsplashService : Singleton<UnsplashService>
     {
         private string unsplashAppId;
         private string unsplashImageSize;
 
         private void Start()
         {
-            ConfigService service = GetComponent<ConfigService>();
+            ConfigService service = ConfigService.Instance;
             unsplashAppId = service.SelectedConfig().unsplashAppId;
             unsplashImageSize = service.SelectedConfig().unsplashImageSize;
         }
@@ -48,7 +48,7 @@ namespace Unsplash
                 return null;
             }
 
-            UnityWebRequest request = new UnityWebRequest(response.results[0].urls[unsplashImageSize])
+            UnityWebRequest request = new UnityWebRequest(response?.results?[0]?.urls[unsplashImageSize])
             {
                 method = UnityWebRequest.kHttpVerbGET,
                 downloadHandler = new DownloadHandlerTexture()
