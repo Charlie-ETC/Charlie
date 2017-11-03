@@ -10,13 +10,13 @@ namespace Charlie.Giphy
     {
         private GiphyService giphyService;
 
-        private static bool showTestConsole = true;
-        private static bool showTestConsoleSearch = true;
-        private static bool showTestConsoleTrending = true;
-        private static bool showTestConsoleRandom = true;
-        private static bool showTestConsoleGetByID = true;
-        private static bool showTestConsoleListPacks = true;
-        private static bool showTestConsoleStickersInPack = true;
+        private static bool showTestConsole = false;
+        private static bool showTestConsoleSearch = false;
+        private static bool showTestConsoleTrending = false;
+        private static bool showTestConsoleRandom = false;
+        private static bool showTestConsoleGetByID = false;
+        private static bool showTestConsoleListPacks = false;
+        private static bool showTestConsoleStickersInPack = false;
 
         private static string testConsoleSearchQuery = "Cat";
         private static int testConsoleSearchLimit = 25;
@@ -31,6 +31,7 @@ namespace Charlie.Giphy
         private static string testConsoleRandomRating = "G";
 
         private static string testConsoleGetByIDID = "";
+        private static Texture testConsoleGetByIDTexture;
 
         private static int testConsoleStickersInPackID;
         private static int testConsoleStickersInPackLimit = 25;
@@ -142,6 +143,17 @@ namespace Charlie.Giphy
                         GUI.enabled = true;
                         GUILayout.EndHorizontal();
 
+                        if (testConsoleGetByIDTexture != null)
+                        {
+                            GUI.enabled = false;
+                            EditorGUILayout.ObjectField(
+                                testConsoleGetByIDTexture, typeof(Texture), true,
+                                GUILayout.Width(Screen.width - 40.0f),
+                                GUILayout.Height(Screen.width - 40.0f)
+                            );
+                            GUI.enabled = true;
+                        }
+
                         if (getByIDClicked)
                         {
                             HandleGetByIDClicked();
@@ -235,7 +247,8 @@ namespace Charlie.Giphy
         {
             gettingByID = true;
             Repaint();
-            await giphyService.GetByID(testConsoleGetByIDID);
+            Response<Sticker> response = await giphyService.GetByID(testConsoleGetByIDID);
+            testConsoleGetByIDTexture = (await giphyService.Export(response.data)).Texture;
             gettingByID = false;
             Repaint();
         }
