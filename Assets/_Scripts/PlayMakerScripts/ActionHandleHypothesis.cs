@@ -17,14 +17,17 @@ public class ActionHandleHypothesis : FsmStateAction
     public override void OnEnter()
     {
         go = Fsm.GetOwnerDefaultTarget(owner);
-        wasLookingAtPlayer = go.GetComponent<LookatPlayer>().enabled;
-        go.GetComponent<LookatPlayer>().enabled = true;
+        //wasLookingAtPlayer = go.GetComponent<LookatPlayer>().enabled;
+        wasLookingAtPlayer = go.GetComponentInChildren<LookAtPlayerIKControl>().isActive;
+        //go.GetComponent<LookatPlayer>().enabled = true;
+        go.GetComponentInChildren<LookAtPlayerIKControl>().isActive = true;
     }
 
 
     public override void OnExit()
     {
-        go.GetComponent<LookatPlayer>().enabled = wasLookingAtPlayer;
+        //go.GetComponent<LookatPlayer>().enabled = wasLookingAtPlayer;
+        go.GetComponentInChildren<LookAtPlayerIKControl>().isActive = wasLookingAtPlayer;
     }
 
     public override bool Event(FsmEvent fsmEvent)

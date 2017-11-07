@@ -18,7 +18,7 @@ public class ActionLookatPlayer : FsmStateAction
     public override void OnEnter()
     {
         // if we want to control her neck
-        Fsm.GetOwnerDefaultTarget(objSelf).GetComponent<LookatPlayer>().enabled = lookAtPlayerOn;
+        Fsm.GetOwnerDefaultTarget(objSelf).GetComponentInChildren<LookAtPlayerIKControl>().isActive = lookAtPlayerOn;
 
         Finish();
     }
