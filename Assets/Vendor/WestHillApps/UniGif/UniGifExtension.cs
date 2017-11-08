@@ -50,7 +50,11 @@ public static class UniGifExtension
         }
 
         var result = new int[1];
+#if !UNITY_WSA
         array.CopyTo(result, 0);
+#else
+        ((ICollection)array).CopyTo(result, 0);
+#endif
         return result[0];
     }
 }
