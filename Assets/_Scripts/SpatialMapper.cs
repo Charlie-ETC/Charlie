@@ -1,10 +1,12 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using HoloToolkit.Unity;
+using Asyncoroutine;
 
 namespace Charlie
 {
-    public class SpatialMapper : MonoBehaviour
+    public class SpatialMapper : Singleton<SpatialMapper>
     {
         public UnityEvent readyToScanEvent;
         public UnityEvent scanningEvent;
@@ -23,6 +25,7 @@ namespace Charlie
         void Start()
         {
             SpatialUnderstanding.Instance.ScanStateChanged += HandleScanStateChanged;
+            DontDestroyOnLoad(gameObject);
         }
 
         void HandleScanStateChanged()
@@ -72,6 +75,43 @@ namespace Charlie
         public void FinishMapping()
         {
             SpatialUnderstanding.Instance.RequestFinishScan();
+        }
+
+        public void HideMesh()
+        {
+            Debug.Log($"[SpatialMapper]: Hiding mesh");
+            SpatialUnderstanding.Instance.UnderstandingCustomMesh.DrawProcessedMesh = false;
+        }
+
+        public void ShowMesh()
+        {
+            Debug.Log($"[SpatialMapper]: Showing mesh");
+            SpatialUnderstanding.Instance.UnderstandingCustomMesh.DrawProcessedMesh = true;
+        }
+
+        public async Task WaitForSurfaces()
+        {
+            SpatialUnderstandingDll.Imports.PlayspaceStats stats = null;
+            while (true)
+            {
+                var statsPtr = SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStatsPtr();
+                if (SpatialUnderstandingDll.Imports.QueryPlayspaceStats(statsPtr) == 0)
+                {
+                    Debug.Log($"[SpatialMapper]: Failed to query playspace stats, retrying");
+                }
+                else
+                {
+                    stats = SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats();
+                    Debug.Log($"[SpatialMapper]: Playspace stats: {stats.NumPlatform}, {stats.NumFloor}, {stats.NumCeiling}");
+
+                    if (stats.NumPlatform > 0)
+                    {
+                        break;
+                    }
+                }
+
+                await new WaitForSeconds(3.0f);
+            }
         }
 
         public void HandleDone()

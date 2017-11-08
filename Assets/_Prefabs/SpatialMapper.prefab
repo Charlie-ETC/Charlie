@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ImportMeshPeriod: 4
-  meshMaterial: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
+  meshMaterial: {fileID: 2100000, guid: ddc2ff62e97ce6d41991784c3aa8e233, type: 2}
   MaxFrameTime: 5
   CreateMeshColliders: 0
 --- !u!114 &114165713926517916
@@ -172,8 +172,8 @@ MonoBehaviour:
   doneEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114268130050386824}
-        m_MethodName: HandleDone
+      - m_Target: {fileID: 0}
+        m_MethodName: OnMappingDone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -185,6 +185,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  adjustmentMode: 1
 --- !u!114 &114555293007315584
 MonoBehaviour:
   m_ObjectHideFlags: 1
