@@ -5077,11 +5077,6 @@ Prefab:
       propertyPath: m_Name
       value: ServiceContainer (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114671872322564182, guid: dec4232208ac60345a8a1d58893b97c5,
-        type: 2}
-      propertyPath: voice
-      value: en-US_AllisonVoice
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec4232208ac60345a8a1d58893b97c5, type: 2}
   m_IsPrefabParent: 0

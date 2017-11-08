@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a06e8856190474fb3ade898c088b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voice: en-US_LisaVoice
+  voice: en-US_AllisonVoice
 --- !u!114 &114809455189364276
 MonoBehaviour:
   m_ObjectHideFlags: 1
