@@ -46,22 +46,24 @@ namespace Charlie
 #if UNITY_WSA
             gestureRecognizer = new GestureRecognizer();
             gestureRecognizer.TappedEvent += OnAirTap;
-            gestureRecognizer.ManipulationUpdatedEvent += OnManipulationGesture;
+            gestureRecognizer.NavigationUpdated += OnNavigationUpdated;
+            Debug.LogError($"[OnManipulationGesture] start");
             gestureRecognizer.StartCapturingGestures();
 #endif
         }
 
 #if UNITY_WSA
-        private void OnManipulationGesture(InteractionSourceKind source, Vector3 cumulativeDelta, Ray headRay)
+        private void OnNavigationUpdated(NavigationUpdatedEventArgs obj)
         {
+            Debug.LogError($"[OnManipulationGesture] {obj.normalizedOffset}");
+
             Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
             Transform cam = Camera.main.transform;
 
-            float dist = (TargetRoot.position - cam.position).magnitude;
-            dist += cumulativeDelta.y;
-            TargetRoot.Rotate(new Vector3(0, cumulativeDelta.x, 0));
+            float dist = obj.normalizedOffset.y * 2f + 3f;
+            TargetRoot.eulerAngles = (new Vector3(0, obj.normalizedOffset.x * 60, 0));
 
-            TargetRoot.position = headRay.GetPoint(dist);
+            TargetRoot.position = cam.position + cam.forward * dist;
         }
 #endif
 
@@ -118,20 +120,41 @@ namespace Charlie
 
         }
 
+        public static StickerController SelectedObject = null;
 #if UNITY_WSA
         private void OnAirTap(InteractionSourceKind source, int tapCount, Ray headRay)
         {
-            // air tap focused object to call its OnSelect()
-            //if (FocusedObject != null) {
-            //    CubeCommands cc = FocusedObject.GetComponentInParent<CubeCommands>();
-            //    if (cc != null) {
-            //        cc.OnSelect();
-            //    }
-            //}
-
-            SpatialMapper mapper = FindObjectOfType<SpatialMapper>();
-            mapper.FinishMapping();
-            //SceneManager.LoadScene("Main");
+            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            RaycastHit hit;
+            
+            if (SelectedObject != null)
+            {
+                if (Physics.Raycast(ray, out hit, 40, LayerMask.GetMask("Photo")))
+                {
+                    //hit.collider.GetComponent
+                    SelectedObject.ChangeSelectState(false, true);
+                    Debug.LogError("hah");
+                }
+                else
+                {
+                    SelectedObject.ChangeSelectState(false, false);
+                }
+                SelectedObject = null;
+            }
+            else if (Physics.Raycast(ray, out hit, 40, LayerMask.GetMask("Sticker")))
+            {
+                var sticker = hit.collider.GetComponent<StickerController>();
+                if (sticker != null)
+                {
+                    SelectedObject = sticker;
+                    SelectedObject.ChangeSelectState(true, false);
+                }
+            }
+            else if (Physics.Raycast(ray, out hit, 40, LayerMask.GetMask("Tappable")))
+            {
+                hit.collider.gameObject.SendMessage("OnAirTap");
+                Debug.LogError("Tappable");
+            }
         }
 #endif
 

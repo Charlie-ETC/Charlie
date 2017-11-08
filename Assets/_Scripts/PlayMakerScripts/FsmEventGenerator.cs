@@ -53,6 +53,17 @@ public class FsmEventGenerator : MonoBehaviour {
         }
     }
 
+    public void BroadcastEvent(string Event)
+    {
+        if (isActiveAndEnabled == false)
+            return;
+
+        foreach (var fsm in FSMArray)
+        {
+            fsm.SendEvent(Event);
+        }
+    }
+
     public void HandleDictationResult(string text)
     {
         if (isActiveAndEnabled == false)
@@ -62,6 +73,13 @@ public class FsmEventGenerator : MonoBehaviour {
         {
             fsm.SendEvent("Dictation:Finish");
         }
+    }
+
+    public void Awake()
+    {
+        var context = new Context();
+        context.name = "story_somethine";
+        ApiaiService.Instance.PostContext(DictationMonitor.Instance.apiaiSessionId, context);
     }
 
     public void HandleResponse(Response resp)
@@ -80,6 +98,9 @@ public class FsmEventGenerator : MonoBehaviour {
         {
             foreach (var fsm in FSMArray)
             {
+                if (resp.result.action == "smalltalk.appraisal.good")
+                    resp.result.action = "smalltalk.confirmation.yes";
+
                 fsm.SendEvent("Action:" + resp.result.action);
             }
         }

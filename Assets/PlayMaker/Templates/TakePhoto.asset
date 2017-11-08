@@ -35,7 +35,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Change BG
+        toState: ConfirmBackground
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -445,8 +445,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 355.9375
-        y: 419.09375
+        x: 311.9375
+        y: 428.09375
         width: 157
         height: 48
       isBreakpoint: 0
@@ -880,8 +880,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 239.42969
-        y: 504.46094
+        x: 256.4297
+        y: 510.46094
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1088,7 +1088,7 @@ MonoBehaviour:
         - 
         - 
         actionEnabled: 0101
-        actionIsOpen: 0100
+        actionIsOpen: 0101
         actionStartIndex: 0000000000000000
         actionHashCodes: 00000000deb16303
         unityObjectParams: []

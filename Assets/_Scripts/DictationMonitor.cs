@@ -28,7 +28,7 @@ public class DictationMonitor : MonoBehaviour {
     //private AudioSource audioSource;
 
     private Dictionary<string, IntentHandler> intentHandlerIndex = new Dictionary<string, IntentHandler>();
-    private string apiaiSessionId;
+    public string apiaiSessionId;
 
     private string lastRequest;
     private string lastResponse;   

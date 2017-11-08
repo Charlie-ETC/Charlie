@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1219815696, guid: e743331561ef77147ae48cda9bcb8209, type: 3}
-  m_Name: PhotoTaken
+  m_Name: PhotoTakenAlt3
   m_EditorClassIdentifier: 
   category: General
   fsm:
     dataVersion: 2
     usedInTemplate: {fileID: 11400000}
-    name: PhotoTaken
+    name: PhotoTakenAlt3
     startState: MoveToTablet
     states:
     - name: MoveToTablet
