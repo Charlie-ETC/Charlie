@@ -270,7 +270,7 @@ namespace HoloToolkit.Unity.InputModule
         {
             // There are two things moving the camera: the camera parent (that this script is attached to)
             // and the user's head (which the MR device is attached to. :)). When setting the world position,
-            // we need to set it relative to the user's head in the scene so they are looking/standing where
+            // we need to set it relative to the user's head in the scene so they are looking/standing where 
             // we expect.
             transform.position = worldPosition - (CameraCache.Main.transform.position - transform.position);
         }
