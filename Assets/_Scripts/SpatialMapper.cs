@@ -8,6 +8,15 @@ namespace Charlie
 {
     public class SpatialMapper : Singleton<SpatialMapper>
     {
+        [Tooltip("The number of seconds to wait before re-determining if the space is good enough")]
+        public float initialScanPollingInterval = 3.0f;
+
+        [Tooltip("Mesh material to use when scanning")]
+        public Material scanningMeshMaterial;
+
+        [Tooltip("Mesh material to use when scanning is completed")]
+        public Material doneMeshMaterial;
+
         public UnityEvent readyToScanEvent;
         public UnityEvent scanningEvent;
         public UnityEvent finishingEvent;
@@ -69,18 +78,14 @@ namespace Charlie
 
         public void BeginMapping()
         {
+            SpatialUnderstanding.Instance.UnderstandingCustomMesh.MeshMaterial = scanningMeshMaterial;
             SpatialUnderstanding.Instance.RequestBeginScanning();
         }
 
         public void FinishMapping()
         {
             SpatialUnderstanding.Instance.RequestFinishScan();
-        }
-
-        public void HideMesh()
-        {
-            Debug.Log($"[SpatialMapper]: Hiding mesh");
-            SpatialUnderstanding.Instance.UnderstandingCustomMesh.DrawProcessedMesh = false;
+            SpatialUnderstanding.Instance.UnderstandingCustomMesh.MeshMaterial = doneMeshMaterial;
         }
 
         public void ShowMesh()
@@ -97,20 +102,24 @@ namespace Charlie
                 var statsPtr = SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStatsPtr();
                 if (SpatialUnderstandingDll.Imports.QueryPlayspaceStats(statsPtr) == 0)
                 {
-                    Debug.Log($"[SpatialMapper]: Failed to query playspace stats, retrying");
+                    Debug.Log($"[SpatialMapper]: Failed to query playspace stats");
                 }
                 else
                 {
                     stats = SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats();
-                    Debug.Log($"[SpatialMapper]: Playspace stats: {stats.NumPlatform}, {stats.NumFloor}, {stats.NumCeiling}");
+                    Debug.Log($"[SpatialMapper]: Playspace stats: NumPlatform: {stats.NumPlatform}, NumFloor: {stats.NumFloor}, NumCeiling: {stats.NumCeiling}");
+                    Debug.Log($"[SpatialMapper]: Playspace stats: NumWall_XNeg: {stats.NumWall_XNeg}, NumWall_XPos: {stats.NumWall_XPos}, NumWall_ZNeg: {stats.NumWall_ZNeg}, NumWall_ZPos: {stats.NumWall_ZPos}");
+                    Debug.Log($"[SpatialMapper]: Playspace stats: HorizSurfaceArea: {stats.HorizSurfaceArea}, TotalSurfaceArea: {stats.TotalSurfaceArea}, UpSurfaceArea: {stats.UpSurfaceArea}, DownSurfaceArea: {stats.DownSurfaceArea}, WallSurfaceArea: {stats.WallSurfaceArea}");
+                    Debug.Log($"[SpatialMapper]: Playspace stats: CellCount_IsSeenQualtiy_None: {stats.CellCount_IsSeenQualtiy_None}, CellCount_IsSeenQualtiy_Seen: {stats.CellCount_IsSeenQualtiy_Seen}, CellCount_IsSeenQualtiy_Good: {stats.CellCount_IsSeenQualtiy_Good}");
 
-                    if (stats.NumPlatform > 0)
+                    if (stats.NumPlatform > 0 && stats.NumWall_XPos > 0 && stats.NumWall_ZPos > 0)
                     {
                         break;
                     }
                 }
 
-                await new WaitForSeconds(3.0f);
+                Debug.Log($"[SpatialMapper]: Waiting for {initialScanPollingInterval} more seconds to retry");
+                await new WaitForSeconds(initialScanPollingInterval);
             }
         }
 

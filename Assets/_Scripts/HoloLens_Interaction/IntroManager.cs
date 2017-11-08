@@ -7,6 +7,7 @@ namespace Charlie
 {
     public class IntroManager : MonoBehaviour, IInputClickHandler
     {
+        [Tooltip("The name of the next scene to transition to.")]
         public string NextScene;
 
         [Tooltip("Text element to update when ready to proceed to next scene.")]
@@ -25,20 +26,21 @@ namespace Charlie
             Debug.Log("[IntroManager]: Waiting for surfaces...");
             await SpatialMapper.Instance.WaitForSurfaces();
 
-            // When stats are good enough, we can finish mapping.
-            SpatialMapper.Instance.FinishMapping();
+            // Update the text.
+            ReadyText.text = "Tap when you're satisfied with the results";
         }
 
         public void OnMappingDone()
         {
             // Update the text.
-            ReadyText.text = "Scan complete. Tap to continue.";
+            SceneManager.LoadSceneAsync(NextScene, LoadSceneMode.Single);
         }
 
         public void OnInputClicked(InputClickedEventData eventData)
         {
+            // When stats are good enough, we can finish mapping.
             Debug.Log("[IntroManager]: OnInputClicked");
-            SceneManager.LoadSceneAsync(NextScene, LoadSceneMode.Single);
+            SpatialMapper.Instance.FinishMapping();
         }
     }
 }
