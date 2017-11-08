@@ -13,6 +13,7 @@ public class ActionFollowGazedSticker : FsmStateAction
     public FsmOwnerDefault objSelf;
     bool ended = false;
     Animator anim = null;
+    GameObject currentTarget = null;
 
     public override async void OnEnter()
     {
@@ -27,7 +28,6 @@ public class ActionFollowGazedSticker : FsmStateAction
         anim.SetInteger("toWalk", i);
         anim.SetBool("pointUp", false);
 
-        GameObject currentTarget = null;
         GameObject nextTarget = null;
         int nextTargetCounter = 0;
 
@@ -107,6 +107,19 @@ public class ActionFollowGazedSticker : FsmStateAction
         ended = true;
         anim.SetInteger("toWalk", 0);
         anim.SetBool("pointUp", false);
+        Charlie.GestureManager.Instance.VoiceSelectObject(currentTarget);
+    }
+
+
+
+    public override bool Event(FsmEvent fsmEvent)
+    {
+        base.Event(fsmEvent);
+        if (fsmEvent.Name == "Action:smalltalk.confirmation.yes" && currentTarget != null)
+        {
+             Finish();
+        }
+        return false;
     }
 
 }

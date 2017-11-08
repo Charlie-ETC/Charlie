@@ -126,7 +126,7 @@ namespace Charlie
         {
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
             RaycastHit hit;
-            
+
             if (SelectedObject != null)
             {
                 if (Physics.Raycast(ray, out hit, 40, LayerMask.GetMask("Photo")))
@@ -157,6 +157,33 @@ namespace Charlie
             }
         }
 #endif
+        public void VoiceSelectObject(GameObject go)
+        {
+            var sticker = go.GetComponent<StickerController>();
+            if (sticker != null)
+            {
+                SelectedObject = sticker;
+                SelectedObject.ChangeSelectState(true, false);
+            }
+        }
+
+        public void VoicePutObject()
+        {
+
+            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            RaycastHit hit;
+
+            if (SelectedObject != null)
+            {
+                if (Physics.Raycast(ray, out hit, 40, LayerMask.GetMask("Photo")))
+                {
+                    //hit.collider.GetComponent
+                    SelectedObject.ChangeSelectState(false, true);
+                    Debug.LogError("hah");
+                }
+                SelectedObject = null;
+            }
+        }
 
     }
 }
