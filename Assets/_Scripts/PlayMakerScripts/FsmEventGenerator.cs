@@ -75,6 +75,13 @@ public class FsmEventGenerator : MonoBehaviour {
         }
     }
 
+    public void Awake()
+    {
+        var context = new Context();
+        context.name = "story_somethine";
+        ApiaiService.Instance.PostContext(DictationMonitor.Instance.apiaiSessionId, context);
+    }
+
     public void HandleResponse(Response resp)
     {
         //var intentName = resp?.result?.metadata?.intentName ?? "hello";
@@ -91,6 +98,9 @@ public class FsmEventGenerator : MonoBehaviour {
         {
             foreach (var fsm in FSMArray)
             {
+                if (resp.result.action == "smalltalk.appraisal.good")
+                    resp.result.action = "smalltalk.confirmation.yes";
+
                 fsm.SendEvent("Action:" + resp.result.action);
             }
         }
