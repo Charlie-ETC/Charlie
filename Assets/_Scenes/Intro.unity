@@ -290,6 +290,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114268130050386824, guid: 3161153993fbe1647ae4ab2bdd847ed6,
         type: 2}
+      propertyPath: initialSpatialAnchor
+      value: 
+      objectReference: {fileID: 1870848949}
+    - target: {fileID: 114268130050386824, guid: 3161153993fbe1647ae4ab2bdd847ed6,
+        type: 2}
       propertyPath: doneEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 687400997}
@@ -338,6 +343,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 117765de48a5e8745bf10a34c8365d26, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1870848949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1870848950}
+  m_Layer: 0
+  m_Name: TargetRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1870848950
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870848949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.04689169, y: -0.55856913, z: 3.672716}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1925797630 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000011803902180, guid: 90749889d87976143a9e21072d2434b4,

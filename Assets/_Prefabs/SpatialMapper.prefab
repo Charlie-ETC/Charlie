@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4134308871348858}
   - component: {fileID: 114268130050386824}
+  - component: {fileID: 114341115191668018}
   m_Layer: 0
   m_Name: SpatialMapper
   m_TagString: Untagged
@@ -155,8 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialScanPollingInterval: 3
-  scanningMeshMaterial: {fileID: 2100000, guid: ddc2ff62e97ce6d41991784c3aa8e233,
-    type: 2}
+  initialSpatialAnchor: {fileID: 0}
   doneMeshMaterial: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
   readyToScanEvent:
     m_PersistentCalls:
@@ -189,7 +189,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  adjustmentMode: 1
+--- !u!114 &114341115191668018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1316899212530926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f122ca4ae6b527e4798205becf9a0550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnchorDebugText: {fileID: 0}
+  ShowDetailedLogs: 0
+  PersistentAnchors: 0
 --- !u!114 &114555293007315584
 MonoBehaviour:
   m_ObjectHideFlags: 1

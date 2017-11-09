@@ -13,6 +13,9 @@ namespace Charlie
         [Tooltip("The number of seconds to wait before re-determining if the space is good enough")]
         public float initialScanPollingInterval = 3.0f;
 
+        [Tooltip("The GameObject to use as the initial spatial anchor")]
+        public GameObject initialSpatialAnchor;
+
         [Tooltip("Mesh material to use when scanning is completed")]
         public Material doneMeshMaterial;
         
@@ -78,7 +81,7 @@ namespace Charlie
             if (targetRoot != null)
             {
                 Debug.Log($"[SpatialMapper] Found TargetRoot, moving it to the platform");
-                MoveTargetRoot(targetRoot);
+                WorldAnchorManager.Instance.AttachAnchor(targetRoot, "TargetRoot");
             }
         }
 
@@ -111,6 +114,8 @@ namespace Charlie
                 case SpatialUnderstanding.ScanStates.Done:
                     Debug.Log("[SpatialMapper] Room scanning complete");
                     SpatialUnderstanding.Instance.UnderstandingCustomMesh.MeshMaterial = doneMeshMaterial;
+                    MoveTargetRoot(initialSpatialAnchor);
+                    WorldAnchorManager.Instance.AttachAnchor(initialSpatialAnchor, "TargetRoot");
                     doneEvent.Invoke();
                     break;
                 default:
