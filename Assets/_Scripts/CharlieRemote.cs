@@ -1,7 +1,9 @@
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Newtonsoft.Json;
 using Unosquare.Net;
 using Unosquare.Labs.EmbedIO;
 using Unosquare.Labs.EmbedIO.Modules;
@@ -55,14 +57,31 @@ namespace Charlie
             [WebApiHandler(HttpVerbs.Get, "/api/testCharliePosition")]
             public async Task<bool> GetTestCharliePosition(WebServer server, HttpListenerContext context)
             {
-                Vector3 position = await MainThreadDispatcher.Instance.DispatchWithResult(() =>
+                string position = null;
+                await MainThreadDispatcher.Instance.Dispatch(() =>
                 {
                     Debug.Log("[CharlieRemote] Getting GameObject and transform position");
                     GameObject charlie = GameObject.Find("Charlie");
-                    Debug.Log($"[CharlieRemote] Position: {charlie.transform.position}");
-                    return charlie.transform.position;
+                    position = JsonUtility.ToJson(charlie.transform.position);
                 });
-                Unosquare.Labs.EmbedIO.Extensions.JsonResponse(context, position);
+
+                byte[] response = Encoding.UTF8.GetBytes(position);
+                context.Response.OutputStream.Write(response, 0, response.Length);
+                return true;
+            }
+
+            [WebApiHandler(HttpVerbs.Get, "/api/scenes")]
+            public async Task<bool> getScenes(WebServer server, HttpListenerContext context)
+            {
+                string scenesJson = null;
+                await MainThreadDispatcher.Instance.Dispatch(() =>
+                {
+                    Scene[] scenes = SceneManager.GetAllScenes();
+                    scenesJson = JsonUtility.ToJson(scenes);
+                });
+
+                byte[] response = Encoding.UTF8.GetBytes(scenesJson);
+                context.Response.OutputStream.Write(response, 0, response.Length);
                 return true;
             }
 
