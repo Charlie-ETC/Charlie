@@ -40,7 +40,7 @@ namespace Charlie
                 MainThreadDispatcher.Instance.Dispatch(() =>
                 {
                     SpatialMapper mapper = FindObjectOfType<SpatialMapper>();
-                    if (mapper != null && mapper.CanFinishMapping())
+                    if (mapper != null && mapper.CanFinishMapping)
                     {
                         mapper.FinishMapping();
                     }

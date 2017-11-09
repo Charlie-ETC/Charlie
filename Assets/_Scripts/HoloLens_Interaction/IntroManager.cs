@@ -18,13 +18,16 @@ namespace Charlie
         // </summary>
         protected virtual async void Start()
         {
-            Debug.Log("[IntroManager]: Adding global input handler");
+            Debug.Log("[IntroManager] Adding global input handler");
             InputManager.AssertIsInitialized();
             InputManager.Instance.AddGlobalListener(gameObject);
 
+            // Start spatial mapping.
+            SpatialMapper.Instance.BeginMapping();
+
             // Wait for spatial mapping to complete...
-            Debug.Log("[IntroManager]: Waiting for surfaces...");
-            await SpatialMapper.Instance.WaitForSurfaces();
+            Debug.Log("[IntroManager] Waiting for playspace constraints to be satisfied...");
+            await SpatialMapper.Instance.WaitForPlayspaceStats();
 
             // Update the text.
             ReadyText.text = "Tap when you're satisfied with the results";
@@ -36,10 +39,14 @@ namespace Charlie
             SceneManager.LoadSceneAsync(NextScene, LoadSceneMode.Single);
         }
 
+        /// <summary>
+        /// Handles a tap event.
+        /// </summary>
+        /// <param name="eventData">The click event data. This could be null.</param>
         public void OnInputClicked(InputClickedEventData eventData)
         {
             // When stats are good enough, we can finish mapping.
-            Debug.Log("[IntroManager]: OnInputClicked");
+            Debug.Log("[IntroManager] OnInputClicked");
             SpatialMapper.Instance.FinishMapping();
         }
     }

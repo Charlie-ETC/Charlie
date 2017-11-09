@@ -155,6 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialScanPollingInterval: 3
+  scanningMeshMaterial: {fileID: 2100000, guid: ddc2ff62e97ce6d41991784c3aa8e233,
+    type: 2}
+  doneMeshMaterial: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
   readyToScanEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -198,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d157ace7f2fbb8b4094705800cbe216c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoBeginScanning: 1
+  AutoBeginScanning: 0
   UpdatePeriod_DuringScanning: 1
   UpdatePeriod_AfterScanning: 4
 --- !u!114 &114623084030483220

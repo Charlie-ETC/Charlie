@@ -36,7 +36,7 @@ namespace Charlie
 
         private void HandleNextSceneClicked()
         {
-            introManager.OnMappingDone();
+            introManager.OnInputClicked(null);
         }
     }
 }
