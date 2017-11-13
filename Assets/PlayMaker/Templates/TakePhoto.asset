@@ -445,7 +445,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 311.9375
+        x: 318.9375
         y: 428.09375
         width: 157
         height: 48
@@ -511,7 +511,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Do you like this view?
+          value: What's your favorite place?
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -544,8 +544,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 609.78906
-        y: 423.65625
+        x: 502.78906
+        y: 503.65625
         width: 157
         height: 48
       isBreakpoint: 0
@@ -615,8 +615,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 617.9375
-        y: 555.6953
+        x: 633.9375
+        y: 592.6953
         width: 100
         height: 32
       isBreakpoint: 0
@@ -694,8 +694,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 403.875
-        y: 571.9375
+        x: 341.875
+        y: 593.9375
         width: 140
         height: 32
       isBreakpoint: 0
@@ -880,8 +880,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 256.4297
-        y: 510.46094
+        x: 171.42969
+        y: 527.46094
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1260,7 +1260,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Great! Three, Two, One, Cheese!
+          value: Great!
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -1617,8 +1617,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 585.22656
-        y: 341.1328
+        x: 579.22656
+        y: 375.1328
         width: 240
         height: 64
       isBreakpoint: 0
