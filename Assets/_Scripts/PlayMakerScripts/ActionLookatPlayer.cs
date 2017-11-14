@@ -19,7 +19,7 @@ public class ActionLookatPlayer : FsmStateAction
     {
         // if we want to control her neck
         Fsm.GetOwnerDefaultTarget(objSelf).GetComponentInChildren<LookAtPlayerIKControl>().isActive = lookAtPlayerOn;
-        Fsm.GetOwnerDefaultTarget(objSelf).GetComponent<LookatPlayer>().enabled = lookAtPlayerOn;
+        //Fsm.GetOwnerDefaultTarget(objSelf).GetComponent<LookatPlayer>().enabled = lookAtPlayerOn;
 
         Finish();
     }
