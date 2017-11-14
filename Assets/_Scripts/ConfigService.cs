@@ -11,6 +11,12 @@ namespace Charlie
 
         protected override void Awake()
         {
+            if (IsInitialized)
+            {
+                Destroy(this);
+                return;
+            }
+
             base.Awake();
 
             Config[] configs = Resources.LoadAll<Config>("Config");
