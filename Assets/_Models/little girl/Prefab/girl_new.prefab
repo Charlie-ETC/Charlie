@@ -2496,7 +2496,6 @@ MonoBehaviour:
   eyeWeight: 0.8
   bodyWeight: 0.08
   target: {fileID: 0}
-  lookatPlayer: {fileID: 0}
 --- !u!137 &137106495079929504
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
