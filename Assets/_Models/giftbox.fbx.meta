@@ -1,0 +1,210 @@
+fileFormatVersion: 2
+guid: cb3eb18cba458434bbdfc66b43f5dcb6
+timeCreated: 1510617781
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: group1
+    100004: group2
+    100006: group3
+    100008: group4
+    100010: group5
+    100012: group6
+    100014: group7
+    100016: group8
+    100018: pCube1
+    100020: pCube2
+    100022: pCube3
+    100024: pPlane1
+    100026: pPlane10
+    100028: pPlane11
+    100030: pPlane12
+    100032: pPlane2
+    100034: pPlane3
+    100036: pPlane4
+    100038: pPlane5
+    100040: pPlane6
+    100042: pPlane7
+    100044: pPlane8
+    100046: pPlane9
+    400000: //RootNode
+    400002: group1
+    400004: group2
+    400006: group3
+    400008: group4
+    400010: group5
+    400012: group6
+    400014: group7
+    400016: group8
+    400018: pCube1
+    400020: pCube2
+    400022: pCube3
+    400024: pPlane1
+    400026: pPlane10
+    400028: pPlane11
+    400030: pPlane12
+    400032: pPlane2
+    400034: pPlane3
+    400036: pPlane4
+    400038: pPlane5
+    400040: pPlane6
+    400042: pPlane7
+    400044: pPlane8
+    400046: pPlane9
+    2300000: pCube1
+    2300002: pCube2
+    2300004: pCube3
+    2300006: pPlane1
+    2300008: pPlane10
+    2300010: pPlane11
+    2300012: pPlane12
+    2300014: pPlane2
+    2300016: pPlane3
+    2300018: pPlane4
+    2300020: pPlane5
+    2300022: pPlane6
+    2300024: pPlane7
+    2300026: pPlane8
+    2300028: pPlane9
+    3300000: pCube1
+    3300002: pCube2
+    3300004: pCube3
+    3300006: pPlane1
+    3300008: pPlane10
+    3300010: pPlane11
+    3300012: pPlane12
+    3300014: pPlane2
+    3300016: pPlane3
+    3300018: pPlane4
+    3300020: pPlane5
+    3300022: pPlane6
+    3300024: pPlane7
+    3300026: pPlane8
+    3300028: pPlane9
+    4300000: pPlane8
+    4300002: pPlane7
+    4300004: pPlane6
+    4300006: pCube2
+    4300008: pPlane5
+    4300010: pPlane10
+    4300012: pPlane9
+    4300014: pCube3
+    4300016: pPlane11
+    4300018: pPlane12
+    4300020: pPlane1
+    4300022: pPlane2
+    4300024: pPlane4
+    4300026: pPlane3
+    4300028: pCube1
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blinn1
+    second: {fileID: 2100000, guid: 8fa8fd9c1c021a14ab9ad4c4d47e1308, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blinn2
+    second: {fileID: 2100000, guid: 5f6784a4c7205d245855170b516b6e84, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: 6526168e58ab6094281ac09c6dd6ae93, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3
+    second: {fileID: 2100000, guid: 82d46e64af82ec046ad1f43cce6c2986, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert4
+    second: {fileID: 2100000, guid: 2e2a9166a4e0e824f870a5318614f8eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert5
+    second: {fileID: 2100000, guid: 8eb13bc6b181e09428094105bda36252, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

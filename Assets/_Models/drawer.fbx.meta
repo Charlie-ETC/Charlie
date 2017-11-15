@@ -1,0 +1,219 @@
+fileFormatVersion: 2
+guid: f0cc2f7bb8b0ff242afccabe40c75b83
+timeCreated: 1510612662
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: camera1
+    100002: //RootNode
+    100004: group10
+    100006: group11
+    100008: group12
+    100010: group13
+    100012: group7
+    100014: group8
+    100016: group9
+    100018: guizi_2018_yuan:pCube1
+    100020: guizi_2018_yuan:pCube15
+    100022: guizi_2018_yuan:pCube18
+    100024: guizi_2018_yuan:pCube82
+    100026: guizi_2018_yuan:pPipe11
+    100028: guizi_2018_yuan:pPipe3
+    100030: guizi_2018_yuan:pPipe4
+    100032: guizi_2018_yuan:pPipe5
+    100034: guizi_2018_yuan:pSphere12
+    100036: guizi_2018_yuan:pSphere3
+    100038: guizi_2018_yuan:pSphere4
+    100040: guizi_2018_yuan:pSphere5
+    100042: pCube158
+    100044: pCube89
+    100046: pCube90
+    100048: pCube91
+    100050: pCube92
+    100052: polySurface3
+    100054: polySurface4
+    100056: pPipe4
+    100058: pSphere4
+    100060: pSphere5
+    100062: transform1
+    100064: transform2
+    100066: transform3
+    400000: camera1
+    400002: //RootNode
+    400004: group10
+    400006: group11
+    400008: group12
+    400010: group13
+    400012: group7
+    400014: group8
+    400016: group9
+    400018: guizi_2018_yuan:pCube1
+    400020: guizi_2018_yuan:pCube15
+    400022: guizi_2018_yuan:pCube18
+    400024: guizi_2018_yuan:pCube82
+    400026: guizi_2018_yuan:pPipe11
+    400028: guizi_2018_yuan:pPipe3
+    400030: guizi_2018_yuan:pPipe4
+    400032: guizi_2018_yuan:pPipe5
+    400034: guizi_2018_yuan:pSphere12
+    400036: guizi_2018_yuan:pSphere3
+    400038: guizi_2018_yuan:pSphere4
+    400040: guizi_2018_yuan:pSphere5
+    400042: pCube158
+    400044: pCube89
+    400046: pCube90
+    400048: pCube91
+    400050: pCube92
+    400052: polySurface3
+    400054: polySurface4
+    400056: pPipe4
+    400058: pSphere4
+    400060: pSphere5
+    400062: transform1
+    400064: transform2
+    400066: transform3
+    2000000: camera1
+    2300000: guizi_2018_yuan:pCube82
+    2300002: guizi_2018_yuan:pPipe11
+    2300004: guizi_2018_yuan:pPipe3
+    2300006: guizi_2018_yuan:pPipe4
+    2300008: guizi_2018_yuan:pPipe5
+    2300010: guizi_2018_yuan:pSphere12
+    2300012: guizi_2018_yuan:pSphere3
+    2300014: guizi_2018_yuan:pSphere4
+    2300016: guizi_2018_yuan:pSphere5
+    2300018: pCube89
+    2300020: pCube90
+    2300022: pCube91
+    2300024: pCube92
+    2300026: polySurface3
+    2300028: polySurface4
+    2300030: pPipe4
+    2300032: pSphere4
+    2300034: pSphere5
+    3300000: guizi_2018_yuan:pCube82
+    3300002: guizi_2018_yuan:pPipe11
+    3300004: guizi_2018_yuan:pPipe3
+    3300006: guizi_2018_yuan:pPipe4
+    3300008: guizi_2018_yuan:pPipe5
+    3300010: guizi_2018_yuan:pSphere12
+    3300012: guizi_2018_yuan:pSphere3
+    3300014: guizi_2018_yuan:pSphere4
+    3300016: guizi_2018_yuan:pSphere5
+    3300018: pCube89
+    3300020: pCube90
+    3300022: pCube91
+    3300024: pCube92
+    3300026: polySurface3
+    3300028: polySurface4
+    3300030: pPipe4
+    3300032: pSphere4
+    3300034: pSphere5
+    4300000: guizi_2018_yuan:pSphere5
+    4300002: guizi_2018_yuan:pPipe5
+    4300004: guizi_2018_yuan:pSphere3
+    4300006: guizi_2018_yuan:pCube82
+    4300008: pCube89
+    4300010: pCube92
+    4300012: pCube90
+    4300014: guizi_2018_yuan:pPipe3
+    4300016: polySurface3
+    4300018: polySurface4
+    4300020: guizi_2018_yuan:pSphere12
+    4300022: guizi_2018_yuan:pPipe4
+    4300024: guizi_2018_yuan:pPipe11
+    4300026: guizi_2018_yuan:pSphere4
+    4300028: pCube91
+    4300030: pPipe4
+    4300032: pSphere4
+    4300034: pSphere5
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert14
+    second: {fileID: 2100000, guid: 803ec9a5cdcba144290008755413fe8b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pink
+    second: {fileID: 2100000, guid: 6b59fd8b4c7fc0f4e85c5ef4ce63d17a, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
