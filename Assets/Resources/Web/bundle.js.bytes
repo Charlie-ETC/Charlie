@@ -12628,8 +12628,8 @@ class GameObjectsPage extends React.Component {
     }
     render() {
         return React.createElement("div", null,
-            React.createElement(List_1.List, null, this.state.gameObjects.map(gameObject => React.createElement(List_1.ListItem, null,
-                React.createElement(List_1.ListItemText, { key: gameObject.id }, gameObject.name)))));
+            React.createElement(List_1.List, null, this.state.gameObjects.map(gameObject => React.createElement(List_1.ListItem, { key: gameObject.id },
+                React.createElement(List_1.ListItemText, null, gameObject.name)))));
     }
 }
 exports.GameObjectsPage = GameObjectsPage;

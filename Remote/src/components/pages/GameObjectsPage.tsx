@@ -29,8 +29,8 @@ export class GameObjectsPage extends React.Component<{}, GameObjectsPageState> {
         return <div>
             <List>
                 {this.state.gameObjects.map(gameObject =>
-                    <ListItem>
-                        <ListItemText key={gameObject.id}>{gameObject.name}</ListItemText>
+                    <ListItem key={gameObject.id}>
+                        <ListItemText>{gameObject.name}</ListItemText>
                     </ListItem>
                 )}
             </List>
