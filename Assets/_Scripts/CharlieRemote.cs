@@ -1,19 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Newtonsoft.Json;
-using Unosquare.Net;
 using Unosquare.Labs.EmbedIO;
 using Unosquare.Labs.EmbedIO.Modules;
-using Unosquare.Labs.EmbedIO.Constants;
 using Unosquare.Swan;
-using Asyncoroutine;
 
 namespace Charlie.Remote
 {
