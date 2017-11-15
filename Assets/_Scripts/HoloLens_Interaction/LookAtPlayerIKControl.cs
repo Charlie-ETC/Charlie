@@ -52,7 +52,7 @@ public class LookAtPlayerIKControl : MonoBehaviour {
                     if (lookAtWeight - currentLookAtWeight < 0.001f) { currentLookAtWeight = lookAtWeight; }
                     else { currentLookAtWeight = Mathf.Lerp(lookAtWeight, 0f, TURN_BACK_SPEED_RATE); }
 
-                    animator.SetLookAtWeight(lookAtWeight, bodyWeight, headWeight, eyeWeight);       
+                    animator.SetLookAtWeight(lookAtWeight, bodyWeight, headWeight, eyeWeight);
                     animator.SetLookAtPosition(target.transform.position);
                 }
                 else if (charlieToPlayer.magnitude < ATTENTION_DISTANCE)// otherwise turn around her body to face player
@@ -63,7 +63,6 @@ public class LookAtPlayerIKControl : MonoBehaviour {
 
                     if (currentLookAtWeight == 0f)
                     {
-                        Debug.Log("Hello");
                         if (!lookatPlayer.enabled) lookatPlayer.enabled = true;
                         //transform.parent.LookAt(Vector3.ProjectOnPlane(Vector3.Lerp(target.transform.position, transform.parent.forward, TURN_BACK_SPEED_RATE), Vector3.up));
                     }

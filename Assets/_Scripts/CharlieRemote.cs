@@ -29,26 +29,40 @@ namespace Charlie
 
         private static Dictionary<string, byte[]> preloadedWebUI = new Dictionary<string, byte[]>();
 
-        public class RootController : WebApiController
+        public class RootModule : WebModuleBase
         {
-            [WebApiHandler(HttpVerbs.Get, "/")]
-            public bool GetRoot(WebServer server, HttpListenerContext context)
+            public override string Name => nameof(RootModule).Humanize();
+
+            public RootModule()
             {
+                AddHandler("/dist/bundle.js", HttpVerbs.Get, GetBundle);
+                AddHandler(ModuleMap.AnyPath, HttpVerbs.Get, GetRoot);
+            }
+
+            public Task<bool> GetRoot(HttpListenerContext context, CancellationToken cts)
+            {
+                if (context.RequestPath().StartsWith("/dist/bundle.js") ||
+                    context.RequestPath().StartsWith("/api")) {
+                    return Task.FromResult(false);
+                }
+
                 byte[] response = preloadedWebUI["index.html"];
                 context.Response.ContentType = "text/html";
                 context.Response.OutputStream.Write(response, 0, response.Length);
-                return true;
+                return Task.FromResult(true);
             }
 
-            [WebApiHandler(HttpVerbs.Get, "/dist/bundle.js")]
-            public bool GetBundle(WebServer server, HttpListenerContext context)
+            public Task<bool> GetBundle(HttpListenerContext context, CancellationToken cts)
             {
                 byte[] response = preloadedWebUI["bundle.js"];
                 context.Response.ContentType = "text/javascript";
                 context.Response.OutputStream.Write(response, 0, response.Length);
-                return true;
+                return Task.FromResult(true);
             }
+        }
 
+        public class ApiController : WebApiController
+        {
             [WebApiHandler(HttpVerbs.Get, "/api/reloadScene")]
             public bool GetReloadScene(WebServer server, HttpListenerContext context)
             {
@@ -113,7 +127,7 @@ namespace Charlie
                         {
                             writer.WriteStartObject();
                             writer.WritePropertyName("id");
-                            writer.WriteValue(gameObject.GetHashCode());
+                            writer.WriteValue(gameObject.GetHashCode().ToString("x"));
 
                             Type gameObjectType = gameObject.GetType();
                             FieldInfo[] fieldInfos = gameObjectType.GetFields(
@@ -227,7 +241,8 @@ namespace Charlie
             server = new WebServer(port);
             server = server.EnableCors();
             server.RegisterModule(new WebApiModule());
-            server.Module<WebApiModule>().RegisterController<RootController>();
+            server.RegisterModule(new RootModule());
+            server.Module<WebApiModule>().RegisterController<ApiController>();
 
             cts = new CancellationTokenSource();
             task = server.RunAsync(cts.Token);
