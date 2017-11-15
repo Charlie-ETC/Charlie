@@ -11,7 +11,7 @@ namespace Charlie.WatsonTTS
 {
     public class WatsonTTSService : Singleton<WatsonTTSService>
     {
-        public string voice = "en-US_LisaVoice";
+        public string voice = "en-US_AllisonVoice";
 
         private string ibmWatsonTtsUrl;
         private string ibmWatsonUsername;
