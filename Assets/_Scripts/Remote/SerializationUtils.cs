@@ -98,6 +98,8 @@ namespace Charlie.Remote
             StringWriter stringWriter = new StringWriter(stringBuilder);
             using (JsonWriter writer = new JsonTextWriter(stringWriter)) {
                 writer.WriteStartObject();
+                writer.WritePropertyName("id");
+                writer.WriteValue(obj.GetInstanceID());
                 writer.WritePropertyName("activeInHierarchy");
                 writer.WriteValue(obj.activeInHierarchy);
                 writer.WritePropertyName("activeSelf");
