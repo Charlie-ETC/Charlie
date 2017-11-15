@@ -1,16 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Newtonsoft.Json;
 using Unosquare.Net;
 using Unosquare.Labs.EmbedIO;
 using Unosquare.Labs.EmbedIO.Modules;
 using Unosquare.Labs.EmbedIO.Constants;
 using Unosquare.Swan;
+using Asyncoroutine;
 
-namespace Charlie
+namespace Charlie.Remote
 {
-    class CharlieRemote : Singleton<CharlieRemote>
+    public class CharlieRemote : Singleton<CharlieRemote>
     {
         public int port = 24275;
 
@@ -20,65 +27,6 @@ namespace Charlie
 
         private Task task;
 
-        public class RootController : WebApiController
-        {
-            [WebApiHandler(HttpVerbs.Get, "/api/reloadScene")]
-            public bool GetReloadScene(WebServer server, HttpListenerContext context)
-            {
-                Unosquare.Labs.EmbedIO.Extensions.JsonResponse(context, "{}");
-                MainThreadDispatcher.Instance.Dispatch(() =>
-                {
-                    SceneManager.LoadScene("Main");
-                });
-                return true;
-            }
-
-            [WebApiHandler(HttpVerbs.Get, "/api/finishMapping")]
-            public bool GetFinishMapping(WebServer server, HttpListenerContext context)
-            {
-                Unosquare.Labs.EmbedIO.Extensions.JsonResponse(context, "{}");
-                MainThreadDispatcher.Instance.Dispatch(() =>
-                {
-                    SpatialMapper mapper = FindObjectOfType<SpatialMapper>();
-                    if (mapper != null && mapper.CanFinishMapping())
-                    {
-                        mapper.FinishMapping();
-                    }
-                    else
-                    {
-                        Debug.Log("[CharlieRemote] Cannot finish spatial mapping");
-                    }
-                });
-                return true;
-            }
-
-            [WebApiHandler(HttpVerbs.Get, "/api/testCharliePosition")]
-            public async Task<bool> GetTestCharliePosition(WebServer server, HttpListenerContext context)
-            {
-                Vector3 position = await MainThreadDispatcher.Instance.DispatchWithResult(() =>
-                {
-                    Debug.Log("[CharlieRemote] Getting GameObject and transform position");
-                    GameObject charlie = GameObject.Find("Charlie");
-                    Debug.Log($"[CharlieRemote] Position: {charlie.transform.position}");
-                    return charlie.transform.position;
-                });
-                Unosquare.Labs.EmbedIO.Extensions.JsonResponse(context, position);
-                return true;
-            }
-
-            [WebApiHandler(HttpVerbs.Get, "/api/debug/on")]
-            public bool GetDebugOn(WebServer server, HttpListenerContext context)
-            {
-                Unosquare.Labs.EmbedIO.Extensions.JsonResponse(context, "{}");
-                MainThreadDispatcher.Instance.Dispatch(() =>
-                {
-                    DebugManager manager = FindObjectOfType<DebugManager>();
-                    manager.Activate();
-                });
-                return true;
-            }
-        }
-
         protected override void Awake()
         {
             base.Awake();
@@ -86,8 +34,10 @@ namespace Charlie
 
             Debug.Log($"[CharlieRemote] new WebServer {port}");
             server = new WebServer(port);
+            server = server.EnableCors();
             server.RegisterModule(new WebApiModule());
-            server.Module<WebApiModule>().RegisterController<RootController>();
+            server.RegisterModule(new RootModule());
+            server.Module<WebApiModule>().RegisterController<ApiController>(MakeApiController);
 
             cts = new CancellationTokenSource();
             task = server.RunAsync(cts.Token);
@@ -104,7 +54,13 @@ namespace Charlie
             base.OnDestroy();
         }
 
-        void HandleLogMessageReceived(object source, LogMessageReceivedEventArgs e) {
+        private ApiController MakeApiController()
+        {
+            return new ApiController();
+        }
+
+        void HandleLogMessageReceived(object source, LogMessageReceivedEventArgs e)
+        {
             switch (e.MessageType)
             {
                 case LogMessageType.Debug:

@@ -511,7 +511,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: What's your favorite place?
+          value: Do you like this view?
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []

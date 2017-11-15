@@ -7,8 +7,12 @@ public class LookAtPlayerIKControl : MonoBehaviour {
 
     protected Animator animator;
     private Vector3 charlieToPlayer;
-    private const float NECK_ROTATION_RANGE = 70f;
-    private const float ATTENTION_DISTANCE = 2.5F;
+    private float angle;
+    private const float NECK_ROTATION_RANGE = 85f;
+    private const float ATTENTION_DISTANCE = 5F;
+    private const float TURN_BACK_SPEED_RATE = 0.95f;
+    private const float TURN_FORTH_SPEED_RATE = 0.1f;
+    private float currentLookAtWeight;
 
     public bool isActive;
     [Range(0,1)]
@@ -20,11 +24,15 @@ public class LookAtPlayerIKControl : MonoBehaviour {
     [Range(0, 1)]
     public float bodyWeight;
     public GameObject target;
+    //public LookatPlayer lookatPlayer;
+
+
 
 
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
+        currentLookAtWeight = 0;
     }
 
     private void OnAnimatorIK() {
@@ -32,21 +40,41 @@ public class LookAtPlayerIKControl : MonoBehaviour {
             if (isActive && target != null)
             {
                 charlieToPlayer = target.transform.position - transform.position;
+                angle = Vector3.Angle(transform.forward, charlieToPlayer);
+
                 // Debug.Log(Mathf.Abs(Vector3.Angle(transform.forward, charlieToPlayer)));
                 // Debug.Log(charlieToPlayer.magnitude);
 
                 // when target is in Charlie's attention distance (too far to notice)
                 // and within her normal neck rotation range
-                if (charlieToPlayer.magnitude < ATTENTION_DISTANCE &&
-                        Mathf.Abs(Vector3.Angle(transform.forward, charlieToPlayer)) < NECK_ROTATION_RANGE) {
-                    animator.SetLookAtWeight(lookAtWeight, bodyWeight, headWeight, eyeWeight);
+                // turn her head to face player
+                if (charlieToPlayer.magnitude < ATTENTION_DISTANCE && Mathf.Abs(angle) <= NECK_ROTATION_RANGE)
+                {
+                    //if (lookatPlayer.enabled) lookatPlayer.enabled = false;
+
+                    if (lookAtWeight - currentLookAtWeight < 0.001f) { currentLookAtWeight = lookAtWeight; }
+                    else { currentLookAtWeight = Mathf.Lerp(currentLookAtWeight, lookAtWeight, TURN_FORTH_SPEED_RATE); }
+
+                    animator.SetLookAtWeight(currentLookAtWeight, bodyWeight, headWeight, eyeWeight);       
                     animator.SetLookAtPosition(target.transform.position);
                 }
-                
+                else if (charlieToPlayer.magnitude < ATTENTION_DISTANCE)// otherwise turn around her body to face player
+                {
+                    if (currentLookAtWeight < 0.001f) { currentLookAtWeight = 0f; }
+                    else { currentLookAtWeight = Mathf.Lerp(0f, currentLookAtWeight, TURN_BACK_SPEED_RATE); }
+                    animator.SetLookAtWeight(currentLookAtWeight);
+
+                    float xZAngle = (float)(Vector3.Angle(Vector3.ProjectOnPlane(transform.parent.forward, Vector3.up), Vector3.ProjectOnPlane(charlieToPlayer, Vector3.up)) * (1 - TURN_BACK_SPEED_RATE) * 0.4);
+                    transform.parent.eulerAngles = new Vector3(transform.parent.eulerAngles.x, transform.parent.eulerAngles.y + xZAngle, transform.parent.eulerAngles.z);
+                    //if (!lookatPlayer.enabled) lookatPlayer.enabled = true;
+                }
+
             }
             else {
                 // set IK back to original pose
-                animator.SetLookAtWeight(0);
+                if (currentLookAtWeight < 0.001f) { currentLookAtWeight = 0f; }
+                else {currentLookAtWeight = Mathf.Lerp(0f, currentLookAtWeight, TURN_BACK_SPEED_RATE); }
+                animator.SetLookAtWeight(currentLookAtWeight);
             }
 
         }

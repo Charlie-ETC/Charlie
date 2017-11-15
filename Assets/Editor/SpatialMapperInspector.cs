@@ -21,13 +21,13 @@ namespace Charlie
             if (Application.isPlaying)
             {
                 GUILayout.BeginHorizontal();
-                GUI.enabled = mapper.CanBeginMapping();
+                GUI.enabled = mapper.CanBeginMapping;
                 bool beginMappingClicked = GUILayout.Button(new GUIContent("Begin Mapping"));
                 GUI.enabled = true;
                 GUILayout.EndHorizontal();
 
                 GUILayout.BeginHorizontal();
-                GUI.enabled = mapper.CanFinishMapping();
+                GUI.enabled = mapper.CanFinishMapping;
                 bool finishMappingClicked = GUILayout.Button(new GUIContent("Finish Mapping"));
                 GUI.enabled = true;
                 GUILayout.EndHorizontal();
