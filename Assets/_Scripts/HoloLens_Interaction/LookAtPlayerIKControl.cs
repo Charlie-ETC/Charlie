@@ -8,9 +8,9 @@ public class LookAtPlayerIKControl : MonoBehaviour {
     protected Animator animator;
     private Vector3 charlieToPlayer;
     private float angle;
-    private const float NECK_ROTATION_RANGE = 85f;
-    private const float ATTENTION_DISTANCE = 5F;
-    private const float TURN_BACK_SPEED_RATE = 0.95f;
+    private const float NECK_ROTATION_RANGE = 80f;
+    private const float ATTENTION_DISTANCE = 2F;
+    private const float TURN_BACK_SPEED_RATE = 0.99f;
     private const float TURN_FORTH_SPEED_RATE = 0.1f;
     private float currentLookAtWeight;
 
@@ -36,6 +36,7 @@ public class LookAtPlayerIKControl : MonoBehaviour {
     }
 
     private void OnAnimatorIK() {
+
         if (animator != null) {
             if (isActive && target != null)
             {
@@ -53,8 +54,12 @@ public class LookAtPlayerIKControl : MonoBehaviour {
                     //if (lookatPlayer.enabled) lookatPlayer.enabled = false;
 
                     if (lookAtWeight - currentLookAtWeight < 0.001f) { currentLookAtWeight = lookAtWeight; }
-                    else { currentLookAtWeight = Mathf.Lerp(currentLookAtWeight, lookAtWeight, TURN_FORTH_SPEED_RATE); }
-
+                    else { 
+                        // currentLookAtWeight = Mathf.Lerp(currentLookAtWeight, lookAtWeight, TURN_FORTH_SPEED_RATE); 
+                        currentLookAtWeight += (1 - TURN_BACK_SPEED_RATE) * 0.8f;
+                    }
+                    //currentLookAtWeight = lookAtWeight;
+                    //Debug.Log(currentLookAtWeight);
                     animator.SetLookAtWeight(currentLookAtWeight, bodyWeight, headWeight, eyeWeight);       
                     animator.SetLookAtPosition(target.transform.position);
                 }
@@ -64,7 +69,7 @@ public class LookAtPlayerIKControl : MonoBehaviour {
                     else { currentLookAtWeight = Mathf.Lerp(0f, currentLookAtWeight, TURN_BACK_SPEED_RATE); }
                     animator.SetLookAtWeight(currentLookAtWeight);
 
-                    float xZAngle = (float)(Vector3.Angle(Vector3.ProjectOnPlane(transform.parent.forward, Vector3.up), Vector3.ProjectOnPlane(charlieToPlayer, Vector3.up)) * (1 - TURN_BACK_SPEED_RATE) * 0.4);
+                    float xZAngle = Vector3.Angle(Vector3.ProjectOnPlane(transform.parent.forward, Vector3.up), Vector3.ProjectOnPlane(charlieToPlayer, Vector3.up)) * (1f - TURN_BACK_SPEED_RATE) * 0.4f;
                     transform.parent.eulerAngles = new Vector3(transform.parent.eulerAngles.x, transform.parent.eulerAngles.y + xZAngle, transform.parent.eulerAngles.z);
                     //if (!lookatPlayer.enabled) lookatPlayer.enabled = true;
                 }
@@ -72,7 +77,7 @@ public class LookAtPlayerIKControl : MonoBehaviour {
             }
             else {
                 // set IK back to original pose
-                if (currentLookAtWeight < 0.001f) { currentLookAtWeight = 0f; }
+                if (currentLookAtWeight < 0.00001f) { currentLookAtWeight = 0f; }
                 else {currentLookAtWeight = Mathf.Lerp(0f, currentLookAtWeight, TURN_BACK_SPEED_RATE); }
                 animator.SetLookAtWeight(currentLookAtWeight);
             }
