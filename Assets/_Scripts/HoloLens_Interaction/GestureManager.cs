@@ -21,6 +21,8 @@ namespace Charlie
 
 #if UNITY_WSA
         private GestureRecognizer gestureRecognizer;
+        private bool IsDragging { get; set; }
+        private Vector3 PrevManipulationPosition { get; set; }
 #endif
 
         private Vector3 cameraPos;
@@ -46,8 +48,17 @@ namespace Charlie
 #if UNITY_WSA
             gestureRecognizer = new GestureRecognizer();
             gestureRecognizer.TappedEvent += OnAirTap;
-            gestureRecognizer.NavigationUpdated += OnNavigationUpdated;
-            Debug.LogError($"[OnManipulationGesture] start");
+
+            // The system interprets the gesture based on which one you request when you create your GestureRecognizer.
+            // Your application cannot request both Navigation and Manipulation simultaneously.
+            // This is why Holograms 211 uses a voice command to switch between rotating and moving the astronaut.
+
+            //gestureRecognizer.NavigationUpdated += OnNavigationUpdated;
+            gestureRecognizer.ManipulationStarted += OnManipulationStarted;
+            gestureRecognizer.ManipulationUpdated += OnManipulationUpdated;
+            gestureRecognizer.ManipulationCompleted += OnManipulationCompleted;
+            gestureRecognizer.ManipulationCanceled += OnManipulationCanceled;
+            //Debug.LogError($"[OnManipulationGesture] start");
             gestureRecognizer.StartCapturingGestures();
 #endif
         }
@@ -55,15 +66,47 @@ namespace Charlie
 #if UNITY_WSA
         private void OnNavigationUpdated(NavigationUpdatedEventArgs obj)
         {
-            Debug.LogError($"[OnManipulationGesture] {obj.normalizedOffset}");
+            //Debug.LogError($"[OnManipulationGesture] {obj.normalizedOffset}");
 
-            Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
-            Transform cam = Camera.main.transform;
+            //Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
+            //Transform cam = Camera.main.transform;
 
-            float dist = obj.normalizedOffset.y * 2f + 3f;
-            TargetRoot.eulerAngles = (new Vector3(0, obj.normalizedOffset.x * 60, 0));
+            //float dist = obj.normalizedOffset.y * 2f + 3f;
 
-            TargetRoot.position = cam.position + cam.forward * dist;
+            //TargetRoot.eulerAngles = (new Vector3(0, obj.normalizedOffset.x * 60, 0));
+
+            //TargetRoot.position = cam.position + cam.forward * dist;
+        }
+#endif
+
+#if UNITY_WSA
+        private void OnManipulationStarted(ManipulationStartedEventArgs obj) {
+            if (FocusedObject != null && FocusedObject.GetComponent<Draggable>()) {
+                IsDragging = true;
+                PrevManipulationPosition = Vector3.zero;
+            }
+            
+        }
+
+        // drag movable stuff to move
+        private void OnManipulationUpdated(ManipulationUpdatedEventArgs obj)
+        {
+            if (FocusedObject != null && FocusedObject.GetComponent<Draggable>()) {
+                IsDragging = true;
+                FocusedObject.transform.position += obj.cumulativeDelta - PrevManipulationPosition;
+                PrevManipulationPosition = obj.cumulativeDelta;
+            }
+            Debug.LogError($"[OnManipulationGesture] {obj.cumulativeDelta}");
+        }
+
+        private void OnManipulationCompleted(ManipulationCompletedEventArgs obj)
+        {
+            IsDragging = false;
+        }
+
+        private void OnManipulationCanceled(ManipulationCanceledEventArgs obj)
+        {
+            IsDragging = false;
         }
 #endif
 
@@ -185,5 +228,15 @@ namespace Charlie
             }
         }
 
+        // unregister events
+        private void OnDestroy()
+        {
+            gestureRecognizer.TappedEvent -= OnAirTap;
+
+            gestureRecognizer.ManipulationStarted -= OnManipulationStarted;
+            gestureRecognizer.ManipulationUpdated -= OnManipulationUpdated;
+            gestureRecognizer.ManipulationCompleted -= OnManipulationCompleted;
+            gestureRecognizer.ManipulationCanceled -= OnManipulationCanceled;
+        }
     }
 }
