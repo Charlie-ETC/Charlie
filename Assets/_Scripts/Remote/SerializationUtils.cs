@@ -77,6 +77,16 @@ namespace Charlie.Remote
                 writer.WriteValue(obj.tag);
                 writer.WritePropertyName("up");
                 writer.WriteRawValue(Serialize(obj.up));
+
+                // Recursively get children.
+                writer.WritePropertyName("children");
+                writer.WriteStartArray();
+                for (int i = 0; i < obj.childCount; i++)
+                {
+                    writer.WriteRawValue(Serialize(obj.GetChild(i).gameObject));
+                }
+                writer.WriteEndArray();
+
                 writer.WriteEndObject();
             }
             return stringBuilder.ToString();
@@ -88,6 +98,8 @@ namespace Charlie.Remote
             StringWriter stringWriter = new StringWriter(stringBuilder);
             using (JsonWriter writer = new JsonTextWriter(stringWriter)) {
                 writer.WriteStartObject();
+                writer.WritePropertyName("id");
+                writer.WriteValue(obj.GetInstanceID());
                 writer.WritePropertyName("activeInHierarchy");
                 writer.WriteValue(obj.activeInHierarchy);
                 writer.WritePropertyName("activeSelf");
