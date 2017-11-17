@@ -119,7 +119,7 @@ namespace Charlie
                 IsDragging = true;
                 PrevManipulationPosition = Vector3.zero;
             }
-            
+
         }
 
         // drag movable stuff to move
@@ -211,6 +211,7 @@ namespace Charlie
         }
 
         // unregister events
+#if UNITY_WSA
         private void OnDestroy()
         {
             gestureRecognizer.TappedEvent -= OnAirTap;
@@ -220,5 +221,6 @@ namespace Charlie
             gestureRecognizer.ManipulationCompleted -= OnManipulationCompleted;
             gestureRecognizer.ManipulationCanceled -= OnManipulationCanceled;
         }
+#endif
     }
 }

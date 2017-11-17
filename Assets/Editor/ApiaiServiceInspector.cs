@@ -48,7 +48,7 @@ class ApiaiServiceInspector : Editor
                 {
                     testConsoleSessionId = apiaiService.CreateSession();
                 }
-                EditorGUILayout.TextField(new GUIContent("Session ID"), testConsoleSessionId);
+                testConsoleSessionId = EditorGUILayout.TextField(new GUIContent("Session ID"), testConsoleSessionId);
 
                 // Show the query.
                 showQuery = EditorGUILayout.Foldout(showQuery, new GUIContent("Query"));
