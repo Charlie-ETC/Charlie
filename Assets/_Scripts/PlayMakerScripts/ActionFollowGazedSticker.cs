@@ -41,7 +41,7 @@ public class ActionFollowGazedSticker : FsmStateAction
 
             // go.transform.LookAt(target.position);
 
-            var newTarget = WorldCursor.Instance.GazeHoveringObject;
+            var newTarget = WorldCursor.Instance.prevGazeHoveringObject;
 
             if (nextTarget == newTarget)
             {

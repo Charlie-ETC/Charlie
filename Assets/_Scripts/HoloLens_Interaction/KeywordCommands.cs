@@ -16,14 +16,14 @@ namespace Charlie
         public static void OnTapIt()
         {
             Debug.Log("OnTapIt");
-            if (GestureManager.Instance.FocusedObject != null)
-            {
-                CubeCommands cc = GestureManager.Instance.FocusedObject.GetComponentInParent<CubeCommands>();
-                if (cc != null)
-                {
-                    cc.OnSelect();
-                }
-            }
+            //if (GestureManager.Instance.FocusedObject != null)
+            //{
+            //    CubeCommands cc = GestureManager.Instance.FocusedObject.GetComponentInParent<CubeCommands>();
+            //    if (cc != null)
+            //    {
+            //        cc.OnSelect();
+            //    }
+            //}
         }
 
         //public static void OnDragIt()

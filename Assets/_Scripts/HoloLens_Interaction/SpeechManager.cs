@@ -45,15 +45,15 @@ namespace Charlie
         private void OnTapIt()
         {
 
-            if (GestureManager.Instance.FocusedObject != null)
-            {
-                CubeCommands cc = GestureManager.Instance.FocusedObject.GetComponentInParent<CubeCommands>();
+            //if (GestureManager.Instance.FocusedObject != null)
+            //{
+            //    CubeCommands cc = GestureManager.Instance.FocusedObject.GetComponentInParent<CubeCommands>();
 
-                if (cc != null)
-                {
-                    cc.OnSelect();
-                }
-            }
+            //    if (cc != null)
+            //    {
+            //        cc.OnSelect();
+            //    }
+            //}
         }
 
 
