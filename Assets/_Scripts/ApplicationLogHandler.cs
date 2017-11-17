@@ -51,9 +51,9 @@ public class ApplicationLogHandler : MonoBehaviour
             logType = "Log";
         }
 
-#if (!UNITY_EDITOR)
+//#if !UNITY_EDITOR
         //charlieSlackLog.SlackApplicationLog("Unity_Console", stack + output, logType, timeStamp); // too many characters in stack
         charlieSlackLog.SlackApplicationLog("Unity_Console", output, type, logType, timeStamp);
-#endif
+//#endif
     }
 }
