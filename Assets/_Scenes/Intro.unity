@@ -343,7 +343,7 @@ Prefab:
     - target: {fileID: 114468360580237388, guid: 117765de48a5e8745bf10a34c8365d26,
         type: 2}
       propertyPath: NextScene
-      value: Xin
+      value: Level1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 117765de48a5e8745bf10a34c8365d26, type: 2}
