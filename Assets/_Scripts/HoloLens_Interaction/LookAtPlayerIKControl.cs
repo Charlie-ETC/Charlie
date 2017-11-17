@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Asyncoroutine;
 
 [RequireComponent(typeof(Animator))]
 public class LookAtPlayerIKControl : MonoBehaviour {
@@ -13,6 +14,10 @@ public class LookAtPlayerIKControl : MonoBehaviour {
     private const float TURN_BACK_SPEED_RATE = 0.99f;
     private const float TURN_FORTH_SPEED_RATE = 0.1f;
     private float currentLookAtWeight;
+
+    private bool isLookingAway = false;
+    private IEnumerator lookAwayCoroutine;
+
 
     public bool isActive;
     [Range(0,1)]
@@ -27,18 +32,38 @@ public class LookAtPlayerIKControl : MonoBehaviour {
     //public LookatPlayer lookatPlayer;
 
 
-
-
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
         currentLookAtWeight = 0;
+        lookAwayCoroutine = LookAway();
+        StartCoroutine(lookAwayCoroutine);
+    }
+
+    private IEnumerator LookAway() {
+        while (true) {
+            if (isActive && !transform.parent.gameObject.GetComponent<AudioSource>().isPlaying) {
+                if (Random.Range(0f, 1f) < 0.2f) {
+                    isLookingAway = true;
+                    yield return new WaitForSeconds(Random.Range(1.5f, 5f));
+                    isLookingAway = false;
+                }
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+        
+    }
+
+    private void OnDestroy()
+    {
+        if (lookAwayCoroutine != null) StopCoroutine(lookAwayCoroutine);
     }
 
     private void OnAnimatorIK() {
-
+        Debug.Log(isLookingAway);
         if (animator != null) {
-            if (isActive && target != null)
+            if (isActive && target != null && !isLookingAway)
             {
                 charlieToPlayer = target.transform.position - transform.position;
                 angle = Vector3.Angle(transform.forward, charlieToPlayer);
@@ -81,6 +106,7 @@ public class LookAtPlayerIKControl : MonoBehaviour {
                 else {currentLookAtWeight = Mathf.Lerp(0f, currentLookAtWeight, TURN_BACK_SPEED_RATE); }
                 animator.SetLookAtWeight(currentLookAtWeight);
             }
+
 
         }
     }
