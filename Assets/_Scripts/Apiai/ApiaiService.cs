@@ -92,7 +92,7 @@ namespace Charlie.Apiai
                 request.downloadHandler.text, settings);
         }
 
-        public async void PostContext(string sessionId, Context context)
+        public async Task PostContext(string sessionId, Context context)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
@@ -103,16 +103,31 @@ namespace Charlie.Apiai
             UnityWebRequest request = new UnityWebRequest($"https://api.api.ai/v1/contexts?sessionId={sessionId}")
             {
                 method = UnityWebRequest.kHttpVerbPOST,
+                downloadHandler = new DownloadHandlerBuffer(),
                 uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(requestBody))
+            };
+            request.SetRequestHeader("Authorization", $"Bearer {accessToken}");
+            request.SetRequestHeader("Content-Type", "application/json");
+            await request.SendWebRequest();
+
+            Debug.Log(sessionId);
+            Debug.Log(request.downloadHandler.text);
+        }
+
+        public async Task DeleteContexts(string sessionId)
+        {
+            UnityWebRequest request = new UnityWebRequest($"https://api.api.ai/v1/contexts?sessionId={sessionId}")
+            {
+                method = UnityWebRequest.kHttpVerbDELETE
             };
             request.SetRequestHeader("Authorization", $"Bearer {accessToken}");
             request.SetRequestHeader("Content-Type", "application/json");
             await request.SendWebRequest();
         }
 
-        public async Task DeleteContexts(string sessionId)
+        public async Task DeleteContext(string sessionId, string contextName)
         {
-            UnityWebRequest request = new UnityWebRequest($"https://api.api.ai/v1/contexts?sessionId={sessionId}")
+            UnityWebRequest request = new UnityWebRequest($"https://api.api.ai/v1/contexts/{contextName}?sessionId={sessionId}")
             {
                 method = UnityWebRequest.kHttpVerbDELETE
             };
