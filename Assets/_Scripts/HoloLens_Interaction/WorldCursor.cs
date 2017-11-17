@@ -8,12 +8,18 @@ public class WorldCursor : Charlie.Singleton<WorldCursor> {
     private Vector3 cameraPos;
     private Vector3 gazeDirection;
 
+    [HideInInspector]
+    public Color cursorColor;
+    public Material cursorMaterial;
+
     public GameObject prevGazeHoveringObject = null;
     public GameObject newGazeHoveringObject = null;
+
 
 	void Start () {
         meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
         meshRenderer.enabled = false;
+        cursorColor = cursorMaterial.color;
     }
 	
 	// Update is called once per frame

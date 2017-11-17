@@ -53,6 +53,10 @@ namespace Charlie
             // Your application cannot request both Navigation and Manipulation simultaneously.
             // This is why Holograms 211 uses a voice command to switch between rotating and moving the astronaut.
             //gestureRecognizer.NavigationUpdated += OnNavigationUpdated;
+
+            // add recognizableGuestures
+            gestureRecognizer.SetRecognizableGestures(GestureSettings.ManipulationTranslate);
+            // register events
             gestureRecognizer.ManipulationStarted += OnManipulationStarted;
             gestureRecognizer.ManipulationUpdated += OnManipulationUpdated;
             gestureRecognizer.ManipulationCompleted += OnManipulationCompleted;
@@ -117,6 +121,7 @@ namespace Charlie
         private void OnManipulationStarted(ManipulationStartedEventArgs obj) {
             if (WorldCursor.Instance.newGazeHoveringObject != null && WorldCursor.Instance.newGazeHoveringObject.GetComponent<Draggable>()) {
                 IsDragging = true;
+                WorldCursor.Instance.cursorMaterial.color = Color.blue;
                 PrevManipulationPosition = Vector3.zero;
             }
 
@@ -135,11 +140,13 @@ namespace Charlie
 
         private void OnManipulationCompleted(ManipulationCompletedEventArgs obj)
         {
+            WorldCursor.Instance.cursorMaterial.color = WorldCursor.Instance.cursorColor;
             IsDragging = false;
         }
 
         private void OnManipulationCanceled(ManipulationCanceledEventArgs obj)
         {
+            WorldCursor.Instance.cursorMaterial.color = WorldCursor.Instance.cursorColor;
             IsDragging = false;
         }
 #endif

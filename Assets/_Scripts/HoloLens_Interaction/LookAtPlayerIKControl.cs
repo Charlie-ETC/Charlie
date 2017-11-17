@@ -61,7 +61,7 @@ public class LookAtPlayerIKControl : MonoBehaviour {
     }
 
     private void OnAnimatorIK() {
-        Debug.Log(isLookingAway);
+
         if (animator != null) {
             if (isActive && target != null && !isLookingAway)
             {
