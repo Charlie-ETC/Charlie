@@ -16,8 +16,8 @@ namespace Charlie
         public static GestureManager Instance { get; private set; }
 
         // gameobject that is being gazed at
-        public GameObject FocusedObject { get; private set; }
-        public GameObject OldFocusedObject { get; private set; }
+        //public GameObject FocusedObject { get; private set; }
+        //public GameObject OldFocusedObject { get; private set; }
 
 #if UNITY_WSA
         private GestureRecognizer gestureRecognizer;
@@ -52,7 +52,6 @@ namespace Charlie
             // The system interprets the gesture based on which one you request when you create your GestureRecognizer.
             // Your application cannot request both Navigation and Manipulation simultaneously.
             // This is why Holograms 211 uses a voice command to switch between rotating and moving the astronaut.
-
             //gestureRecognizer.NavigationUpdated += OnNavigationUpdated;
             gestureRecognizer.ManipulationStarted += OnManipulationStarted;
             gestureRecognizer.ManipulationUpdated += OnManipulationUpdated;
@@ -60,6 +59,41 @@ namespace Charlie
             gestureRecognizer.ManipulationCanceled += OnManipulationCanceled;
             //Debug.LogError($"[OnManipulationGesture] start");
             gestureRecognizer.StartCapturingGestures();
+#endif
+        }
+
+
+        // Update is called once per frame
+        void Update()
+        {
+#if UNITY_WSA
+            // restart capturing gestures if focusedObject changes
+            if (WorldCursor.Instance.prevGazeHoveringObject != WorldCursor.Instance.newGazeHoveringObject) {
+                gestureRecognizer.CancelGestures();
+                gestureRecognizer.StartCapturingGestures();
+            }       
+#endif
+
+            //#if UNITY_EDITOR
+
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //    RaycastHit hit;
+
+            //    if (Physics.Raycast(ray, out hit))
+            //    {
+            //        Debug.Log(hit.collider.name);
+            //        CubeCommands cc = hit.collider.gameObject.GetComponentInParent<CubeCommands>();
+            //        if (cc != null) { cc.OnSelect(); }
+            //    }
+            //}
+
+#if UNITY_WSA
+            if (Input.GetKeyDown("space"))
+            {
+                OnAirTap(InteractionSourceKind.Controller, 1, new Ray());
+            }
 #endif
         }
 
@@ -81,7 +115,7 @@ namespace Charlie
 
 #if UNITY_WSA
         private void OnManipulationStarted(ManipulationStartedEventArgs obj) {
-            if (FocusedObject != null && FocusedObject.GetComponent<Draggable>()) {
+            if (WorldCursor.Instance.newGazeHoveringObject != null && WorldCursor.Instance.newGazeHoveringObject.GetComponent<Draggable>()) {
                 IsDragging = true;
                 PrevManipulationPosition = Vector3.zero;
             }
@@ -91,9 +125,9 @@ namespace Charlie
         // drag movable stuff to move
         private void OnManipulationUpdated(ManipulationUpdatedEventArgs obj)
         {
-            if (FocusedObject != null && FocusedObject.GetComponent<Draggable>()) {
+            if (WorldCursor.Instance.newGazeHoveringObject != null && WorldCursor.Instance.newGazeHoveringObject.GetComponent<Draggable>()) {
                 IsDragging = true;
-                FocusedObject.transform.position += obj.cumulativeDelta - PrevManipulationPosition;
+                WorldCursor.Instance.newGazeHoveringObject.transform.position += obj.cumulativeDelta - PrevManipulationPosition;
                 PrevManipulationPosition = obj.cumulativeDelta;
             }
             Debug.LogError($"[OnManipulationGesture] {obj.cumulativeDelta}");
@@ -110,58 +144,6 @@ namespace Charlie
         }
 #endif
 
-        // Update is called once per frame
-        void Update()
-        {
-            OldFocusedObject = FocusedObject;
-
-#if UNITY_EDITOR
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    Debug.Log(hit.collider.name);
-                    CubeCommands cc = hit.collider.gameObject.GetComponentInParent<CubeCommands>();
-                    if (cc != null) { cc.OnSelect(); }
-                }
-            }
-
-#if UNITY_WSA
-            if (Input.GetKeyDown("space"))
-            {
-                OnAirTap(InteractionSourceKind.Controller, 1, new Ray());
-            }
-#endif
-
-#else
-        cameraPos = Camera.main.transform.position;
-        gazeDirection = Camera.main.transform.forward;
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(cameraPos, gazeDirection, out hit))
-        {
-            FocusedObject = hit.collider.gameObject;
-        }
-        else {
-            FocusedObject = null;
-        }
-
-        // if focusedObject changes?
-#if UNITY_WSA
-        if (FocusedObject != OldFocusedObject) {
-            gestureRecognizer.CancelGestures();
-            gestureRecognizer.StartCapturingGestures();
-        }
-#endif
-
-#endif
-
-        }
 
         public static StickerController SelectedObject = null;
 #if UNITY_WSA
