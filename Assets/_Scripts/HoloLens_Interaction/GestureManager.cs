@@ -47,6 +47,10 @@ namespace Charlie
         {
 #if UNITY_WSA
             gestureRecognizer = new GestureRecognizer();
+            // add recognizableGuestures
+            gestureRecognizer.SetRecognizableGestures(GestureSettings.ManipulationTranslate | GestureSettings.Tap);
+
+            // register events
             gestureRecognizer.TappedEvent += OnAirTap;
 
             // The system interprets the gesture based on which one you request when you create your GestureRecognizer.
@@ -54,9 +58,6 @@ namespace Charlie
             // This is why Holograms 211 uses a voice command to switch between rotating and moving the astronaut.
             //gestureRecognizer.NavigationUpdated += OnNavigationUpdated;
 
-            // add recognizableGuestures
-            gestureRecognizer.SetRecognizableGestures(GestureSettings.ManipulationTranslate);
-            // register events
             gestureRecognizer.ManipulationStarted += OnManipulationStarted;
             gestureRecognizer.ManipulationUpdated += OnManipulationUpdated;
             gestureRecognizer.ManipulationCompleted += OnManipulationCompleted;
@@ -70,9 +71,11 @@ namespace Charlie
         // Update is called once per frame
         void Update()
         {
+            //Debug.Log("capturing: " + gestureRecognizer.IsCapturingGestures());
 #if UNITY_WSA
             // restart capturing gestures if focusedObject changes
             if (WorldCursor.Instance.prevGazeHoveringObject != WorldCursor.Instance.newGazeHoveringObject) {
+                Debug.Log("Restart gesture capturing");
                 gestureRecognizer.CancelGestures();
                 gestureRecognizer.StartCapturingGestures();
             }       
@@ -101,25 +104,28 @@ namespace Charlie
 #endif
         }
 
+//#if UNITY_WSA
+//        private void OnNavigationUpdated(NavigationUpdatedEventArgs obj)
+//        {
+//            //Debug.LogError($"[OnManipulationGesture] {obj.normalizedOffset}");
+
+//            //Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
+//            //Transform cam = Camera.main.transform;
+
+//            //float dist = obj.normalizedOffset.y * 2f + 3f;
+
+//            //TargetRoot.eulerAngles = (new Vector3(0, obj.normalizedOffset.x * 60, 0));
+
+//            //TargetRoot.position = cam.position + cam.forward * dist;
+//        }
+//#endif
+
 #if UNITY_WSA
-        private void OnNavigationUpdated(NavigationUpdatedEventArgs obj)
+        private void OnManipulationStarted(ManipulationStartedEventArgs obj)
         {
-            //Debug.LogError($"[OnManipulationGesture] {obj.normalizedOffset}");
-
-            //Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
-            //Transform cam = Camera.main.transform;
-
-            //float dist = obj.normalizedOffset.y * 2f + 3f;
-
-            //TargetRoot.eulerAngles = (new Vector3(0, obj.normalizedOffset.x * 60, 0));
-
-            //TargetRoot.position = cam.position + cam.forward * dist;
-        }
-#endif
-
-#if UNITY_WSA
-        private void OnManipulationStarted(ManipulationStartedEventArgs obj) {
+            Debug.Log("OnManipulationStarted");
             if (WorldCursor.Instance.newGazeHoveringObject != null && WorldCursor.Instance.newGazeHoveringObject.GetComponent<Draggable>()) {
+                Debug.Log("OnManipulationStarted_IsDraggable");
                 IsDragging = true;
                 WorldCursor.Instance.cursorMaterial.color = Color.blue;
                 PrevManipulationPosition = Vector3.zero;
@@ -130,7 +136,9 @@ namespace Charlie
         // drag movable stuff to move
         private void OnManipulationUpdated(ManipulationUpdatedEventArgs obj)
         {
+            Debug.Log("OnManipulationUpdated");
             if (WorldCursor.Instance.newGazeHoveringObject != null && WorldCursor.Instance.newGazeHoveringObject.GetComponent<Draggable>()) {
+                Debug.Log("OnManipulationUpdated_IsDraggable");
                 IsDragging = true;
                 WorldCursor.Instance.newGazeHoveringObject.transform.position += obj.cumulativeDelta - PrevManipulationPosition;
                 PrevManipulationPosition = obj.cumulativeDelta;
@@ -140,12 +148,14 @@ namespace Charlie
 
         private void OnManipulationCompleted(ManipulationCompletedEventArgs obj)
         {
+            Debug.Log("OnManipulationCompleted");
             WorldCursor.Instance.cursorMaterial.color = WorldCursor.Instance.cursorColor;
             IsDragging = false;
         }
 
         private void OnManipulationCanceled(ManipulationCanceledEventArgs obj)
         {
+            Debug.Log("OnManipulationCanceled");
             WorldCursor.Instance.cursorMaterial.color = WorldCursor.Instance.cursorColor;
             IsDragging = false;
         }

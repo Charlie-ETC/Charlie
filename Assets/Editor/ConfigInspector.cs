@@ -27,6 +27,9 @@ public class ConfigInspector : Editor {
     SerializedProperty slackCharlieIconProp;
     SerializedProperty slackUserIconProp;
     SerializedProperty slackChannelProp;
+    SerializedProperty slackDebugWebhookUrlProp;
+    SerializedProperty slackDebugIconProp;
+    SerializedProperty slackDebugChannelProp;
     SerializedProperty giphyDebugProp;
     SerializedProperty giphyApiKeyProp;
 
@@ -46,6 +49,9 @@ public class ConfigInspector : Editor {
         slackCharlieIconProp = serializedObject.FindProperty("slackCharlieIcon");
         slackUserIconProp = serializedObject.FindProperty("slackUserIcon");
         slackChannelProp = serializedObject.FindProperty("slackChannel");
+        slackDebugWebhookUrlProp = serializedObject.FindProperty("slackDebugLogWebhookUrl");
+        slackDebugIconProp = serializedObject.FindProperty("slackDebugIcon");
+        slackDebugChannelProp = serializedObject.FindProperty("slackDebugChannel");
         giphyDebugProp = serializedObject.FindProperty("giphyDebug");
         giphyApiKeyProp = serializedObject.FindProperty("giphyApiKey");
     }
@@ -97,6 +103,11 @@ public class ConfigInspector : Editor {
             EditorGUILayout.PropertyField(slackUserIconProp, new GUIContent("User Icon"));
             EditorGUILayout.PropertyField(slackChannelProp, new GUIContent("Channel"));
             EditorGUILayout.HelpBox("These parameters can be found on Slack: https://cmuetcsv.slack.com/services/B7UFMTLT0", MessageType.Info);
+
+            EditorGUILayout.PropertyField(slackDebugWebhookUrlProp, new GUIContent("Slack Debug Webhook Url"));
+            EditorGUILayout.PropertyField(slackDebugIconProp, new GUIContent("Debug Console Icon"));
+            EditorGUILayout.PropertyField(slackDebugChannelProp, new GUIContent("Debug Channel"));
+            EditorGUILayout.HelpBox("These parameters can be found on Slack: https://cmuetcsv.slack.com/services/274027764212", MessageType.Info);
         }
 
         showGiphy = EditorGUILayout.Foldout(showGiphy, new GUIContent("Giphy"));

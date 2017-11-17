@@ -18,6 +18,9 @@ public class CharlieSlackLog : MonoBehaviour {
     private string channel;
     private string apiaiSessionId;
 
+    private string debugEmoji;
+    private string debugChannel;
+
     // Use this for initialization
     void Start()
     {
@@ -28,6 +31,9 @@ public class CharlieSlackLog : MonoBehaviour {
         charlieEmoji = config.slackCharlieIcon;
         userEmoji = config.slackUserIcon;
         channel = config.slackChannel;
+
+        debugEmoji = config.slackDebugIcon;
+        debugChannel = config.slackDebugChannel;
     }
 
 
@@ -83,6 +89,55 @@ public class CharlieSlackLog : MonoBehaviour {
         await request.SendWebRequest();
         //Debug.LogWarning(request.downloadHandler.text);
         //Debug.LogWarning("[CharlieSlackLog] Slack Log Sent.");       
+    }
+
+    // will probably miss the very first 10 pieces of logs
+    public async Task SlackApplicationLog(string username, string message, LogType type, string typeName,string time)
+    {
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(message)) { return; }
+
+        // construct JSON
+        SlackMessage slackMessage = new SlackMessage();
+        slackMessage.text = typeName + ": " + message;
+        slackMessage.username = username + " - " + time;
+        slackMessage.channel = debugChannel;
+        slackMessage.iconEmoji = debugEmoji; // for regular log/assert
+
+        if (type == LogType.Error)
+        {
+            slackMessage.iconEmoji = ":rage:";
+        }
+        if (type == LogType.Warning)
+        {
+            slackMessage.iconEmoji = ":neutral_face:";
+        }
+        if (type == LogType.Exception)
+        {
+            slackMessage.iconEmoji = ":question:";
+        }
+
+        // post request
+        JsonSerializerSettings settings = new JsonSerializerSettings
+        {
+            ContractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy()
+            }
+        };
+
+        string JSONstring = JsonConvert.SerializeObject(slackMessage, settings);
+        UnityWebRequest request = new UnityWebRequest(url)
+        {
+            method = UnityWebRequest.kHttpVerbPOST,
+            uploadHandler = new UploadHandlerRaw(
+                Encoding.UTF8.GetBytes(JSONstring)),
+            downloadHandler = new DownloadHandlerBuffer()
+        };
+
+        request.SetRequestHeader("Content-type", "application/json");
+
+        await request.SendWebRequest();
+        //Debug.LogWarning(request.downloadHandler.text);   
     }
 
     class SlackMessage

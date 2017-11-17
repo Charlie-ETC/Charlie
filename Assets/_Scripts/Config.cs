@@ -18,6 +18,9 @@ public class Config : ScriptableObject {
     public string slackCharlieIcon = ":girl:";
     public string slackUserIcon = ":dark_sunglasses:";
     public string slackChannel = "#charlie_history";
+    public string slackDebugLogWebhookUrl = "https://hooks.slack.com/services/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";
+    public string slackDebugIcon = ":package:";
+    public string slackDebugChannel = "#charlie_debug_log";
     public bool giphyDebug;
     public string giphyApiKey;
 }
