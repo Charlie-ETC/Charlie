@@ -50,34 +50,16 @@ pipeline {
         }
 
         stage('Build UWP') {
-            parallel {
-                stage('Debug') {
-                    steps {
-                        powershell '''$projectPath = (Resolve-Path .\\).path
-                            $uwpProjectPath = Join-Path $projectPath UWP
-                            $uwpSolutionPath = Join-Path $uwpProjectPath Charlie.sln
+            steps {
+                powershell '''$projectPath = (Resolve-Path .\\).path
+                    $uwpProjectPath = Join-Path $projectPath UWP
+                    $uwpSolutionPath = Join-Path $uwpProjectPath Charlie.sln
 
-                            cd $uwpProjectPath
-                            $vsPath = & "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
-                            $msBuildPath = Join-Path $vsPath "MSBuild\\15.0\\Bin\\MSBuild.exe"
-                            & $msBuildPath "/property:Configuration=Debug;Platform=x86"
-                        '''
-                    }
-                }
-
-                stage('Release') {
-                    steps {
-                        powershell '''$projectPath = (Resolve-Path .\\).path
-                            $uwpProjectPath = Join-Path $projectPath UWP
-                            $uwpSolutionPath = Join-Path $uwpProjectPath Charlie.sln
-
-                            cd $uwpProjectPath
-                            $vsPath = & "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
-                            $msBuildPath = Join-Path $vsPath "MSBuild\\15.0\\Bin\\MSBuild.exe"
-                            & $msBuildPath "/property:Configuration=Release;Platform=x86"
-                        '''
-                    }
-                }
+                    cd $uwpProjectPath
+                    $vsPath = & "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+                    $msBuildPath = Join-Path $vsPath "MSBuild\\15.0\\Bin\\MSBuild.exe"
+                    & $msBuildPath "/property:Configuration=Release;Platform=x86"
+                '''
             }
         }
 
