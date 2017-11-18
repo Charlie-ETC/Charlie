@@ -20,8 +20,11 @@ pipeline {
                         Copy-Item -Force $env:CHARLIE_CONFIGURATION $charlieConfigurationFile
 
                         New-Item -ItemType file -Force $logFile
-                        $process = Start-Process \'C:\\Program Files\\Unity\\Editor\\Unity.exe\' -ArgumentList "-quit -batchmode -username yongjiew+charlie@andrew.cmu.edu -password Charliedemo123 -projectPath `"$projectPath`" -logFile `"$logFile`" -buildTarget wsaplayer -executeMethod Builder.Build" -PassThru
-                        Get-Content $logFile -Wait -Tail 0 | %{ Write-Host $_; Write-Output $_ } | Select-String "Exiting batchmode" | %{ break }
+                        while (-not (Test-Path $logFile)) {
+                            Start-Sleep -Seconds 1
+                        }
+                        $process = Start-Process "C:\\Program Files\\Unity\\Editor\\Unity.exe" -ArgumentList "-quit -batchmode -username yongjiew+charlie@andrew.cmu.edu -password Charliedemo123 -projectPath `"$projectPath`" -logFile `"$logFile`" -buildTarget wsaplayer -executeMethod Builder.Build" -PassThru
+                        Get-Content $logFile -Wait -Tail 0 | %{ Write-Host $_; Write-Output $_ } | Select-String "\*\*\* Completed" | %{ break }
 
                         $process.WaitForExit()
                         if ($process.ExitCode -ne 0) {
