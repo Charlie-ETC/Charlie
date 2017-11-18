@@ -24,7 +24,7 @@ pipeline {
                             Start-Sleep -Seconds 1
                         }
                         $process = Start-Process "C:\\Program Files\\Unity\\Editor\\Unity.exe" -ArgumentList "-quit -batchmode -username yongjiew+charlie@andrew.cmu.edu -password Charliedemo123 -projectPath `"$projectPath`" -logFile `"$logFile`" -buildTarget wsaplayer -executeMethod Builder.Build" -PassThru
-                        Get-Content $logFile -Wait -Tail 0 | %{ Write-Host $_; Write-Output $_ } | Select-String "\*\*\* Completed" | %{ break }
+                        Get-Content $logFile -Wait -Tail 0 | %{ Write-Host $_; Write-Output $_ } | Select-String "\\*\\*\\* Completed" | %{ break }
 
                         $process.WaitForExit()
                         if ($process.ExitCode -ne 0) {
