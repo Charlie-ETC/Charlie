@@ -28,6 +28,15 @@ public class Builder
             options = BuildOptions.None,
             targetGroup = BuildTargetGroup.WSA
         };
-        BuildPipeline.BuildPlayer(options);
+
+        string error = BuildPipeline.BuildPlayer(options);
+        if (string.IsNullOrEmpty(error))
+        {
+            EditorApplication.Exit(0);
+        }
+        else
+        {
+            EditorApplication.Exit(1);
+        }
     }
 }

@@ -20,7 +20,7 @@ pipeline {
                         Copy-Item -Force $env:CHARLIE_CONFIGURATION $charlieConfigurationFile
 
                         New-Item -ItemType file -Force $logFile
-                        $process = Start-Process \'C:\\Program Files\\Unity\\Editor\\Unity.exe\' -ArgumentList "-quit -batchmode -username yongjiew+charlie@andrew.cmu.edu -password Charliedemo123 -projectPath `"$projectPath`" -logFile `"$logFile`" -executeMethod Builder.Build" -PassThru
+                        $process = Start-Process \'C:\\Program Files\\Unity\\Editor\\Unity.exe\' -ArgumentList "-quit -batchmode -username yongjiew+charlie@andrew.cmu.edu -password Charliedemo123 -projectPath `"$projectPath`" -logFile `"$logFile`" -buildTarget wsaplayer -executeMethod Builder.Build" -PassThru
                         Get-Content $logFile -Wait -Tail 0 | %{ Write-Host $_; Write-Output $_ } | Select-String "Exiting batchmode" | %{ break }
 
                         $process.WaitForExit()
@@ -55,8 +55,7 @@ pipeline {
 
                             cd $uwpProjectPath
                             Import-Module Invoke-MsBuild
-                            $msBuildProcess = Invoke-MsBuild -Path $uwpSolutionPath -MsBuildParameters "/property:Configuration=Debug;Platform=x86" -ShowBuildOutputInCurrentWindow -PassThru
-                            $msBuildProcess.WaitForExit()
+                            Invoke-MsBuild -Path $uwpSolutionPath -MsBuildParameters "/property:Configuration=Debug;Platform=x86" -ShowBuildOutputInCurrentWindow
                         '''
                     }
                 }
@@ -69,8 +68,7 @@ pipeline {
 
                             cd $uwpProjectPath
                             Import-Module Invoke-MsBuild
-                            $msBuildProcess = Invoke-MsBuild -Path $uwpSolutionPath -MsBuildParameters "/property:Configuration=Release;Platform=x86" -ShowBuildOutputInCurrentWindow -PassThru
-                            $msBuildProcess.WaitForExit()
+                            Invoke-MsBuild -Path $uwpSolutionPath -MsBuildParameters "/property:Configuration=Release;Platform=x86" -ShowBuildOutputInCurrentWindow
                         '''
                     }
                 }
