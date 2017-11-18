@@ -57,8 +57,9 @@ pipeline {
                             $uwpSolutionPath = Join-Path $uwpProjectPath Charlie.sln
 
                             cd $uwpProjectPath
-                            Import-Module Invoke-MsBuild
-                            Invoke-MsBuild -Path $uwpSolutionPath -MsBuildParameters "/property:Configuration=Debug;Platform=x86" -ShowBuildOutputInCurrentWindow
+                            $vsPath = & "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+                            $msBuildPath = Join-Path $vsPath "MSBuild\\15.0\\Bin\\MSBuild.exe"
+                            & $msBuildPath "/property:Configuration=Debug;Platform=x86"
                         '''
                     }
                 }
@@ -70,8 +71,9 @@ pipeline {
                             $uwpSolutionPath = Join-Path $uwpProjectPath Charlie.sln
 
                             cd $uwpProjectPath
-                            Import-Module Invoke-MsBuild
-                            Invoke-MsBuild -Path $uwpSolutionPath -MsBuildParameters "/property:Configuration=Release;Platform=x86" -ShowBuildOutputInCurrentWindow
+                            $vsPath = & "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+                            $msBuildPath = Join-Path $vsPath "MSBuild\\15.0\\Bin\\MSBuild.exe"
+                            & $msBuildPath "/property:Configuration=Release;Platform=x86"
                         '''
                     }
                 }
