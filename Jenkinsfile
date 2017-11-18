@@ -66,6 +66,7 @@ pipeline {
         stage('Archive Artifacts') {
             steps {
                 archiveArtifacts artifacts: 'UWP/Charlie/AppPackages/**', onlyIfSuccessful: true
+                googleStorageUpload bucket: 'gs://charlie-builds', credentialsId: 'Charlie', pathPrefix: 'UWP/Charlie/AppPackages/', pattern: 'UWP/Charlie/AppPackages/**', sharedPublicly: true, showInline: true
             }
         }
     }
