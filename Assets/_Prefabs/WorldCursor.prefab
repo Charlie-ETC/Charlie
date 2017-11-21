@@ -88,7 +88,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6cf5382b4e90010478ac33e6962f28a0, type: 2}
+  - {fileID: 2100000, guid: 67c954a7c7181474384f298448ad283b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -138,9 +138,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4845d8c90705e4eb2bce3c22271d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorColor: {r: 0, g: 0, b: 0, a: 0}
+  cursorMaterial: {fileID: 2100000, guid: 67c954a7c7181474384f298448ad283b, type: 2}
   prevGazeHoveringObject: {fileID: 0}
   newGazeHoveringObject: {fileID: 0}
-  cursorMaterial: {fileID: 2100000, guid: 6cf5382b4e90010478ac33e6962f28a0, type: 2}
 --- !u!114 &114293914159985668
 MonoBehaviour:
   m_ObjectHideFlags: 1
