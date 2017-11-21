@@ -671,7 +671,7 @@ Prefab:
     - target: {fileID: 9500000, guid: 74ade11beea5f9a4f9752c66f54a19eb, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 532a5d07a78a2de468dc647fe2ffaec6, type: 2}
+      objectReference: {fileID: 9100000, guid: 4012e9641697f234ea12c607a0693181, type: 2}
     - target: {fileID: 400000, guid: 74ade11beea5f9a4f9752c66f54a19eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 49.422
@@ -1946,7 +1946,7 @@ Prefab:
     - target: {fileID: 9500000, guid: 10ead658f9631ec4f9f01c71bb7821c3, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 3031104ff8c9b7e4a979a40de05afa17, type: 2}
+      objectReference: {fileID: 9100000, guid: d57fc3a9237c2244e8d8d041688a1e3f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10ead658f9631ec4f9f01c71bb7821c3, type: 3}
   m_IsPrefabParent: 0
@@ -2839,7 +2839,7 @@ Prefab:
     - target: {fileID: 9500000, guid: 7d9a1824d20cd2a4a87f34297859c515, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: ccfc2dfb0bbc4d34789f8520181b79d9, type: 2}
+      objectReference: {fileID: 9100000, guid: 0aac0c9c5129bea4ba95ae253b9b982d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d9a1824d20cd2a4a87f34297859c515, type: 3}
   m_IsPrefabParent: 0
@@ -3397,7 +3397,7 @@ Prefab:
     - target: {fileID: 9500000, guid: 4b0f892394222334e8b1ee134a904235, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 41d053c307360d444b30379e380f9d6d, type: 2}
+      objectReference: {fileID: 9100000, guid: 2f29f15042bb13a47b6c7e8967f19d10, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b0f892394222334e8b1ee134a904235, type: 3}
   m_IsPrefabParent: 0
