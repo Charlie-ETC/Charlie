@@ -372,7 +372,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 105844288}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 317.59998, y: -150.79999, z: 0}
+  m_LocalPosition: {x: 458.40002, y: -261.59998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1822528950}
@@ -593,7 +593,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 111110433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5ac1b840a2e7534bb7af708ebf846b9, type: 3}
+  m_Script: {fileID: 11500000, guid: e6ec37c5e8bb3344f877c67705d4d271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &111110436
@@ -858,7 +858,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 147713702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.000030517578, y: -0.000015258789, z: 0}
+  m_LocalPosition: {x: 0.000030517578, y: -0.000030517578, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 105844289}
@@ -998,7 +998,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 240562467}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -317.59998, y: -150.79999, z: 0}
+  m_LocalPosition: {x: -458.40002, y: -261.59998, z: 0}
   m_LocalScale: {x: 1, y: -1, z: 1}
   m_Children:
   - {fileID: 565428413}
@@ -1676,7 +1676,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 519462507}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5ac1b840a2e7534bb7af708ebf846b9, type: 3}
+  m_Script: {fileID: 11500000, guid: e6ec37c5e8bb3344f877c67705d4d271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &519462510
@@ -3533,7 +3533,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1060586485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5ac1b840a2e7534bb7af708ebf846b9, type: 3}
+  m_Script: {fileID: 11500000, guid: e6ec37c5e8bb3344f877c67705d4d271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1076780287
@@ -3944,6 +3944,366 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1233037353}
+--- !u!1 &1241033068 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1585621548278774, guid: d76777e2f5d49c441825ac8c1d7654bc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1600887026}
+--- !u!114 &1241033069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1241033068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1384774831, guid: e743331561ef77147ae48cda9bcb8209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fsm:
+    dataVersion: 2
+    usedInTemplate: {fileID: 0}
+    name: Gesture
+    startState: Idle
+    states:
+    - name: Idle
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 65
+        y: 156
+        width: 172
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: CursorHoverDraggable
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: HoverDraggable
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames: []
+        customNames: []
+        actionEnabled: 
+        actionIsOpen: 
+        actionStartIndex: 
+        actionHashCodes: 
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 
+        paramName: []
+        paramDataPos: 
+        paramByteDataSize: 
+    - name: HoverDraggable
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 368
+        y: 222
+        width: 153
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: CursorHoverEmpty
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Idle
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: ManipulationStarted
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: SelectDraggable
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames: []
+        customNames: []
+        actionEnabled: 
+        actionIsOpen: 
+        actionStartIndex: 
+        actionHashCodes: 
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 
+        paramName: []
+        paramDataPos: 
+        paramByteDataSize: 
+    - name: SelectDraggable
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 661
+        y: 217
+        width: 174
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: ManipulationCancelled
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: HoverDraggable
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: ManipulationCompleted
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: HoverDraggable
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionGuestureMaipulationStarted
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 8d4bb503
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 14000000
+        paramName:
+        - objSelf
+        paramDataPos: 00000000
+        paramByteDataSize: 00000000
+    - name: HoverSticker
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 369
+        y: 106
+        width: 107
+        height: 16
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions: []
+      actionData:
+        actionNames: []
+        customNames: []
+        actionEnabled: 
+        actionIsOpen: 
+        actionStartIndex: 
+        actionHashCodes: 
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 
+        paramName: []
+        paramDataPos: 
+        paramByteDataSize: 
+    events:
+    - name: CursorHoverDraggable
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: CursorHoverEmpty
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: ManipulationCancelled
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: ManipulationCompleted
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: ManipulationStarted
+      isSystemEvent: 0
+      isGlobal: 0
+    globalTransitions: []
+    variables:
+      floatVariables: []
+      intVariables: []
+      boolVariables: []
+      stringVariables: []
+      vector2Variables: []
+      vector3Variables: []
+      colorVariables: []
+      rectVariables: []
+      quaternionVariables: []
+      gameObjectVariables: []
+      objectVariables: []
+      materialVariables: []
+      textureVariables: []
+      arrayVariables: []
+      enumVariables: []
+      categories:
+      - 
+      variableCategoryIDs: 
+    description: 
+    docUrl: 
+    showStateLabel: 1
+    maxLoopCount: 0
+    watermark: 
+    password: 
+    locked: 0
+    manualUpdate: 0
+    keepDelayedEventsOnStateExit: 0
+    preprocessed: 0
+    ExposedEvents: []
+    RestartOnEnable: 1
+    EnableDebugFlow: 0
+    EnableBreakpoints: 1
+    editorFlags: 3
+    activeStateName: 
+    mouseEvents: 0
+    handleLevelLoaded: 0
+    handleTriggerEnter2D: 0
+    handleTriggerExit2D: 0
+    handleTriggerStay2D: 0
+    handleCollisionEnter2D: 0
+    handleCollisionExit2D: 0
+    handleCollisionStay2D: 0
+    handleTriggerEnter: 0
+    handleTriggerExit: 0
+    handleTriggerStay: 0
+    handleCollisionEnter: 0
+    handleCollisionExit: 0
+    handleCollisionStay: 0
+    handleParticleCollision: 0
+    handleControllerColliderHit: 0
+    handleJointBreak: 0
+    handleJointBreak2D: 0
+    handleOnGUI: 0
+    handleFixedUpdate: 0
+    handleLateUpdate: 0
+    handleApplicationEvents: 0
+    handleLegacyNetworking: 0
+    handleAnimatorMove: 0
+    handleAnimatorIK: 0
+  fsmTemplate: {fileID: 0}
+  eventHandlerComponentsAdded: 0
 --- !u!1 &1261304619
 GameObject:
   m_ObjectHideFlags: 0
@@ -4022,19 +4382,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1763691739}
+    m_TransformParent: {fileID: 2030931263}
     m_Modifications:
     - target: {fileID: 400004, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.052
+      value: -0.052000027
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.001
+      value: 0.0010000118
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.017
+      value: -0.017000014
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4054,11 +4414,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 11.662725
+      value: 11.662735
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
       propertyPath: m_LocalScale.y
@@ -4066,7 +4426,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10.695683
+      value: 10.695692
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -4083,6 +4443,10 @@ Prefab:
     - target: {fileID: 100004, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
       propertyPath: m_Name
       value: photoframe_model
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cd8486787b70a04f93a2d6a297f49b6, type: 3}
@@ -6407,7 +6771,7 @@ RectTransform:
   m_GameObject: {fileID: 1717627423}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.7}
-  m_LocalScale: {x: 0.0021440063, y: 0.0021440063, z: 0.0021440063}
+  m_LocalScale: {x: 0.001235918, y: 0.001235918, z: 0.001235918}
   m_Children:
   - {fileID: 147713703}
   - {fileID: 11511252}
@@ -6463,7 +6827,7 @@ Transform:
   m_Children:
   - {fileID: 422859199}
   - {fileID: 39799393}
-  - {fileID: 1274934404}
+  - {fileID: 2030931263}
   m_Father: {fileID: 1969215041}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: -23.800001, y: 180.00002, z: 0}
@@ -6850,7 +7214,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1948250697}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -317.59998, y: 150.79999, z: 0}
+  m_LocalPosition: {x: -458.40002, y: 261.59998, z: 0}
   m_LocalScale: {x: -1, y: -1, z: 1}
   m_Children:
   - {fileID: 1218196628}
@@ -7109,7 +7473,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1987524506}
   m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: 0, w: 0}
-  m_LocalPosition: {x: 317.59998, y: 150.79999, z: 0}
+  m_LocalPosition: {x: 458.40002, y: 261.59998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1233037354}
@@ -7297,6 +7661,35 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2005815431}
+--- !u!1 &2030931262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2030931263}
+  m_Layer: 0
+  m_Name: PhotoFrameModelParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2030931263
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2030931262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1274934404}
+  m_Father: {fileID: 1763691739}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2044108565
 GameObject:
   m_ObjectHideFlags: 0

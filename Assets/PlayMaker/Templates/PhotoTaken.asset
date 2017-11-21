@@ -152,7 +152,7 @@ MonoBehaviour:
         - 
         - 
         - 
-        - 
+        - Action Show Photo
         actionEnabled: 0000010101
         actionIsOpen: 0101010101
         actionStartIndex: 0000000001000000100000001200000015000000

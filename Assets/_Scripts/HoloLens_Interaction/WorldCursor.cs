@@ -67,6 +67,14 @@ public class WorldCursor : Charlie.Singleton<WorldCursor> {
             prevGazeHoveringObject = newGazeHoveringObject;
         }
 
+        if (newGazeHoveringObject != null && newGazeHoveringObject.GetComponent<Draggable>())
+        {
+            gameObject.GetComponent<PlayMakerFSM>().SendEvent("CursorHoverDraggable");
+        }
+        else {
+            gameObject.GetComponent<PlayMakerFSM>().SendEvent("CursorHoverEmpty");
+        }
+
 
         //if (Physics.Raycast(cameraPos, gazeDirection, out hit))
         //{

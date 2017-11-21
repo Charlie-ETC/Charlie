@@ -20,7 +20,7 @@ namespace Charlie
         //public GameObject OldFocusedObject { get; private set; }
 
 #if UNITY_WSA
-        private GestureRecognizer gestureRecognizer;
+        public GestureRecognizer gestureRecognizer;
         private bool IsDragging { get; set; }
         private Vector3 PrevManipulationPosition { get; set; }
 #endif
@@ -59,7 +59,7 @@ namespace Charlie
             //gestureRecognizer.NavigationUpdated += OnNavigationUpdated;
 
             gestureRecognizer.ManipulationStarted += OnManipulationStarted;
-            gestureRecognizer.ManipulationUpdated += OnManipulationUpdated;
+            //gestureRecognizer.ManipulationUpdated += OnManipulationUpdated;
             gestureRecognizer.ManipulationCompleted += OnManipulationCompleted;
             gestureRecognizer.ManipulationCanceled += OnManipulationCanceled;
             //Debug.LogError($"[OnManipulationGesture] start");
@@ -123,41 +123,31 @@ namespace Charlie
 #if UNITY_WSA
         private void OnManipulationStarted(ManipulationStartedEventArgs obj)
         {
-            Debug.Log("OnManipulationStarted");
-            if (WorldCursor.Instance.newGazeHoveringObject != null && WorldCursor.Instance.newGazeHoveringObject.GetComponent<Draggable>()) {
-                Debug.Log("OnManipulationStarted_IsDraggable");
-                IsDragging = true;
-                WorldCursor.Instance.cursorMaterial.color = Color.blue;
-                PrevManipulationPosition = Vector3.zero;
-            }
+            //Debug.Log("OnManipulationStarted");
+            //if (WorldCursor.Instance.newGazeHoveringObject != null && WorldCursor.Instance.newGazeHoveringObject.GetComponent<Draggable>()) {
+            //    Debug.Log("OnManipulationStarted_IsDraggable");
+            //    IsDragging = true;
+            //    WorldCursor.Instance.cursorMaterial.color = Color.blue;
+            //    PrevManipulationPosition = Vector3.zero;
+            //}
+
+            gameObject.GetComponent<PlayMakerFSM>().SendEvent("ManipulationStarted");
 
         }
 
         // drag movable stuff to move
-        private void OnManipulationUpdated(ManipulationUpdatedEventArgs obj)
-        {
-            Debug.Log("OnManipulationUpdated");
-            if (WorldCursor.Instance.newGazeHoveringObject != null && WorldCursor.Instance.newGazeHoveringObject.GetComponent<Draggable>()) {
-                Debug.Log("OnManipulationUpdated_IsDraggable");
-                IsDragging = true;
-                WorldCursor.Instance.newGazeHoveringObject.transform.position += obj.cumulativeDelta - PrevManipulationPosition;
-                PrevManipulationPosition = obj.cumulativeDelta;
-            }
-            Debug.LogError($"[OnManipulationGesture] {obj.cumulativeDelta}");
-        }
+        // OnManipulationUpdated is in ActionGuestureMaipulationStarted script
 
         private void OnManipulationCompleted(ManipulationCompletedEventArgs obj)
         {
             Debug.Log("OnManipulationCompleted");
-            WorldCursor.Instance.cursorMaterial.color = WorldCursor.Instance.cursorColor;
-            IsDragging = false;
+            gameObject.GetComponent<PlayMakerFSM>().SendEvent("ManipulationCompleted");
         }
 
         private void OnManipulationCanceled(ManipulationCanceledEventArgs obj)
         {
             Debug.Log("OnManipulationCanceled");
-            WorldCursor.Instance.cursorMaterial.color = WorldCursor.Instance.cursorColor;
-            IsDragging = false;
+            gameObject.GetComponent<PlayMakerFSM>().SendEvent("ManipulationCancelled");
         }
 #endif
 
@@ -234,7 +224,7 @@ namespace Charlie
             gestureRecognizer.TappedEvent -= OnAirTap;
 
             gestureRecognizer.ManipulationStarted -= OnManipulationStarted;
-            gestureRecognizer.ManipulationUpdated -= OnManipulationUpdated;
+            //gestureRecognizer.ManipulationUpdated -= OnManipulationUpdated;
             gestureRecognizer.ManipulationCompleted -= OnManipulationCompleted;
             gestureRecognizer.ManipulationCanceled -= OnManipulationCanceled;
         }
