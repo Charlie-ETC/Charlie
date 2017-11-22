@@ -19,7 +19,6 @@ public class ActionShowPhoto : FsmStateAction
 
 public class ActionHidePhoto : FsmStateAction
 {
-    GameObject photoFrameModel = GameObject.Find("PhotoFrameModelParent");
 
     public override void OnEnter()
     {

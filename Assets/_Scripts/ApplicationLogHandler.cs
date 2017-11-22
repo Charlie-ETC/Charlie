@@ -14,11 +14,17 @@ public class ApplicationLogHandler : MonoBehaviour
     public string stack = "";
     public string logType = "";
 
-    void OnEnable()
+    private void Awake()
     {
         timeStamp = System.DateTime.UtcNow.ToLocalTime().ToString("HH:mm dd MMMM, yyyy");
         if (charlieSlackLog != null) Application.logMessageReceived += HandleLog;
     }
+
+    //void OnEnable()
+    //{
+    //    timeStamp = System.DateTime.UtcNow.ToLocalTime().ToString("HH:mm dd MMMM, yyyy");
+    //    if (charlieSlackLog != null) Application.logMessageReceived += HandleLog;
+    //}
 
     void OnDisable()
     {
@@ -27,33 +33,42 @@ public class ApplicationLogHandler : MonoBehaviour
 
     void HandleLog(string logString, string stackTrace, LogType type)
     {
-        output = logString;
-        stack = stackTrace;
+        // avoid same logs in every frame
+        if (logString != output)
+        {
+            output = logString;
+            stack = stackTrace;
+            string typeEmoji = "";
 
-        if (type == LogType.Error)
-        {
-            logType = "Error";
-        }
-        else if (type == LogType.Exception)
-        {
-            logType = "Exception";
-        }
-        else if (type == LogType.Assert)
-        {
-            logType = "Assert";
-        }
-        else if (type == LogType.Warning)
-        {
-            logType = "Warning";
-        }
-        else
-        {
-            logType = "Log";
-        }
+            if (type == LogType.Error)
+            {
+                logType = "Error";
+                typeEmoji = ":rage:[Error]";
+            }
+            else if (type == LogType.Exception)
+            {
+                logType = "Exception";
+                typeEmoji = ":question:[Exception]";
+            }
+            else if (type == LogType.Assert)
+            {
+                logType = "Assert";
+                typeEmoji = ":question:[Assert]";
+            }
+            else if (type == LogType.Warning)
+            {
+                logType = "Warning";
+                typeEmoji = ":warning:[Warning]";
+            }
+            else
+            {
+                logType = "Log";
+                typeEmoji = ":package:[Log]";
+            }
 
-//#if !UNITY_EDITOR
-        //charlieSlackLog.SlackApplicationLog("Unity_Console", stack + output, logType, timeStamp); // too many characters in stack
-        charlieSlackLog.SlackApplicationLog("Unity_Console", output, type, logType, timeStamp);
-//#endif
+            //#if !UNITY_EDITOR
+            charlieSlackLog.SlackApplicationLog("Unity_Console", output, typeEmoji, timeStamp);
+            //#endif
+        }
     }
 }

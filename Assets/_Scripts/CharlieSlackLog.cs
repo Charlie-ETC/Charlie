@@ -92,29 +92,31 @@ public class CharlieSlackLog : MonoBehaviour {
     }
 
     // will probably miss the very first 10 pieces of logs
-    public async Task SlackApplicationLog(string username, string message, LogType type, string typeName,string time)
+    // @typeName is the string of corresponding emoji for the log type. It goes in the fianl slack message.
+    // @time is a timestamp for the log output.
+    public async Task SlackApplicationLog(string username, string message, string typeName, string time)
     {
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(message)) { return; }
 
         // construct JSON
         SlackMessage slackMessage = new SlackMessage();
-        slackMessage.text = typeName + ": " + message;
+        slackMessage.text = typeName + "  " + message;
         slackMessage.username = username + " - " + time;
         slackMessage.channel = debugChannel;
-        slackMessage.iconEmoji = debugEmoji; // for regular log/assert
+        slackMessage.iconEmoji = debugEmoji;
 
-        if (type == LogType.Error)
-        {
-            slackMessage.iconEmoji = ":rage:";
-        }
-        if (type == LogType.Warning)
-        {
-            slackMessage.iconEmoji = ":neutral_face:";
-        }
-        if (type == LogType.Exception)
-        {
-            slackMessage.iconEmoji = ":question:";
-        }
+        //if (type == LogType.Error)
+        //{
+        //    slackMessage.iconEmoji = ":rage:";
+        //}
+        //if (type == LogType.Warning)
+        //{
+        //    slackMessage.iconEmoji = ":warning:";
+        //}
+        //if (type == LogType.Exception)
+        //{
+        //    slackMessage.iconEmoji = ":question:";
+        //}
 
         // post request
         JsonSerializerSettings settings = new JsonSerializerSettings
