@@ -13,6 +13,8 @@ namespace Charlie
         [Tooltip("Text element to update when ready to proceed to next scene.")]
         public Text ReadyText;
 
+        private bool LoadingNextScene;
+
         // <summary>
         // Use this for initialization
         // </summary>
@@ -36,7 +38,11 @@ namespace Charlie
         public void OnMappingDone()
         {
             // Update the text.
-            SceneManager.LoadSceneAsync(NextScene, LoadSceneMode.Single);
+            if (!LoadingNextScene) {
+                ReadyText.text = "Loading...";
+                SceneManager.LoadSceneAsync(NextScene, LoadSceneMode.Single);
+                LoadingNextScene = true;
+            }
         }
 
         /// <summary>

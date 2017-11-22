@@ -75,13 +75,6 @@ public class FsmEventGenerator : MonoBehaviour {
         }
     }
 
-    public void Awake()
-    {
-        var context = new Context();
-        context.name = "story_somethine";
-        ApiaiService.Instance.PostContext(DictationMonitor.Instance.apiaiSessionId, context);
-    }
-
     public void HandleResponse(Response resp)
     {
         //var intentName = resp?.result?.metadata?.intentName ?? "hello";
