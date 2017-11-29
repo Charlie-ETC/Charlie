@@ -54,6 +54,14 @@ public class ActionSpeak : FsmStateAction
                 actualSpeech = actualSpeech.Replace("{PlayerName}", UserProfile.Content["PlayerName"]);
             }
 
+            if (actualSpeech.Contains("{FavoriteCity}"))
+            {
+                Debug.Log("getting favorite city");
+                string FavoriteCity = await UserProfile.TryGetApiaiContext("favorite_city");
+                Debug.Log($"got favorite city, {FavoriteCity}");
+                actualSpeech = actualSpeech.Replace("{FavoriteCity}", FavoriteCity);
+            }
+
 
             Debug.Log($"ActionSpeak, start speech:{actualSpeech}");
             Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("toTalk", true); // for facial animation

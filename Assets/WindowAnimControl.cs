@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Asyncoroutine;
-
 using Charlie.Unsplash;
 
 public class WindowAnimControl : MonoBehaviour {
@@ -20,8 +19,10 @@ public class WindowAnimControl : MonoBehaviour {
     }
 
     // Use this for initialization
-    void OnEnable () {
-        ChangeBG("Water");
+    async void OnEnable ()
+    {
+        string FavoriteCity = await UserProfile.TryGetApiaiContext("favorite_city");
+        ChangeBG(FavoriteCity??"Water");
     }
 
     public async void ChangeBG(string content)
