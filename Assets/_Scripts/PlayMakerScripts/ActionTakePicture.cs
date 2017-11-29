@@ -34,9 +34,10 @@ public class ActionTakePicture : FsmStateAction
                     GameObject.Find("PhotoTaken").GetComponent<RawImage>().texture = texture;
                     byte[] jpegData = ImageConversion.EncodeToJPG(texture, 80);
 
-                    Debug.Log("[DictationMonitor] Uploading picture to Twitter");
-                    Media media = await DictationMonitor.Instance.twitterService.UploadMedia(jpegData);
-                    DictationMonitor.Instance.twitterService.TweetWithMedia("hello!", new string[1] { media.mediaIdString });
+                    Debug.Log("[ActionTakePicture] Uploading picture to Twitter");
+                    Media media = await TwitterService.Instance.UploadMedia(jpegData);
+                    Debug.Log($"[ActionTakePicture] Media uploaded with ID {media.mediaIdString}");
+                    TwitterService.Instance.TweetWithMedia("hello!", new string[1] { media.mediaIdString });
                     //spatialMappingManager.StartObserver();
 
                     capture.StopPhotoModeAsync(delegate (UnityEngine.XR.WSA.WebCam.PhotoCapture.PhotoCaptureResult result3) {
