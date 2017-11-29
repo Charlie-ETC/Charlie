@@ -43,16 +43,26 @@ MonoBehaviour:
         actionNames:
         - ActionSpeak
         - ActionTimeout
+        - ActionLookatPlayer
         customNames:
         - 
         - 
-        actionEnabled: 0101
-        actionIsOpen: 0101
-        actionStartIndex: 0000000003000000
-        actionHashCodes: 16192d01deb16303
+        - 
+        actionEnabled: 010101
+        actionIsOpen: 010101
+        actionStartIndex: 000000000300000004000000
+        actionHashCodes: 16192d01deb16303f26b2504
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         - ownerOption: 0
           gameObject:
             useVariable: 0
@@ -88,19 +98,22 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 010000a041
+        byteData: 010000a0410100
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 12000000010000001400000002000000
+        paramDataType: 12000000010000001400000002000000140000000100000001000000
         paramName:
         - speech
         - ignoredApiResponse
         - audioSourceObj
         - secs
-        paramDataPos: 00000000000000000000000001000000
-        paramByteDataSize: 00000000010000000000000004000000
+        - objSelf
+        - lookAtPlayerOn
+        - lookAway
+        paramDataPos: 00000000000000000000000001000000010000000500000006000000
+        paramByteDataSize: 00000000010000000000000004000000000000000100000001000000
     - name: State 1
       description: 
       colorIndex: 0
@@ -380,7 +393,7 @@ MonoBehaviour:
       - fsmEvent:
           name: Action:smalltalk.confirmation.yes
           isSystemEvent: 0
-          isGlobal: 0
+          isGlobal: 1
         toState: State 1
         linkStyle: 0
         linkConstraint: 0
@@ -388,7 +401,7 @@ MonoBehaviour:
       - fsmEvent:
           name: Action:smalltalk.confirmation.no
           isSystemEvent: 0
-          isGlobal: 0
+          isGlobal: 1
         toState: Please
         linkStyle: 0
         linkConstraint: 0

@@ -49,7 +49,7 @@ MonoBehaviour:
         actionEnabled: 0101
         actionIsOpen: 0101
         actionStartIndex: 0000000003000000
-        actionHashCodes: 16192d01ae88b905
+        actionHashCodes: 16192d01f26b2504
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -95,20 +95,21 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 0101
+        byteData: 010100
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1200000001000000140000001400000001000000
+        paramDataType: 120000000100000014000000140000000100000001000000
         paramName:
         - speech
         - ignoredApiResponse
         - audioSourceObj
         - objSelf
         - lookAtPlayerOn
-        paramDataPos: 0000000000000000000000000100000001000000
-        paramByteDataSize: 0000000001000000000000000000000001000000
+        - lookAway
+        paramDataPos: 000000000000000000000000010000000100000002000000
+        paramByteDataSize: 000000000100000000000000000000000100000001000000
     - name: YouAreHere
       description: 
       colorIndex: 0
