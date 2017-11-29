@@ -175,6 +175,11 @@ namespace Charlie.Twitter
                 { "status", text }
                 });
             await request.SendWebRequest();
+            
+            if (request.isHttpError)
+            {
+                throw new TwitterException($"Request failed with HTTP status code {request.responseCode}");
+            }
         }
 
         public async void TweetWithMedia(string text, string[] mediaIds)
@@ -187,6 +192,11 @@ namespace Charlie.Twitter
                 { "media_ids", String.Join(",", mediaIds) }
                 });
             await request.SendWebRequest();
+            
+            if (request.isHttpError)
+            {
+                throw new TwitterException($"Request failed with HTTP status code {request.responseCode}");
+            }
         }
 
         public async Task<Media> UploadMedia(byte[] data)
@@ -230,6 +240,11 @@ namespace Charlie.Twitter
                     NamingStrategy = new SnakeCaseNamingStrategy()
                 }
             };
+
+            if (request.isHttpError)
+            {
+                throw new TwitterException($"Request failed with HTTP status code {request.responseCode}");
+            }
 
             return JsonConvert.DeserializeObject<Media>(
                 request.downloadHandler.text, settings);
