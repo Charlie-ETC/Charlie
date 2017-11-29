@@ -32,7 +32,18 @@ public class ActionSpeak : FsmStateAction
             //}
             string actualSpeech = "";
             //if (idx == 0)
-            actualSpeech = speech.ToString();
+
+            string[] speechArr = speech.ToString().Split('\n');
+
+            if (String.IsNullOrEmpty(speechArr[speechArr.Length - 1]))
+            {
+                actualSpeech = speechArr[UnityEngine.Random.Range(0, speechArr.Length - 1)];
+            }
+            else
+            {
+                actualSpeech = speechArr[UnityEngine.Random.Range(0, speechArr.Length)];
+            }
+
             //else
             //    actualSpeech = String.Format(speech.ToString(), s);
 
@@ -41,6 +52,14 @@ public class ActionSpeak : FsmStateAction
             if (actualSpeech.Contains("{PlayerName}"))
             {
                 actualSpeech = actualSpeech.Replace("{PlayerName}", UserProfile.Content["PlayerName"]);
+            }
+
+            if (actualSpeech.Contains("{FavoriteCity}"))
+            {
+                Debug.Log("getting favorite city");
+                string FavoriteCity = await UserProfile.TryGetApiaiContext("favorite_city");
+                Debug.Log($"got favorite city, {FavoriteCity}");
+                actualSpeech = actualSpeech.Replace("{FavoriteCity}", FavoriteCity);
             }
 
 
