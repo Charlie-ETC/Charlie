@@ -578,19 +578,11 @@ MonoBehaviour:
         x: 274
         y: 393.5
         width: 125
-        height: 32
+        height: 16
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
-      transitions:
-      - fsmEvent:
-          name: substate:finish
-          isSystemEvent: 0
-          isGlobal: 1
-        toState: EnterRoom
-        linkStyle: 0
-        linkConstraint: 0
-        colorIndex: 0
+      transitions: []
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.EnableFSM

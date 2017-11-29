@@ -19,14 +19,20 @@ public class WindowAnimControl : MonoBehaviour {
     }
 
     // Use this for initialization
-    async void OnEnable ()
+    void OnEnable ()
     {
-        string FavoriteCity = await UserProfile.TryGetApiaiContext("favorite_city");
-        ChangeBG(FavoriteCity??"Water");
+        ChangeBG("Garden");
     }
 
     public async void ChangeBG(string content)
     {
+        if (string.IsNullOrEmpty(content))
+        {
+            string FavoriteCity = await UserProfile.TryGetApiaiContext("favorite_city");
+            content = FavoriteCity ?? "Water";
+        }
+        
+
         await new WaitForNextFrame();
         Texture x = await UnsplashService.Instance.GetRandomPhoto(content);
         transform.Find("Quad").GetComponent<MeshRenderer>().material.SetTexture("_MainTex", x);
