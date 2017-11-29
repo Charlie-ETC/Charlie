@@ -32,7 +32,18 @@ public class ActionSpeak : FsmStateAction
             //}
             string actualSpeech = "";
             //if (idx == 0)
-            actualSpeech = speech.ToString();
+
+            string[] speechArr = speech.ToString().Split('\n');
+
+            if (String.IsNullOrEmpty(speechArr[speechArr.Length - 1]))
+            {
+                actualSpeech = speechArr[UnityEngine.Random.Range(0, speechArr.Length - 1)];
+            }
+            else
+            {
+                actualSpeech = speechArr[UnityEngine.Random.Range(0, speechArr.Length)];
+            }
+
             //else
             //    actualSpeech = String.Format(speech.ToString(), s);
 
