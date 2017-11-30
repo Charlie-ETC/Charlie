@@ -8,6 +8,7 @@ namespace Charlie
     {
         public FsmVar oldState;
         public FsmVar newState;
+        public FsmString contextPrefix;
 
         public override async void OnEnter()
         {
@@ -19,13 +20,13 @@ namespace Charlie
                 Debug.Log($"Deleting context {oldState.stringValue}");
                 await ApiaiService.Instance.DeleteContext(
                     DictationMonitor.Instance.apiaiSessionId,
-                    $"story_{oldState.stringValue}"
+                    $"{contextPrefix.Value}_{oldState.stringValue}"
                 );
             }
 
             // Create the new context.
             Context context = new Context();
-            context.name = $"story_{newState.stringValue}";
+            context.name = $"{contextPrefix.Value}_{newState.stringValue}";
             context.lifespan = 99;
 
             Debug.Log($"Creating context {context.name}");

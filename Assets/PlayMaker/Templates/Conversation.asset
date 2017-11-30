@@ -102,8 +102,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1341
-        y: 140
+        x: 1485.0938
+        y: 241
         width: 100
         height: 16
       isBreakpoint: 0
@@ -199,8 +199,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 547
-        y: 118
+        x: 573
+        y: 107
         width: 157
         height: 48
       isBreakpoint: 0
@@ -286,8 +286,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 746
-        y: 250.5
+        x: 603
+        y: 203.5
         width: 100
         height: 32
       isBreakpoint: 0
@@ -433,8 +433,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 783.1875
-        y: 113
+        x: 867.1875
+        y: 109
         width: 157
         height: 48
       isBreakpoint: 0
@@ -489,7 +489,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 00004040
+        byteData: 00001041
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
@@ -646,8 +646,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 927
-        y: 202
+        x: 867
+        y: 199
         width: 157
         height: 48
       isBreakpoint: 0
@@ -717,8 +717,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 818
-        y: 319
+        x: 612
+        y: 303
         width: 100
         height: 32
       isBreakpoint: 0
@@ -788,8 +788,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1018
-        y: 278
+        x: 869
+        y: 287
         width: 157
         height: 48
       isBreakpoint: 0
@@ -859,8 +859,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1005.3594
-        y: 420
+        x: 627.3594
+        y: 401
         width: 100
         height: 32
       isBreakpoint: 0

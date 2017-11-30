@@ -109,9 +109,12 @@ namespace Charlie.Apiai
             request.SetRequestHeader("Authorization", $"Bearer {accessToken}");
             request.SetRequestHeader("Content-Type", "application/json");
             await request.SendWebRequest();
+            
+            if (request.isHttpError)
+            {
+                throw new Exception($"Request failed with HTTP status code {request.responseCode}");
+            }
 
-            Debug.Log(sessionId);
-            Debug.Log(request.downloadHandler.text);
         }
 
         public async Task DeleteContexts(string sessionId)
@@ -134,6 +137,11 @@ namespace Charlie.Apiai
             request.SetRequestHeader("Authorization", $"Bearer {accessToken}");
             request.SetRequestHeader("Content-Type", "application/json");
             await request.SendWebRequest();
+
+            if (request.isHttpError)
+            {
+                throw new Exception($"Request failed with HTTP status code {request.responseCode}");
+            }
         }
     }
 }
