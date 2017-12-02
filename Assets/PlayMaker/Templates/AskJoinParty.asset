@@ -23,7 +23,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 248
+        x: 280
         y: 108
         width: 157
         height: 32
@@ -121,8 +121,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 673
-        y: 166
+        x: 747
+        y: 173
         width: 100
         height: 32
       isBreakpoint: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 868
+        x: 900
         y: 205
         width: 100
         height: 16
@@ -376,17 +376,17 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 253
-        y: 182
+        x: 256
+        y: 278
         width: 276
-        height: 80
+        height: 96
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
       transitions:
       - fsmEvent:
-          name: FINISHED
-          isSystemEvent: 1
+          name: Action:smalltalk.confirmation.repeat
+          isSystemEvent: 0
           isGlobal: 0
         toState: WalkToCube
         linkStyle: 0
@@ -413,6 +413,14 @@ MonoBehaviour:
           isSystemEvent: 0
           isGlobal: 0
         toState: free conversation
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: WalkToCube
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -471,8 +479,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 649
-        y: 264
+        x: 779
+        y: 304
         width: 136
         height: 32
       isBreakpoint: 0
@@ -483,7 +491,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Hypo
+        toState: Please
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
