@@ -33,7 +33,9 @@ public class ActionFreeConversation : FsmStateAction
         go.GetComponentInChildren<LookAtPlayerIKControl>().isActive = true;
 
         stateStartTime = Time.time;
-        
+        lastSpeakEnd = Time.time;
+
+
 
         string[] speechArr = speakWhenSilence.ToString().Split('\n');
 

@@ -1305,7 +1305,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Great!
+          value: Great! 1,2,3 done!
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
