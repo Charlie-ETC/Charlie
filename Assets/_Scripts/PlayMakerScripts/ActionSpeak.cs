@@ -117,6 +117,8 @@ public class ActionSpeak : FsmStateAction
     public override void OnExit()
     {
         Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponent<AudioSource>().Stop();
+        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetBool("toTalk", false); // for facial animation
+        Fsm.GetOwnerDefaultTarget(audioSourceObj).GetComponentInChildren<Animator>().SetInteger("toTalkBody", 0); // for body talk animation
     }
 
     //public override void OnExit()

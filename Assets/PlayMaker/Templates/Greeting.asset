@@ -71,7 +71,9 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Wow
+          value: 'Wow
+
+            Hi'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -237,7 +239,9 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Are you pumpkin?
+          value: 'Are you pumpkin?
+
+            I guess you are pumpkin, right?'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -490,7 +494,9 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Great! Nice to meet you {PlayerName}
+          value: 'Great! Nice to meet you {PlayerName}
+
+            Hello {PlayerName}'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -939,10 +945,10 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 675
-        y: 419.1172
-        width: 240
-        height: 80
+        x: 669
+        y: 442.1172
+        width: 260
+        height: 96
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -976,6 +982,14 @@ MonoBehaviour:
           isSystemEvent: 0
           isGlobal: 1
         toState: GetParam
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Action:smalltalk.confirmation.repeat
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: YouMustBe
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -1112,6 +1126,9 @@ MonoBehaviour:
     - name: Action:smalltalk.confirmation.no
       isSystemEvent: 0
       isGlobal: 1
+    - name: Action:smalltalk.confirmation.repeat
+      isSystemEvent: 0
+      isGlobal: 0
     - name: Action:smalltalk.confirmation.yes
       isSystemEvent: 0
       isGlobal: 1
