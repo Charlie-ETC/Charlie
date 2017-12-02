@@ -71,7 +71,11 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: What is your favorite city?
+          value: 'What is your favorite city?
+
+            Which city do you like most?
+
+            Which city do you really want to go?'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
