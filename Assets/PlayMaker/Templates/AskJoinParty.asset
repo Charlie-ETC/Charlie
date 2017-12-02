@@ -83,8 +83,10 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Come on, {PlayerName}, we are having a party now, would you like
+          value: 'Come on, {PlayerName}, we are having a party now, would you like
             to join us?
+
+            ok. we are having a party {PlayerName} now. would you like to join us?'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -167,7 +169,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: 'awesome. '
+          value: "awesome. \nyeah cool!\nGreat! follow me.\n"
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -376,8 +378,8 @@ MonoBehaviour:
         serializedVersion: 2
         x: 253
         y: 182
-        width: 240
-        height: 64
+        width: 260
+        height: 80
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -403,6 +405,14 @@ MonoBehaviour:
           isSystemEvent: 0
           isGlobal: 1
         toState: Please
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Action:smalltalk.confirmation.repeat
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: WalkToCube
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -461,6 +471,9 @@ MonoBehaviour:
       isSystemEvent: 1
       isGlobal: 0
     - name: Action:smalltalk.confirmation.no
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: Action:smalltalk.confirmation.repeat
       isSystemEvent: 0
       isGlobal: 0
     - name: Action:smalltalk.confirmation.yes
