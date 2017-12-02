@@ -127,24 +127,13 @@ public class DictationMonitor : MonoBehaviour {
         //await SpeakApiaiResponse(response);
     }
 
-    /**
-     * Speaks the speech that was returned in an API.ai response object.
-     * If the speech cannot be found, this method does nothing.
-     *
-     * @param response The response returned from API.ai
-     * @return A task that resolves to a boolean when the speech was
-     *      downloaded from Watson and a play request was sent to Unity.
-     *      The boolean is false if the response doesn't contain any speech.
-     */
-    public async Task<bool> SpeakApiaiResponse(Response response)
+    public async Task<bool> SpeakText(string speech)
     {
         System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
-        
-        // API.ai crafted a speech response for us, use it.
-        if (response.result.speech.Length != 0)
-        {
-            string speech = response.result.speech;
 
+        // API.ai crafted a speech response for us, use it.
+        if (speech.Length != 0)
+        {
             stopwatch.Start();
             AudioClip clip = await watsonTTSService.Synthesize(speech);
             Debug.Log($"[DictationMonitor] perf: Watson synthesis took {stopwatch.ElapsedMilliseconds}ms");
@@ -198,6 +187,20 @@ public class DictationMonitor : MonoBehaviour {
         {
             return false;
         }
+    }
+
+    /**
+     * Speaks the speech that was returned in an API.ai response object.
+     * If the speech cannot be found, this method does nothing.
+     *
+     * @param response The response returned from API.ai
+     * @return A task that resolves to a boolean when the speech was
+     *      downloaded from Watson and a play request was sent to Unity.
+     *      The boolean is false if the response doesn't contain any speech.
+     */
+    public async Task<bool> SpeakApiaiResponse(Response response)
+    {
+        return await SpeakText(response.result.speech);
     }
 
     public void DispatchIntent(string intent, Response response)

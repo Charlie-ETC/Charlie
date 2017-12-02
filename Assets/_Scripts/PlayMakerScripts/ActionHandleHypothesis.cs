@@ -55,7 +55,7 @@ public class ActionHandleHypothesis : FsmStateAction
                 Finish();
             }
         }
-        else if ((fsmEvent.Name == "Complete" && go.GetComponent<FsmEventGenerator>().LastCompleteMessage != "Complete")
+        else if ((fsmEvent.Name == "Dictation:Complete" && go.GetComponent<FsmEventGenerator>().LastCompleteMessage != "Complete")
             || fsmEvent.Name == "Dictation:Error"
             || (!waitingForSpeech && fsmEvent.Name == "Apiai:Response"))
         {
