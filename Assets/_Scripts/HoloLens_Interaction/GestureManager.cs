@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-#if UNITY_WSA
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
 using UnityEngine.XR.WSA.Input;
 #endif
 
@@ -19,7 +19,7 @@ namespace Charlie
         //public GameObject FocusedObject { get; private set; }
         //public GameObject OldFocusedObject { get; private set; }
 
-#if UNITY_WSA
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
         public GestureRecognizer gestureRecognizer;
         private bool IsDragging { get; set; }
         private Vector3 PrevManipulationPosition { get; set; }
@@ -45,7 +45,7 @@ namespace Charlie
         // initialize gesture events
         private void Start()
         {
-#if UNITY_WSA
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
             gestureRecognizer = new GestureRecognizer();
             // add recognizableGuestures
             gestureRecognizer.SetRecognizableGestures(GestureSettings.ManipulationTranslate | GestureSettings.Tap);
@@ -72,7 +72,7 @@ namespace Charlie
         void Update()
         {
             //Debug.Log("capturing: " + gestureRecognizer.IsCapturingGestures());
-#if UNITY_WSA
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
             // restart capturing gestures if focusedObject changes
             if (WorldCursor.Instance.prevGazeHoveringObject != WorldCursor.Instance.newGazeHoveringObject) {
                 Debug.Log("Restart gesture capturing");
@@ -96,7 +96,7 @@ namespace Charlie
             //    }
             //}
 
-#if UNITY_WSA
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
             if (Input.GetKeyDown("space"))
             {
                 OnAirTap(InteractionSourceKind.Controller, 1, new Ray());
@@ -104,23 +104,23 @@ namespace Charlie
 #endif
         }
 
-//#if UNITY_WSA
-//        private void OnNavigationUpdated(NavigationUpdatedEventArgs obj)
-//        {
-//            //Debug.LogError($"[OnManipulationGesture] {obj.normalizedOffset}");
+        //#if UNITY_WSA
+        //        private void OnNavigationUpdated(NavigationUpdatedEventArgs obj)
+        //        {
+        //            //Debug.LogError($"[OnManipulationGesture] {obj.normalizedOffset}");
 
-//            //Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
-//            //Transform cam = Camera.main.transform;
+        //            //Transform TargetRoot = GameObject.FindGameObjectWithTag("TargetRoot").transform;
+        //            //Transform cam = Camera.main.transform;
 
-//            //float dist = obj.normalizedOffset.y * 2f + 3f;
+        //            //float dist = obj.normalizedOffset.y * 2f + 3f;
 
-//            //TargetRoot.eulerAngles = (new Vector3(0, obj.normalizedOffset.x * 60, 0));
+        //            //TargetRoot.eulerAngles = (new Vector3(0, obj.normalizedOffset.x * 60, 0));
 
-//            //TargetRoot.position = cam.position + cam.forward * dist;
-//        }
-//#endif
+        //            //TargetRoot.position = cam.position + cam.forward * dist;
+        //        }
+        //#endif
 
-#if UNITY_WSA
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
         private void OnManipulationStarted(ManipulationStartedEventArgs obj)
         {
             //Debug.Log("OnManipulationStarted");
@@ -153,7 +153,7 @@ namespace Charlie
 
 
         public static StickerController SelectedObject = null;
-#if UNITY_WSA
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
         private void OnAirTap(InteractionSourceKind source, int tapCount, Ray headRay)
         {
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -218,7 +218,7 @@ namespace Charlie
         }
 
         // unregister events
-#if UNITY_WSA
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
         private void OnDestroy()
         {
             gestureRecognizer.TappedEvent -= OnAirTap;

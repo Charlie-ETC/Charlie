@@ -3,7 +3,9 @@ using HutongGames.PlayMaker;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
 using UnityEngine.XR.WSA.Input;
+#endif
 
 public class ActionGuestureMaipulationStarted : FsmStateAction
 {
@@ -25,7 +27,9 @@ public class ActionGuestureMaipulationStarted : FsmStateAction
         PrevManipulationPosition = Vector3.zero;
 
         // swtich on
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
         GestureManager.Instance.gestureRecognizer.ManipulationUpdated += OnManipulationUpdated;
+#endif
 
         Finish();
     }
@@ -33,12 +37,15 @@ public class ActionGuestureMaipulationStarted : FsmStateAction
     public override void OnExit()
     {
         // switch off
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
         GestureManager.Instance.gestureRecognizer.ManipulationUpdated -= OnManipulationUpdated;
+#endif
         Debug.Log("OnManipulationCompleted/cancelled");
         WorldCursor.Instance.cursorMaterial.color = Color.yellow;
     }
 
 
+#if UNITY_2017_2_OR_NEWER && UNITY_WSA
     private void OnManipulationUpdated(ManipulationUpdatedEventArgs obj)
     {
         Debug.Log("OnManipulationUpdated");
@@ -49,4 +56,5 @@ public class ActionGuestureMaipulationStarted : FsmStateAction
        
         //Debug.LogError($"[OnManipulationGesture] {obj.cumulativeDelta}");
     }
+#endif
 }
