@@ -13,13 +13,16 @@ public class ActionFreeConversation : FsmStateAction
 
     public float wholeConversationTimeout;
     public float playerResponseTimeout;
-    public string speakWhenSilence;
+    [UIHint(UIHint.TextArea)]
+    public FsmString speakWhenSilence;
+    public bool speakSequencal;
 
     bool wasLookingAtPlayer;
     GameObject go;
 
     float stateStartTime;
     float lastSpeakEnd;
+    Queue<string> speechQueue = new Queue<string>();
 
     public override void OnEnter()
     {
@@ -30,6 +33,30 @@ public class ActionFreeConversation : FsmStateAction
         go.GetComponentInChildren<LookAtPlayerIKControl>().isActive = true;
 
         stateStartTime = Time.time;
+        
+
+        string[] speechArr = speakWhenSilence.ToString().Split('\n');
+
+        if (!speakSequencal)
+        {
+            int n = speechArr.Length;
+            while (n > 1)
+            {
+                n--;
+                int k = UnityEngine.Random.Range(0, speechArr.Length);
+                var value = speechArr[k];
+                speechArr[k] = speechArr[n];
+                speechArr[n] = value;
+            }
+        }
+
+        foreach (var line in speechArr)
+        {
+            if (!string.IsNullOrEmpty(line))
+            {
+                speechQueue.Enqueue(line);
+            }
+        }
     }
 
 
@@ -77,26 +104,9 @@ public class ActionFreeConversation : FsmStateAction
     async void speakRandomQuestion()
     {
         waitingRandomQuestion = true;
-
-
-        string actualSpeech = "";
-
-        string[] speechArr = speakWhenSilence.Split('\n');
-
-        if (speechArr.Length == 0)
-            return;
-
-        if (String.IsNullOrEmpty(speechArr[speechArr.Length - 1]))
-        {
-            actualSpeech = speechArr[UnityEngine.Random.Range(0, speechArr.Length - 1)];
-        }
-        else
-        {
-            actualSpeech = speechArr[UnityEngine.Random.Range(0, speechArr.Length)];
-        }
         
-        if (speechArr.Length == 0)
-            return;
+        string actualSpeech = speechQueue.Dequeue();
+        speechQueue.Enqueue(actualSpeech);
 
         if (actualSpeech.Contains("{PlayerName}"))
         {
