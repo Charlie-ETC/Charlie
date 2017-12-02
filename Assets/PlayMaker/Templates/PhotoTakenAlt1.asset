@@ -236,8 +236,8 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Wow see, this is the photo from you just took. Would you like to
-            add some stickers?
+          value: Wow see, this is the photo you just took. Would you like to add some
+            stickers?
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -331,8 +331,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 917
-        y: 247
+        x: 1117.7266
+        y: 546.7422
         width: 100
         height: 32
       isBreakpoint: 0
@@ -431,8 +431,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1077
-        y: 489.5
+        x: 1156.6562
+        y: 697.71875
         width: 100
         height: 16
       isBreakpoint: 0
@@ -705,8 +705,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1215
-        y: 180.5
+        x: 1294.6562
+        y: 388.71875
         width: 100
         height: 32
       isBreakpoint: 0
@@ -776,8 +776,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 675
-        y: 329
+        x: 673
+        y: 324
         width: 111
         height: 48
       isBreakpoint: 0
@@ -788,7 +788,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Bye
+        toState: ShareWithTwitter
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -834,7 +834,15 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Awesome! I like it
+          value: 'Awesome! I like it
+
+            Nice
+
+            Fantastic
+
+            Incredible
+
+            That''s cute'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -1197,8 +1205,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1178
-        y: 252.5
+        x: 1257.6562
+        y: 460.71875
         width: 157
         height: 48
       isBreakpoint: 0
@@ -1278,8 +1286,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1242.5
-        y: 333
+        x: 1322.1562
+        y: 541.21875
         width: 157
         height: 48
       isBreakpoint: 0
@@ -1359,8 +1367,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1308.5
-        y: 403
+        x: 1388.1562
+        y: 611.21875
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1425,10 +1433,298 @@ MonoBehaviour:
         - owner
         paramDataPos: 00000000
         paramByteDataSize: 00000000
+    - name: ShareWithTwitter
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 882
+        y: 349
+        width: 138
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: ShareWithTwitterWait
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionSpeak
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 16192d01
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Now I'm going to share it with my Twitter friends. Oh, I forgot something
+            important.
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 120000000100000014000000
+        paramName:
+        - speech
+        - ignoredApiResponse
+        - audioSourceObj
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
+    - name: ShareWithTwitterWait
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 868
+        y: 408
+        width: 169
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: HaveGiftForYou
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionTimeout
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: deb16303
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00008040
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 02000000
+        paramName:
+        - secs
+        paramDataPos: 00000000
+        paramByteDataSize: 04000000
+    - name: HaveGiftForYou
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 871.7969
+        y: 471.23438
+        width: 126
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: HaveGiftForYouWait
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionSpeak
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 16192d01
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: I have a gift for you. Don't tell anyone.
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 120000000100000014000000
+        paramName:
+        - speech
+        - ignoredApiResponse
+        - audioSourceObj
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
+    - name: HaveGiftForYouWait
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 870.6328
+        y: 539.64844
+        width: 157
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Bye
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionTimeout
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: deb16303
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00008040
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 02000000
+        paramName:
+        - secs
+        paramDataPos: 00000000
+        paramByteDataSize: 04000000
     events:
     - name: FINISHED
       isSystemEvent: 1
       isGlobal: 0
+    - name: Dictation:Complete
+      isSystemEvent: 0
+      isGlobal: 1
     - name: Dictation:Hypothesis
       isSystemEvent: 0
       isGlobal: 1

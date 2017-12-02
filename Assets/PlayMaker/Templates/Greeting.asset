@@ -438,8 +438,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 996
-        y: 561
+        x: 1042
+        y: 500
         width: 157
         height: 48
       isBreakpoint: 0
@@ -450,7 +450,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: State 1
+        toState: Free Conversation
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -527,8 +527,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1088
-        y: 413
+        x: 1051
+        y: 421
         width: 100
         height: 32
       isBreakpoint: 0
@@ -603,8 +603,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1253
-        y: 489.97656
+        x: 1490
+        y: 560.97656
         width: 100
         height: 16
       isBreakpoint: 0
@@ -700,8 +700,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 779
-        y: 694
+        x: 781
+        y: 676
         width: 100
         height: 32
       isBreakpoint: 0
@@ -874,8 +874,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1027
-        y: 643.2656
+        x: 1034
+        y: 628.2656
         width: 100
         height: 32
       isBreakpoint: 0
@@ -886,7 +886,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: State 1
+        toState: Free Conversation
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -1119,6 +1119,87 @@ MonoBehaviour:
         - lookAway
         paramDataPos: 00000000000000000400000005000000
         paramByteDataSize: 04000000000000000100000001000000
+    - name: Free Conversation
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 1276
+        y: 555
+        width: 141
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: State 1
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionFreeConversation
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: d6fcb201
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: ' Hi {PlayerName}, do you want to chat more?'
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00000c420000804000
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 1400000002000000020000001200000001000000
+        paramName:
+        - owner
+        - wholeConversationTimeout
+        - playerResponseTimeout
+        - speakWhenSilence
+        - speakSequencal
+        paramDataPos: 0000000000000000040000000000000008000000
+        paramByteDataSize: 0000000004000000040000000000000001000000
     events:
     - name: FINISHED
       isSystemEvent: 1
