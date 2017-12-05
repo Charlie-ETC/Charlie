@@ -4,8 +4,6 @@ using System.Linq;
 using UnityEngine.UI;
 using Asyncoroutine;
 
-using Charlie.Twitter;
-
 public class ActionTakePicture : FsmStateAction
 {
 
@@ -32,14 +30,6 @@ public class ActionTakePicture : FsmStateAction
 
                     // show photo here
                     GameObject.Find("PhotoTaken").GetComponent<RawImage>().texture = texture;
-                    byte[] jpegData = ImageConversion.EncodeToJPG(texture, 80);
-
-                    Debug.Log("[ActionTakePicture] Uploading picture to Twitter");
-                    Media media = await TwitterService.Instance.UploadMedia(jpegData);
-                    Debug.Log($"[ActionTakePicture] Media uploaded with ID {media.mediaIdString}");
-                    TwitterService.Instance.TweetWithMedia("hello!", new string[1] { media.mediaIdString });
-                    //spatialMappingManager.StartObserver();
-
                     capture.StopPhotoModeAsync(delegate (UnityEngine.XR.WSA.WebCam.PhotoCapture.PhotoCaptureResult result3) {
                         Debug.Log("[DictationMonitor] Stopping photo mode");
                     });

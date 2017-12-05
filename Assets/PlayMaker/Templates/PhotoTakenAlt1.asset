@@ -1520,12 +1520,14 @@ MonoBehaviour:
       actionData:
         actionNames:
         - ActionSpeak
+        - ActionUploadPicture
         customNames:
         - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: 16192d01
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000003000000
+        actionHashCodes: 16192d0100000000
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
