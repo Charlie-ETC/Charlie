@@ -236,8 +236,10 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Wow see, this is the photo you just took. Would you like to add some
-            stickers?
+          value: 'Wow, see, this is the photo you just took. Would you like to add
+            some stickers?
+
+            Wow, see, this is the photo you just took. You can add some stickers.'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -1694,7 +1696,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: I have a gift for you. Don't tell anyone.
+          value: I have a gift for you, you can share it with your friends.
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []

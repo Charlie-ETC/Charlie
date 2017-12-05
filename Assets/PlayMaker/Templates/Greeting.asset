@@ -494,9 +494,11 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: 'Great! Nice to meet you {PlayerName}
+          value: 'Great! Nice to meet you {PlayerName}. <express-as type="GoodNews">Welcome
+            to my playroom!</express-as> Do you like my stuff?
 
-            Hello {PlayerName}'
+            Hello {PlayerName}! <express-as type="GoodNews">Welcome to my playroom!</express-as>
+            Do you like my stuff?'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []

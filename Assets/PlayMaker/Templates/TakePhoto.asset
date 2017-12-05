@@ -438,7 +438,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Thank you!
+          value: Thank you! I have a magic window. It can show you anything you want.
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
