@@ -190,7 +190,7 @@ MonoBehaviour:
           networkSync: 0
           value: 'Can you help me take a photo?
 
-            Could you take a photo for me?
+            Could you take a photo <express-as type="GoodNews">for me</express-as>?
 
             it would be nice if you can help me take a photo. Would you?
 
@@ -1445,8 +1445,8 @@ MonoBehaviour:
         serializedVersion: 2
         x: 604.6328
         y: 205.71094
-        width: 240
-        height: 64
+        width: 248
+        height: 80
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -1472,6 +1472,14 @@ MonoBehaviour:
           isSystemEvent: 0
           isGlobal: 1
         toState: Please
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Action:smalltalk.confirmation.later
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: State 1
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -2117,9 +2125,94 @@ MonoBehaviour:
         - speakSequencal
         paramDataPos: 0000000000000000040000000000000008000000
         paramByteDataSize: 0000000004000000040000000000000001000000
+    - name: State 1
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 964.433
+        y: 224.22679
+        width: 100
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Free conversation
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionSpeak
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 16192d01
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: '<express-as type="GoodNews">Okay</express-as>. I will bug you again
+            later.
+
+            <express-as type="GoodNews">Okay</express-as>. You promised.'
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 120000000100000014000000
+        paramName:
+        - speech
+        - ignoredApiResponse
+        - audioSourceObj
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000100000000000000
     events:
     - name: FINISHED
       isSystemEvent: 1
+      isGlobal: 0
+    - name: Action:smalltalk.confirmation.later
+      isSystemEvent: 0
       isGlobal: 0
     - name: Action:smalltalk.confirmation.no
       isSystemEvent: 0
