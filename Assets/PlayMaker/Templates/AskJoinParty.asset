@@ -248,7 +248,13 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Please! Please Join my party.
+          value: 'Please! Please Join my party.
+
+            Please! let''s party
+
+            Please, play with me!
+
+'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -564,13 +570,13 @@ MonoBehaviour:
       isGlobal: 0
     - name: Action:smalltalk.confirmation.no
       isSystemEvent: 0
-      isGlobal: 0
+      isGlobal: 1
     - name: Action:smalltalk.confirmation.repeat
       isSystemEvent: 0
       isGlobal: 0
     - name: Action:smalltalk.confirmation.yes
       isSystemEvent: 0
-      isGlobal: 0
+      isGlobal: 1
     - name: Dictation:Hypothesis
       isSystemEvent: 0
       isGlobal: 1

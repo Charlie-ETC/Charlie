@@ -188,7 +188,13 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Can you help me take a photo?
+          value: 'Can you help me take a photo?
+
+            Could you take a photo for me?
+
+            it would be nice if you can help me take a photo. Would you?
+
+'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -892,7 +898,9 @@ MonoBehaviour:
           networkSync: 0
           value: 'Are you ready {PlayerName}?
 
-            {PlayerName}, Say yes if you are ready.'
+            {PlayerName}, Say yes if you are ready.
+
+            ready?'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
