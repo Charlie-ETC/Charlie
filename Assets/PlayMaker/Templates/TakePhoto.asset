@@ -24,7 +24,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 58.101562
-        y: 425.96875
+        y: 489.96875
         width: 157
         height: 48
       isBreakpoint: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 294.58594
-        y: 101.84375
+        y: 165.84375
         width: 157
         height: 48
       isBreakpoint: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 010101
+        byteData: 010100
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
@@ -222,8 +222,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 323.25
-        y: 231.29688
+        x: 324.3047
+        y: 317.6328
         width: 157
         height: 48
       isBreakpoint: 0
@@ -313,8 +313,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 604.3828
-        y: 221.55469
+        x: 608.6172
+        y: 318.51562
         width: 157
         height: 48
       isBreakpoint: 0
@@ -384,8 +384,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 808.97656
-        y: 262.0625
+        x: 817.46875
+        y: 366.46875
         width: 100
         height: 32
       isBreakpoint: 0
@@ -464,7 +464,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 453.9375
-        y: 522.09375
+        y: 586.09375
         width: 157
         height: 48
       isBreakpoint: 0
@@ -563,8 +563,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 705.78906
-        y: 498.65625
+        x: 706.84375
+        y: 586.0547
         width: 157
         height: 48
       isBreakpoint: 0
@@ -634,8 +634,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 759.9375
-        y: 616.6953
+        x: 738.65625
+        y: 706.21875
         width: 100
         height: 32
       isBreakpoint: 0
@@ -727,7 +727,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 467.875
-        y: 641.9375
+        y: 705.9375
         width: 140
         height: 32
       isBreakpoint: 0
@@ -823,7 +823,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 1041.7344
-        y: 494.20312
+        y: 558.2031
         width: 157
         height: 48
       isBreakpoint: 0
@@ -890,7 +890,9 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Are you ready {PlayerName}?
+          value: 'Are you ready {PlayerName}?
+
+            {PlayerName}, Say yes if you are ready.'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -925,8 +927,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 265.4297
-        y: 600.46094
+        x: 255.84375
+        y: 643.1797
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1013,7 +1015,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 1509.5
-        y: 320
+        y: 384
         width: 100
         height: 16
       isBreakpoint: 0
@@ -1110,7 +1112,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 1377
-        y: 406
+        y: 470
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1175,7 +1177,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 1008
-        y: 301
+        y: 365
         width: 134
         height: 32
       isBreakpoint: 0
@@ -1258,7 +1260,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 1354.1016
-        y: 507.0703
+        y: 571.0703
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1305,7 +1307,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Great! 1,2,3 done!
+          value: Great! 1. 2. 3.  done!
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -1337,7 +1339,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 1092.9062
-        y: 373.65625
+        y: 437.65625
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1433,8 +1435,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 598.2578
-        y: 123.63281
+        x: 604.6328
+        y: 205.71094
         width: 240
         height: 64
       isBreakpoint: 0
@@ -1445,7 +1447,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: CanYou
+        toState: Free conversation
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -1521,7 +1523,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 81.484375
-        y: 330.3828
+        y: 394.3828
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1591,8 +1593,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 660.22656
-        y: 367.1328
+        x: 674.0469
+        y: 460.91406
         width: 240
         height: 64
       isBreakpoint: 0
@@ -1679,7 +1681,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 1009.5
-        y: 595.7969
+        y: 659.7969
         width: 240
         height: 64
       isBreakpoint: 0
@@ -1766,7 +1768,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 1334
-        y: 346
+        y: 410
         width: 112
         height: 32
       isBreakpoint: 0
@@ -1843,8 +1845,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 400
-        y: 425.5
+        x: 431.90625
+        y: 486.29688
         width: 157
         height: 48
       isBreakpoint: 0
@@ -1945,7 +1947,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 259
-        y: 480.5
+        y: 544.5
         width: 100
         height: 32
       isBreakpoint: 0
@@ -2026,6 +2028,87 @@ MonoBehaviour:
         - speechVar
         paramDataPos: 00000000
         paramByteDataSize: 00000000
+    - name: Free conversation
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 628.6875
+        y: 103.33594
+        width: 139
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: CanYou
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ActionFreeConversation
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: d6fcb201
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 000020410000004100
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 1400000002000000020000001200000001000000
+        paramName:
+        - owner
+        - wholeConversationTimeout
+        - playerResponseTimeout
+        - speakWhenSilence
+        - speakSequencal
+        paramDataPos: 0000000000000000040000000000000008000000
+        paramByteDataSize: 0000000004000000040000000000000001000000
     events:
     - name: FINISHED
       isSystemEvent: 1

@@ -1143,15 +1143,25 @@ MonoBehaviour:
       actionData:
         actionNames:
         - ActionFreeConversation
+        - ActionLookatPlayer
         customNames:
         - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: d6fcb201
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000005000000
+        actionHashCodes: d6fcb201f26b2504
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         - ownerOption: 0
           gameObject:
             useVariable: 0
@@ -1172,7 +1182,8 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: ' Hi {PlayerName}, do you want to chat more?'
+          value: " Hi {PlayerName}, why are you so quiet?\n {PlayerName} Do you want
+            to chat more?"
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -1186,20 +1197,23 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 00000c420000804000
+        byteData: 00000c4200008040000101
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1400000002000000020000001200000001000000
+        paramDataType: 1400000002000000020000001200000001000000140000000100000001000000
         paramName:
         - owner
         - wholeConversationTimeout
         - playerResponseTimeout
         - speakWhenSilence
         - speakSequencal
-        paramDataPos: 0000000000000000040000000000000008000000
-        paramByteDataSize: 0000000004000000040000000000000001000000
+        - objSelf
+        - lookAtPlayerOn
+        - lookAway
+        paramDataPos: 000000000000000004000000000000000800000001000000090000000a000000
+        paramByteDataSize: 0000000004000000040000000000000001000000000000000100000001000000
     events:
     - name: FINISHED
       isSystemEvent: 1

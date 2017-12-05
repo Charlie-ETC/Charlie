@@ -86,7 +86,7 @@ MonoBehaviour:
           value: 'Come on, {PlayerName}, we are having a party now, would you like
             to join us?
 
-            ok. we are having a party {PlayerName} now. would you like to join us?'
+            ok.{PlayerName}, we are having a party now. would you like to join us?'
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
